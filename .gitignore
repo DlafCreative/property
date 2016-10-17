@@ -1,5 +1,9 @@
 # @AngularClass
 
+# Mercurial
+.hg/
+.hgignore
+
 # Logs
 logs
 *.log

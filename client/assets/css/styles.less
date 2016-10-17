@@ -1,0 +1,40 @@
+/** General layout */
+html, body,prop-app {
+	height: 100%;
+}
+body {
+    margin: 0;
+}
+prop-app { /* Application root */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+.prop-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-top: 1em;
+}
+main {
+    flex: 1;
+}
+.content-scrollable {
+    /* Use this class if container should display a scrollbar on overflow */
+    overflow-y: auto; 
+}
+
+/** Logo vertical alignment **/
+.brand-logo {
+    margin: 10px 0 0 20px;
+}
+
+.prop-container { /* Wrap in a max 1280px wide */
+    max-width: 1280px;
+    margin: auto;
+}
+
+.ui-state-hover {
+    cursor: pointer;
+    background-color: #E0E0E0;
+}

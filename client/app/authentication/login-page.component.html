@@ -1,0 +1,48 @@
+<div class="login-page-wrapper">
+	<div class="login-box-wrapper valign-wrapper row">
+		<div class="login-box col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">		
+			<form>
+				<div class="card-content">
+					<span class="card-title">Identification</span>
+					<div class="row">
+						<div class="input-field col s12">
+							<input type="text" name="customer_number" [(ngModel)]="customer_number" />
+							<label for="customer_number">Customer Number</label>
+						</div>
+						<div class="input-field col s12">
+							<input type="text" name="username" [(ngModel)]="username" />
+							<label for="customer_number">Username</label>
+						</div>
+						<div class="input-field col s12">
+							<input type="password" name="password" [(ngModel)]="password" />
+							<label for="password">Password</label>
+						</div>
+					</div>
+				</div>
+				<div className="card-action">
+					<div class="row">
+						<div class="col s4"></div>
+						<div class="col s4 center-align loader-wrapper">
+							<div class="preloader-wrapper small active" *ngIf="isProcessing">
+							    <div class="spinner-layer spinner-yellow-only">
+							      	<div class="circle-clipper left">
+							        	<div class="circle"></div>
+							      	</div>
+							      	<div class="gap-patch">
+							        	<div class="circle"></div>
+							      	</div>
+							      	<div class="circle-clipper right">
+							        	<div class="circle"></div>
+							      	</div>
+							    </div>
+						  	</div>
+						</div>
+						<div class="col s4">
+							<button type="submit" class="waves-effect waves-light btn orange" (click)="onSubmit()" [disabled]="isProcessing" >Login</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>	
+</div>

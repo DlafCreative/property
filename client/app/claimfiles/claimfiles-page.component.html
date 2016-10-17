@@ -1,0 +1,46 @@
+<main>
+	<div class="prop-container">
+		<div class="claimfiles-wrapper row">
+			<div class="collection-wrapper col s8">
+				<div class="toolbar-wrapper">					
+					<a class="btn waves-effect waves-light orange modal-trigger">
+						<i class="material-icons left">create_new_folder</i>Quick creation
+					</a>
+					<a class="btn waves-effect waves-light orange" [routerLink]="['/claimfile/create']">
+						<i class="material-icons left">create_new_folder</i>Advanced creation
+					</a>
+					<button class="btn waves-effect waves-light white grey-text">
+						<i class="material-icons left">filter_list</i>Filter claims
+					</button>
+				</div>
+				<div class="collection-table-wrapper">
+					<p-dataTable [value]="claimFiles" electionMode="single" expandableRows="true">
+    					<p-column expander="true"></p-column>
+					    <p-column field="attributes.customerNumber" header="Customer number"></p-column>
+					    <p-column field="attributes.customerName" header="Customer name"></p-column>
+					    <p-column field="attributes.contractNumber" header="Contract number"></p-column>
+					    <p-column>
+					    	<template pTemplate let-claimfile="claimFile" type="body">
+					    	</template>					    	
+					    </p-column>
+					    <template let-claimfile>
+					    	Plus d'informations sur {{ claimfile.attributes.customerName }}
+			    			<a class="btn btn-floating orange grey-text right" [routerLink]="['/claimFile', claimfile.attributes.claimInformation.claimNumber]"><i class="material-icons">launch</i></a>
+					    </template>
+					</p-dataTable>
+				</div>
+			</div>
+			<div class="filters-wrapper col s4">
+				<div class="card center-align">
+					<div class="card-content grey lighten-2">
+						<span class="card-title">FILTERS</span>
+					</div>
+					<div class="card-action">
+						No filter defined
+					</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+</main>
+<prop-kpi-container [kpis]="kpis"></prop-kpi-container>

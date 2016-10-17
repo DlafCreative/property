@@ -1,0 +1,33 @@
+@import '../../../assets/css/constants.less';
+/**
+ * KPI Component
+ */
+.kpi {
+    
+    flex: 1;
+
+    border-radius: 2px;
+    padding: 10px;
+    color: @bright_text_color;
+    display: flex;
+    flex-direction: column;
+    
+    .kpi__primaryTitle, h4, .kpi__secondaryTitle {
+        text-align: center;
+        margin: 0;
+    }
+    .kpi__primaryTitle {
+        font-size: .8em;
+        min-height: 36px;
+    }
+    h4 {
+        flex: 1;
+    }
+    .kpi__secondaryTitle  {
+        font-size: .7em;
+        min-height: 36px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}

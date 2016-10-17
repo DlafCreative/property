@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col s3"></div>
+    <div class="col s6">
+        <form class="col s12" (ngSubmit)="onSubmit()" #claimFileForm="ngForm">
+            <div class="row">
+                <div class="input-field">					
+                    <input #spy type="text" id="customerName" name="customerName" [(ngModel)]="claimFile.customerName" placeholder="Customer Name" class="validate" required />
+                    <label for="customerName">Customer Name</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="customerNumber" name="customerNumber" [(ngModel)]="claimFile.customerNumber" placeholder="Customer Number" class="validate" required />
+                    <label for="customerNumber">Customer Number</label>
+                </div>
+                <div class="row">
+                    <label for="dateOfEvent">Date of event</label>
+                    <input type="date" id="dateOfEvent" name="dateOfEvent" [(ngModel)]="claimFile.dateOfEvent" class="datepicker" materialize="pickadate" required />
+                </div>
+                <div class="input-field">
+                    <input type="text" id="policyNumber" name="policyNumber" [(ngModel)]="claimFile.policyNumber" placeholder="Policy Number" class="validate" required />
+                    <label for="policyNumber">Policy Number</label>
+                </div>
+                <div class="input-field">
+                    <input type="text" id="insurerExternalClaimFileId" name="insurerExternalClaimFileId" [(ngModel)]="claimFile.insurerExternalClaimFileId"  placeholder="Insurer ClaimFile IDr" class="validate" required />
+                    <label for="insurerExternalClaimFileId">Insurer ClaimFile ID</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <button type="submit" class="btn orange" value="Submit" [disabled]="!claimFileForm.form.valid || submitted">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col s3"></div>
+</div>
+<pre>{{ spy.className }}</pre>
+<pre>{{ claimFile | json }}</pre>

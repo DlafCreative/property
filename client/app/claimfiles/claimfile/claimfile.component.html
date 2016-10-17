@@ -1,0 +1,93 @@
+<main class="content-scrollable">
+    <div class="prop-container">
+        <div class="claimfile-wrapper row">
+            <div class="col s3">
+                <div class="trolley-wrapper card">
+                    <div class="trolley-header card-header grey lighten-1">
+                        <div class="trolley-title card-title white-text center-align">Customer</div>
+                    </div>
+                    <div class="trolley-content card-content">
+                        <img src="http://www.quizz.biz/uploads/quizz/138227/11_3CXSl.jpg" class="circle img-responsive">
+                        <a class="trolley-floating-button btn btn-floating blue"><i class="material-icons">edit</i></a>
+                        <span class="trolley-contact-name">{{ claimFile?.customerInformation?.customerName }}</span>
+                        <div class="row">
+                            <div class="col s3"><i class="material-icons">phone</i></div>
+                            <div class="col s9">+331 02 03 04 05</div>
+                        </div>
+                        <div class="row">
+                            <div class="col s3"><i class="material-icons">home</i></div>
+                            <div class="col s9">
+                                5 rue des roses <br />
+                                75000 PARIS
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s3"><i class="material-icons">email</i></div>
+                            <div class="col s9">dupont@aignan.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s3">
+                <div class="trolley-wrapper card">
+                    <div class="trolley-header card-header grey lighten-1">
+                        <div class="card-title white-text center-align">Contract</div>                        
+                    </div>
+                    <div class="trolley-content card-content">
+                        <div class="row">
+                            <div class="col s12">
+                                <span class="propdata-label">Contract number : </span>
+                                {{ claimFile?.contract.contractNumber }}
+                            </div>
+                            <div class="col s12">
+                                <span class="propdata-label">Since : </span> 01/01/2000
+                            </div>
+                            <div class="col s12">
+                                <span class="propdata-label">Total claims : </span> 1352
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s3">
+                <div class="trolley-wrapper card">
+                    <div class="trolley-header card-header grey lighten-1">
+                        <div class="card-title white-text center-align">Claim</div>                        
+                    </div>
+                    <div class="trolley-content card-content">
+                        <div class="row">
+                            <div class="col s12">
+                                <span class="propdata-label">Claim number : </span>
+                                {{ claimFile?.claimInformation.claimNumber }}
+                            </div>
+                            <div class="col s12">
+                                <span class="propdata-label">Date : </span>01/01/2016
+                            </div>
+                            <div class="col s12">
+                                <span class="propdata-label">Damage type : </span> Fire
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s3">
+                <div class="trolley-wrapper card">
+                    <div class="trolley-header card-header orange lighten-1">
+                        <div class="card-title white-text center-align">Mission</div>                        
+                    </div>
+                    <div class="trolley-content card-content center-align">
+                        <span class="prop-nodata">No existing mission</span>    
+                    </div>
+                    <div class="trolley-actions card-actions center-align">                        
+                        <button class="btn btn-large btn-floating blue"><i class="material-icons">add</i></button> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="page-footer grey darken-3">
+    <div class="row center">
+        <span class="grey-text">© 2016 Copyright Text</span>
+    </div>
+</footer>

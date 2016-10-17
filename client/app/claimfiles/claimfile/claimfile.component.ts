@@ -1,7 +1,7 @@
 import { Component, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ClaimFile } from './../shared/claimfile.model';
-import { ClaimFileService } from './../shared/claimfile.service';
+import { ClaimFile } from './../../shared/claimfile/claimfile.model';
+import { ClaimFileService } from './../../shared/claimfile/claimfile.service';
 
 @Component({
     selector: 'prop-claimfile',

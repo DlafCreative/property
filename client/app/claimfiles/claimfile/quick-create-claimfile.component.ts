@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { ClaimFile } from '../shared/claimfile.model';
+import { ClaimFile } from '../../shared/claimfile/claimfile.model';
 
-import { ClaimFileService } from '../shared/claimfile.service';
+import { ClaimFileService } from '../../shared/claimfile/claimfile.service';
 import { Datastore } from '../../shared/datastore.service';
 
 @Component({

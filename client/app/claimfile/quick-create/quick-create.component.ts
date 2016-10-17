@@ -6,7 +6,7 @@ import { ClaimFile } from './../../shared/claimfile/claimfile.model';
 
 @Component({
     selector: 'prop-claimfile-quick-create',
-    templateUrl: 'quick-create.component.html'
+    templateUrl: './quick-create.component.html'
 })
 export class QuickCreateComponent { 
 

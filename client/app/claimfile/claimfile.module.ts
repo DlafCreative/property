@@ -10,7 +10,7 @@ import { UIModule }                 from '../shared/ui.module';
 import { JsonApiModule }            from 'angular2-jsonapi';
 
 import { ClaimFileComponent }       from './claimfile.component';
-import { ClaimFileTabsComponent }   from './claimfile-tabs/claimfile-tabs.component';
+import { AppendixTabsComponent }    from './appendix-tabs/appendix-tabs.component';
 import { QuickCreateComponent }     from './quick-create/quick-create.component';
 
 @NgModule({
@@ -41,7 +41,7 @@ import { QuickCreateComponent }     from './quick-create/quick-create.component'
     ],
     declarations: [
         ClaimFileComponent,
-        ClaimFileTabsComponent,
+        AppendixTabsComponent,
         QuickCreateComponent
     ],
     exports: [

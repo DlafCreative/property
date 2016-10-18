@@ -18,6 +18,7 @@ export class Datastore extends JsonApiDatastore {
 
     constructor(http: Http) { 
         super(http);
+        //this.headers = new Headers({ 'Authorization': 'Bearer ' + localStorage.getItem('prop_access_token')});
     }
 
 }

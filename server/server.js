@@ -15,7 +15,11 @@ app.use('/', express.static(path.join(__dirname, '../public')));
 app.use('/client', express.static(path.join(__dirname, '../client')));
 app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
-app.use(bodyParser.json());
+/**
+ * @Todo : maybe need to disable this bodyParser option for authentication route, as it's not in json-api format
+ */
+app.use(bodyParser.json({ type: 'application/vnd.api+json' })); 
+//app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true}));
 
 // Additional middleware which will set headers that we need on each request.
@@ -25,7 +29,7 @@ app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Also set permissive headers allowing to set any Content-Type
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Accept');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Accept,Authorization');
 
     // Disable caching so we'll always get the latest comments.
     res.setHeader('Cache-Control', 'no-cache');
@@ -118,9 +122,32 @@ app.get('/claimFiles/v1', function(req, res){
 /**
  * Create claimfile
  */
-app.post('/claimFiles', function(req, res){
+app.post('/claim_file', function(req, res){
 	
-	console.log(req.body);
+	let reqOptions = {
+		uri: 'http://api.property.local/app_dev.php/claimFiles/v1/',
+		method: 'POST', 
+		headers: {
+			'accept': 'application/vnd.api+json',
+			'Content-type': 'application/vnd.api+json',
+			'Authorization': req.headers.authorization
+		},
+		json: true,
+		body: req.body
+	}
+	
+	console.log(req);
+	
+	rickouest(reqOptions, (error, response, body) => {
+		if (!error && response.statusCode == 200) {
+			let parsedBody = JSON.parse(body);
+			res.send(parsedBody);
+		}
+		else {
+			console.log(response.statusCode);
+			res.send(body);
+		}
+	});
 
 });
 

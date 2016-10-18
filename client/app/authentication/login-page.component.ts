@@ -13,7 +13,7 @@ export class LoginPageComponent {
 
     @HostBinding('class.prop-wrapper')
 
-    customer_number: string = 'FR0000001';
+    customer_number: string = 'FR0001';
     username: string = 'gbu';
     password: string = 'aaa';
 

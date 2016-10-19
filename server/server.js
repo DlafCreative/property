@@ -18,7 +18,7 @@ app.use('/node_modules', express.static(path.join(__dirname, '../node_modules'))
 /**
  * @Todo : maybe need to disable this bodyParser option for authentication route, as it's not in json-api format
  */
-app.use(bodyParser.json({ type: 'application/vnd.api+json' })); 
+app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // Set to json-api format
 //app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -136,12 +136,9 @@ app.post('/claim_file', function(req, res){
 		body: req.body
 	}
 	
-	console.log(req);
-	
 	rickouest(reqOptions, (error, response, body) => {
 		if (!error && response.statusCode == 200) {
-			let parsedBody = JSON.parse(body);
-			res.send(parsedBody);
+			res.json(body);
 		}
 		else {
 			console.log(response.statusCode);

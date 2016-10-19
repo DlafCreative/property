@@ -10,5 +10,11 @@ import { Component } from '@angular/core';
 })
 export class AppendixTabsComponent {
 
+    coucou = '12345';
+
     constructor() {}
+
+    onFocusChange(event){
+        console.log(event)
+    }
 }

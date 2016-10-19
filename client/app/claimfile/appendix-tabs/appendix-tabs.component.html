@@ -1,37 +1,21 @@
-<md-tab-group>
+<md-tab-group (focusChange)="onFocusChange($event)">
     <md-tab>
-        <template md-tab-label>1. Main</template>
-        <template md-tab-content>
-            <h2>Claimfile view</h2>
-            <p>...</p>
-        </template>
-    </md-tab>
-    <md-tab disabled>
-        <template md-tab-label>2. Parties Involved</template>
-        <template md-tab-content>
-            <h2>Parties involved</h2>
-            <p>...</p>
-        </template>
+        <template md-tab-label><a href="#" [routerLink]="['main']">1. Main</a></template>
     </md-tab>
     <md-tab>
-        <template md-tab-label>3. Claim Direction</template>
-        <template md-tab-content>
-            <h2>Claim Direction</h2>
-            <p>...</p>
-        </template>
+        <template md-tab-label><a href="#" [routerLink]="['parts']">2. Parties Involved</a></template>
+    </md-tab>
+    <md-tab>
+        <template md-tab-label><a href="#" [routerLink]="['claim-direction']">3. Claim Direction</a></template>
     </md-tab>
     <md-tab>
         <template md-tab-label>4. Damage Description</template>
-        <template md-tab-content>
-            <h2>Damage Description</h2>
-            <p>...</p>
-        </template>
     </md-tab>
-    <md-tab>
+    <md-tab disabled>
         <template md-tab-label>5. Supporting Doc</template>
-        <template md-tab-content>
+        <!--template md-tab-content>
             <h2>Supporting Doc</h2>
             <p>...</p>
-        </template>
+        </template-->
     </md-tab>
 </md-tab-group>

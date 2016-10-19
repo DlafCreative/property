@@ -16,7 +16,7 @@ export class AuthService {
 			password: password
 		});
 
-		let headers = new Headers({ 'Content-Type': 'application/json' });
+		let headers = new Headers({ 'Content-Type': 'application/vnd.api+json' });
 		let options = new RequestOptions({ headers: headers });
 
 		return this.http.post(this.authUrl, body, options)

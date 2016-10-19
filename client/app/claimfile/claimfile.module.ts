@@ -1,17 +1,19 @@
-import { NgModule }                 from '@angular/core';
-import { BrowserModule } 	        from '@angular/platform-browser';
-import { CommonModule }		        from '@angular/common';
-import { HttpModule }		        from '@angular/http';
-import { RouterModule }             from '@angular/router';
-import { FormsModule } 		        from '@angular/forms';
+import { NgModule }                     from '@angular/core';
+import { BrowserModule } 	            from '@angular/platform-browser';
+import { CommonModule }		            from '@angular/common';
+import { HttpModule }		            from '@angular/http';
+import { RouterModule }                 from '@angular/router';
+import { FormsModule } 		            from '@angular/forms';
 
-import { UIModule }                 from '../shared/ui.module';
+import { UIModule }                     from '../shared/ui.module';
 
-import { JsonApiModule }            from 'angular2-jsonapi';
+import { JsonApiModule }                from 'angular2-jsonapi';
 
-import { ClaimFileComponent }       from './claimfile.component';
-import { AppendixTabsComponent }    from './appendix-tabs/appendix-tabs.component';
-import { QuickCreateComponent }     from './quick-create/quick-create.component';
+import { ClaimFileComponent }           from './claimfile.component';
+import { AppendixTabsComponent }        from './appendix-tabs/appendix-tabs.component';
+import { DataBannerComponent }          from './databanner/databanner.component';
+import { CreateClaimFileComponent }     from './create-claimfile.component';
+import { MainComponent }                from './main/main.component';
 
 @NgModule({
     bootstrap: [ ClaimFileComponent ],
@@ -25,15 +27,37 @@ import { QuickCreateComponent }     from './quick-create/quick-create.component'
         RouterModule.forChild([
             {
                 path: 'claimfile',
-                component: ClaimFileComponent,
                 children: [
                     {
                         path: 'create',
-                        component: QuickCreateComponent
+                        component: CreateClaimFileComponent
                     },
                     {
                         path: ':id',
-                        component: QuickCreateComponent
+                        component: ClaimFileComponent,
+                        children: [
+                            {
+                                path: '',
+                                redirectTo: 'main',
+                                pathMatch: 'full'
+                            },
+                            {
+                                path: 'main',
+                                component: MainComponent
+                            },
+                            {
+                                path: 'parts'
+                            },
+                            {
+                                path: 'claim-direction'
+                            },
+                            {
+                                path: 'damage-description'
+                            }, 
+                            {
+                                path: 'documents'
+                            }
+                        ]
                     }
                 ]
             }
@@ -42,7 +66,9 @@ import { QuickCreateComponent }     from './quick-create/quick-create.component'
     declarations: [
         ClaimFileComponent,
         AppendixTabsComponent,
-        QuickCreateComponent
+        DataBannerComponent,
+        CreateClaimFileComponent,
+        MainComponent
     ],
     exports: [
         RouterModule

@@ -1,9 +1,10 @@
-import { Component, HostBinding } from '@angular/core';
-
-import { Datastore } from './../shared/datastore.service';
-
-import { ClaimFile } from './../shared/claimfile/claimfile.model';
+import { Component, HostBinding }           from '@angular/core';
 import { Http, Headers, RequestOptions } 	from '@angular/http';
+import { Router }                           from '@angular/router';
+
+import { Datastore }                        from './../shared/datastore.service';
+
+import { ClaimFile }                        from './../shared/claimfile/claimfile.model';
 
 @Component({
     selector: 'prop-create-claimfile',
@@ -17,14 +18,18 @@ export class CreateClaimFileComponent {
 
     submitted = false;
 
-    constructor(private datastore: Datastore) {
+    constructor(private router: Router, private datastore: Datastore) {
         this.claimFile = this.datastore.createRecord(ClaimFile);
     }
 
     onSubmit() {
         this.submitted = true;
         this.claimFile.save().subscribe(
-            (claimFile: ClaimFile) => console.log(claimFile)
+            (claimFile: ClaimFile) => { 
+                console.log(claimFile);
+                this.router.navigate(['/claimfile', claimFile.id]);
+                // @todo : pass the returned claimFile to the StateStore 
+            }
         );
     }
 

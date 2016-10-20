@@ -14,6 +14,15 @@ import { AppendixTabsComponent }        from './appendix-tabs/appendix-tabs.comp
 import { DataBannerComponent }          from './databanner/databanner.component';
 import { CreateClaimFileComponent }     from './create-claimfile.component';
 import { MainComponent }                from './main/main.component';
+import { EditorComponent }              from './editor/editor.component';
+
+/** Import forms */
+import { 
+    CustomerFormComponent,
+    ClaimFileFormComponent,
+    ContractFormComponent,
+    DamageFormComponent
+} from './form';
 
 @NgModule({
     bootstrap: [ ClaimFileComponent ],
@@ -27,48 +36,65 @@ import { MainComponent }                from './main/main.component';
         RouterModule.forChild([
             {
                 path: 'claimfile',
+                component: ClaimFileComponent,
                 children: [
                     {
                         path: 'create',
                         component: CreateClaimFileComponent
+                    }
+                ]
+            },
+            {
+                path: 'claimfile/:id',
+                component: ClaimFileComponent,
+                children: [
+                    {
+                        path: '',
+                        redirectTo: 'main',
+                        pathMatch: 'full'
                     },
                     {
-                        path: ':id',
-                        component: ClaimFileComponent,
+                        path: 'main',
+                        component: MainComponent
+                    },
+                    {
+                        path: 'edit',
+                        component: EditorComponent,
                         children: [
-                            {
-                                path: '',
-                                redirectTo: 'main',
-                                pathMatch: 'full'
-                            },
-                            {
-                                path: 'main',
-                                component: MainComponent
-                            },
-                            {
-                                path: 'parts'
-                            },
-                            {
-                                path: 'claim-direction'
-                            },
-                            {
-                                path: 'damage-description'
-                            }, 
-                            {
-                                path: 'documents'
-                            }
+                            { path: '', redirectTo: 'customer', component: CustomerFormComponent },
+                            { path: 'customer', component: CustomerFormComponent },
+                            { path: 'contract', component: ContractFormComponent },
+                            { path: 'claimfile', component: ClaimFileFormComponent },
+                            { path: 'damage', component: DamageFormComponent },
                         ]
+                    },
+                    {
+                        path: 'parts'
+                    },
+                    {
+                        path: 'claim-direction'
+                    },
+                    {
+                        path: 'damage-description'
+                    }, 
+                    {
+                        path: 'documents'
                     }
                 ]
             }
-        ]) 
+        ])
     ],
     declarations: [
         ClaimFileComponent,
         AppendixTabsComponent,
         DataBannerComponent,
         CreateClaimFileComponent,
-        MainComponent
+        MainComponent,
+        EditorComponent,
+        CustomerFormComponent,
+        ClaimFileFormComponent,
+        ContractFormComponent,
+        DamageFormComponent
     ],
     exports: [
         RouterModule

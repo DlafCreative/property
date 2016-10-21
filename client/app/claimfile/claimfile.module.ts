@@ -16,6 +16,11 @@ import { CreateClaimFileComponent }     from './create-claimfile.component';
 import { MainComponent }                from './main/main.component';
 import { EditorComponent }              from './editor/editor.component';
 
+/**
+ * Dynamic forms
+ */
+import { DynamicFormModule } from '../shared/forms/dynamic-form.module';
+
 /** Import forms */
 import { 
     CustomerFormComponent,
@@ -33,6 +38,7 @@ import {
         FormsModule,
         UIModule,
         JsonApiModule,
+        DynamicFormModule,
         RouterModule.forChild([
             {
                 path: 'claimfile',

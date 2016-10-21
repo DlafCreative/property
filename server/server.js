@@ -171,6 +171,35 @@ app.get('/claimFile/:id', function(req, res){
 	})
 });
 
+/**
+ * Get form metadatas
+ */
+app.post('/form-metadata', (req, res) => {
+
+	let uri = `http://192.168.33.10:22201/app_dev.php/forms/v1/claimFile/${req.body.claimFileId}/${req.body.context}`;
+
+	let rickouestOptions = {
+		uri: uri,
+		method: 'GET',
+		headers: {
+			'accept': 'application/vnd.api+json',
+			'Content-type': 'application/vnd.api+json',
+			'Authorization': req.headers.authorization
+		}
+	}; 
+
+	rickouest(rickouestOptions, (error, response, body) => {
+		if (!error && response.statusCode == 200) {
+			let parsedBody = JSON.parse(body);
+			res.send(parsedBody);
+		}
+		else {
+			console.log(response)
+		}
+	});
+
+});
+
 // Homescreen : claimFile list
 /* Serve homescreen page for react poke purpose
 app.get('/claimFile/list', function(req, res){

@@ -2,15 +2,28 @@ import { Component } from '@angular/core';
 
 import { FormMetadataService } from './form-metadata.service';
 
+import { ControlBase } from '../../shared/forms/controls/control-base';
+
 @Component({
     template: `
-        <dynamic-form></dynamic-form>
+        <dynamic-form [controls]="formMetadata" *ngIf="formMetadata"></dynamic-form>
     `,
     providers: [FormMetadataService]
 })
 export class CustomerFormComponent {
 
-    formMetadata?: any; 
+    formMetadata: ControlBase<any>[]; 
+
+    /*formMetadata: ControlBase<any>[] = [
+        new Textbox ({ 
+            controlType : "textbox",
+            key : "customerReference",
+            label : "Customer's reference",
+            order : 1,
+            required : true,
+            type : "",
+            value : null })
+    ]; */
 
     constructor(private formMetadataService: FormMetadataService) { }
 
@@ -19,6 +32,7 @@ export class CustomerFormComponent {
                                     .subscribe(
                                         (metadata) => {
                                             this.formMetadata = metadata;
+                                            console.log(this.formMetadata);
                                         }
                                     )
     }

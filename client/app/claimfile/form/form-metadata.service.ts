@@ -11,7 +11,7 @@ export class FormMetadataService {
     constructor(private http: Http, private formTranslator: MetadataTranslatorService) { }
 
     getFormMetadata(claimFileId: string, context: string) {
-
+        
         let body = JSON.stringify({
             claimFileId: claimFileId,
             context: context

@@ -2,7 +2,8 @@ import { Injectable }   from '@angular/core';
 
 import { 
     ControlBase,
-    Textbox
+    Textbox,
+    Numberbox
 }  from './controls';
 
 /**
@@ -34,10 +35,13 @@ export class MetadataTranslatorService {
 
                         switch (field.type) {
                             case 'text':
-                            formField = new Textbox(formFieldOptions);
-                            break;
+                                formField = new Textbox(formFieldOptions);
+                                break;
+                            case 'integer': 
+                                formField = new Numberbox(formFieldOptions);
+                                break
                             default:
-                            //throw new Error('Unknown form field type');
+                            //throw new Error('Unknown form field type : ' + field.type);
                         }
 
                         if (formField){
@@ -47,7 +51,6 @@ export class MetadataTranslatorService {
                 }
             });
         }
-
-        console.log(elements);
+        return elements;
     }
 }

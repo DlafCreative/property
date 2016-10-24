@@ -1,3 +1,5 @@
+@import 'constants.less';
+
 /** General layout */
 html, body,prop-app {
 	height: 100%;
@@ -10,7 +12,11 @@ prop-app { /* Application root */
     flex-direction: column;
     height: 100vh;
 }
+prop-header {
+    z-index: 999;
+}
 .prop-wrapper {
+    background-color: @bg_color;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -37,4 +43,56 @@ main {
 .ui-state-hover {
     cursor: pointer;
     background-color: #E0E0E0;
+}
+
+/**
+ * Override Material Design form styles
+ */
+.prop-wrapper {
+    input:not([type]):focus:not([readonly]), input[type=text]:focus:not([readonly]), input[type=password]:focus:not([readonly]), input[type=email]:focus:not([readonly]), input[type=url]:focus:not([readonly]), input[type=time]:focus:not([readonly]), input[type=date]:focus:not([readonly]), input[type=datetime]:focus:not([readonly]), input[type=datetime-local]:focus:not([readonly]), input[type=tel]:focus:not([readonly]), input[type=number]:focus:not([readonly]), input[type=search]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly]) {
+        border-bottom: 1px solid @primary_color;
+        box-shadow: 0 1px 0 0 @primary_color;
+
+        + label {
+            color: @primary_color;
+        }
+    }
+}
+
+.prop-tile {
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px @shadow_color;
+}
+
+/**
+ * Main appendix tabs
+ * @todo : move it into component scoped styles
+ */
+prop-appendix-tabs {
+    margin-bottom: 1em;
+
+    md-tab-group {
+        align-items: center;
+
+        .md-tab-header {
+            background-color: @bg_coolor_darken;
+            border-radius: 5px;
+
+            .md-tab-label {
+                min-width: 200px; //@todo : find a more flexible solution
+                a {
+                    display: block;
+                    color: rgba(0, 0, 0, 0.87);
+                }
+
+                /** Active tab */
+                &.md-tab-active {
+                    a:active, a:visited, a:focus {
+                        color: @primary_color;
+                    }
+                }
+            }
+
+        }
+    }
 }

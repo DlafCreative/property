@@ -8,11 +8,10 @@ import { ClaimFile }                        from './../shared/claimfile/claimfil
 
 @Component({
     selector: 'prop-create-claimfile',
-    templateUrl: 'create-claimfile.component.html'
+    templateUrl: 'create-claimfile.component.html',
+    styleUrls: ['create-claimfile.component.less']
 })
-export class CreateClaimFileComponent { 
-
-    @HostBinding('class.prop-wrapper')
+export class CreateClaimFileComponent {
 
     claimFile: ClaimFile;
 

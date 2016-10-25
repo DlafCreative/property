@@ -16,14 +16,18 @@ prop-header {
     z-index: 999;
 }
 .prop-wrapper {
-    background-color: @bg_color;
     display: flex;
     flex-direction: column;
     flex: 1;
     padding-top: 1em;
-}
-main {
-    flex: 1;
+
+    &,main {
+        background-color: @bg_color;
+    }
+
+    main {
+        flex: 1;
+    }
 }
 .content-scrollable {
     /* Use this class if container should display a scrollbar on overflow */
@@ -61,7 +65,7 @@ main {
 
 .prop-tile {
     border-radius: 5px;
-    box-shadow: 1px 1px 1px 1px @shadow_color;
+    box-shadow: 1px 1px 5px 1px @shadow_color;
 }
 
 /**
@@ -75,7 +79,7 @@ prop-appendix-tabs {
         align-items: center;
 
         .md-tab-header {
-            background-color: @bg_coolor_darken;
+            background-color: @bg_color_darken;
             border-radius: 5px;
 
             .md-tab-label {

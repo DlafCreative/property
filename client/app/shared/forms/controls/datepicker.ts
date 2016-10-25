@@ -1,11 +1,11 @@
 import { ControlBase } from './control-base';
 
-export class Numberbox extends ControlBase<string> {
-    controlType = 'number';
+export class DatePicker extends ControlBase<string> {
+    controlType = 'datepicker';
     type: string;
 
     constructor(options: {} = {}) {
         super(options);
-        this.type = options['type'] || '';
+        this.type = options['type'] || 'date';
     }
 }

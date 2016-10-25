@@ -3,7 +3,8 @@ import { Injectable }   from '@angular/core';
 import { 
     ControlBase,
     Textbox,
-    Numberbox
+    DatePicker,
+    Dropdown
 }  from './controls';
 
 /**
@@ -35,13 +36,38 @@ export class MetadataTranslatorService {
 
                         switch (field.type) {
                             case 'text':
+                            case 'integer':
+                            case 'email':
+                                switch (field.type){
+                                    case 'integer':
+                                        formFieldOptions['type'] = 'number';
+                                        break;
+                                    case 'email':
+                                        formFieldOptions['type'] = 'email';
+                                        break;
+                                    default:                                         
+                                        formFieldOptions['type'] = 'text';
+                                }                                
                                 formField = new Textbox(formFieldOptions);
                                 break;
-                            case 'integer': 
-                                formField = new Numberbox(formFieldOptions);
-                                break
+                            case 'date':
+                                /** Beautiful datepicker */
+                                if (formFieldOptions['display'] === 'overlay') {
+                                    formField = new DatePicker(formFieldOptions);
+                                }
+                                /** Quick datepicker (html5) */
+                                else {        
+                                    formFieldOptions['type'] = 'date';
+                                    formField = new Textbox(formFieldOptions);
+                                }
+                                break;
+                            case 'dropdown':
+                            case 'country':
+                                formFieldOptions['choices'] = field.choices;
+                                formField = new Dropdown(formFieldOptions);
+                                break;
                             default:
-                            //throw new Error('Unknown form field type : ' + field.type);
+                            throw new Error('Unknown form field type : ' + field.type);
                         }
 
                         if (formField){

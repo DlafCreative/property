@@ -23,13 +23,17 @@ import { MaterializeDirective } from 'angular2-materialize';
 /* Import Material2 (Angular2 Material components) */
 import { MaterialModule } from '@angular/material';
 
+/** Import PrimeNG components */
+import { DropdownModule } from 'primeng/primeng';
+
 /** Import Property components */
 import { KpiComponent, KpiContainerComponent } from './kpi';
 
 @NgModule({
 	imports: [
 		CommonModule,
-		MaterialModule.forRoot()
+		MaterialModule.forRoot(),
+		DropdownModule
 	],
 	declarations:   [ 
 		MaterializeDirective,
@@ -37,6 +41,7 @@ import { KpiComponent, KpiContainerComponent } from './kpi';
 	],
 	exports: 		[ 
 		MaterializeDirective, MaterialModule,
+		DropdownModule,
 		KpiComponent, KpiContainerComponent
 	]
 })

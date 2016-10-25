@@ -3,14 +3,27 @@
     <div [ngSwitch]="control.controlType">
 
         <input *ngSwitchCase="'textbox'" [formControlName]="control.key"
-                [id]="control.key" [type]="control.type">
+                [id]="control.key" [type]="control.type" />
 
-        <input *ngSwitchCase="'numberbox'" [formControlName]="control.key"
-                [id]="control.key" [type]="control.type">
+        <!-- Overlay datepicker (like Pickadate) 
+        <input *ngSwitchCase="'datepicker'" [formControlName]="control.key"
+                [id]="control.key" type="date" class="datepicker" />
+        -->
 
-        <select *ngSwitchCase="'dropdown'" [formControlName]="control.key" [id]="control.key">
-            <option *ngFor="let opt of control.options" [value]="opt.key">{{opt.value}}</option>
-        </select>
+        <!--div *ngSwitchCase="'dropdown'">
+            {{ control.choices | keys | json }}
+            <div *ngFor="let opt of control.choices | keys">{{opt.key}} : {{ opt.value }}</div>
+        </div-->
+        <!--select *ngSwitchCase="'dropdown'" [formControlName]="control.key" [id]="control.key">
+            <option *ngFor="let opt of control.choices | keys" [value]="opt.key">{{opt.value}}</option>
+        </select-->
+
+        <p-dropdown *ngSwitchCase="'dropdown'" [formControlName]="control.key" [options]="control.choices | keys"
+            [style]="{'width':'200px'}">
+            <template let-choice>
+                {{ choice.label }}
+            </template>
+        </p-dropdown>
 
     </div> 
     <div class="errorMessage" *ngIf="!isValid">{{control.label}} is required</div>

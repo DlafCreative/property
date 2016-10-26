@@ -25,6 +25,8 @@
             </template>
         </p-dropdown>
 
+        <textarea *ngSwitchCase="'textarea'" [formControlName]="control.key" [id]="control.key"></textarea>
+
     </div> 
     <div class="errorMessage" *ngIf="!isValid">{{control.label}} is required</div>
 </div>

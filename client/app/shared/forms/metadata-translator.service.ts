@@ -3,6 +3,7 @@ import { Injectable }   from '@angular/core';
 import { 
     ControlBase,
     Textbox,
+    Textarea,
     DatePicker,
     Dropdown
 }  from './controls';
@@ -49,6 +50,9 @@ export class MetadataTranslatorService {
                                         formFieldOptions['type'] = 'text';
                                 }                                
                                 formField = new Textbox(formFieldOptions);
+                                break;
+                            case 'text_area': 
+                                formField = new Textarea(formFieldOptions);
                                 break;
                             case 'date':
                                 /** Beautiful datepicker */

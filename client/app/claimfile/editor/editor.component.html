@@ -1,7 +1,23 @@
-<router-outlet></router-outlet>
-<ul>
-    <li><a href="#" [routerLink]="['customer']">Customer</a></li>
-    <li><a href="#" [routerLink]="['contract']">Contract</a></li>
-    <li><a href="#" [routerLink]="['claimfile']">Claim File</a></li>
-    <li><a href="#" [routerLink]="['damage']">Damage</a></li>
-</ul>
+<section id="editorWrapper">
+    <nav class="grey z-depth-0"><!-- @todo : move to a component -->
+        <div class="nav-wrapper">
+            <ul class="left">
+                <li>
+                    <a href="#"><i class="material-icons">arrow_back</i></a>
+                </li>
+            </ul>
+        </div>    
+    </nav>
+    <router-outlet></router-outlet>    
+</section>
+<div id="formControlPanel"><!-- @todo : move to a component -->
+    <a class="form-switcher prop-tile" href="#" [routerLink]="['customer']">Customer</a>
+    <a class="form-switcher prop-tile form-switcher-active" href="#" [routerLink]="['contract']">Contract</a>
+    <a class="form-switcher prop-tile" href="#" [routerLink]="['claimfile']">Claim File</a>
+    <a class="form-switcher prop-tile" href="#" [routerLink]="['damage']">Damage</a>
+    <div class="form-switcher">
+        <button class="btn waves-effect waves-light">
+            <i class="material-icons left">done_all</i>Save all
+        </button>
+    </div>    
+</div>

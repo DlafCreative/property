@@ -27,6 +27,7 @@ prop-header {
 
     main {
         flex: 1;
+        display: flex;
     }
 }
 .content-scrollable {
@@ -42,6 +43,7 @@ prop-header {
 .prop-container { /* Wrap in a max 1280px wide */
     max-width: 1280px;
     margin: auto;
+    flex: 1;
 }
 
 .ui-state-hover {
@@ -80,7 +82,7 @@ prop-appendix-tabs {
 
         .md-tab-header {
             background-color: @bg_color_darken;
-            border-radius: 5px;
+            border-radius: @border_radius;
 
             .md-tab-label {
                 min-width: 200px; //@todo : find a more flexible solution

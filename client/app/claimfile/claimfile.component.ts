@@ -1,6 +1,8 @@
 import { Component, HostBinding }           from '@angular/core';
 import { Router, ActivatedRoute, Params }   from '@angular/router';
 
+import { AppState }                         from '../shared/appstate.service';
+
 import { ClaimFile }                        from '../shared/claimfile/claimfile.model';
 
 @Component({
@@ -15,16 +17,12 @@ export class ClaimFileComponent {
     claimFile: ClaimFile;
 
     ClaimFileComponent;
-    constructor(private route: ActivatedRoute){ }
+    constructor(private route: ActivatedRoute, private appState: AppState){ }
 
     ngOnInit(){ 
+        // Save current claimfile ID to the AppState to expose it to the subforms
         let claimfileId = this.route.snapshot.params['id'];
-        if (claimfileId) {
-            console.log('claimFileID passe : ' + claimfileId)
-        }
-        else {
-            console.log('Claimfile ID non passé');
-        }
+        this.appState.set('claimFileId', claimfileId);
     }
 
 }

@@ -29,6 +29,10 @@ import {
     DamageFormComponent
 } from './form';
 
+/** Import services */
+import { AppState }             from '../shared/appstate.service';
+import { FormMetadataService }  from './form/form-metadata.service';
+
 @NgModule({
     bootstrap: [ ClaimFileComponent ],
     imports: [ 
@@ -101,6 +105,10 @@ import {
         ClaimFileFormComponent,
         ContractFormComponent,
         DamageFormComponent
+    ],
+    providers: [
+        AppState,
+        FormMetadataService
     ],
     exports: [
         RouterModule

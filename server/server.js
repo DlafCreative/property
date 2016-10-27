@@ -182,8 +182,6 @@ app.post('/form-metadata', (req, res) => {
 		uri: uri,
 		method: 'GET',
 		headers: {
-			'accept': 'application/vnd.api+json',
-			'Content-type': 'application/vnd.api+json',
 			'Authorization': req.headers.authorization
 		}
 	}; 

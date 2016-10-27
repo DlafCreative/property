@@ -77,22 +77,29 @@ prop-header {
 prop-appendix-tabs {
     margin-bottom: 1em;
 
-    md-tab-group {
+    md-tab-group { // :host
         align-items: center;
 
         .md-tab-header {
             background-color: @bg_color_darken;
             border-radius: @border_radius;
+            width: 100%;
+            max-width: @container_max_width;
 
             .md-tab-label {
-                min-width: 200px; //@todo : find a more flexible solution
+                display: flex;
+                flex: 1;
+                justify-content: center;
+                padding: 0;
+                opacity: 1; // override md tab opacity
                 a {
-                    display: block;
-                    color: rgba(0, 0, 0, 0.87);
+                    flex: 1;
+                    color: @medium_text_color;
                 }
 
                 /** Active tab */
                 &.md-tab-active {
+                    background-color: @bg_color_medium;
                     a:active, a:visited, a:focus {
                         color: @primary_color;
                     }

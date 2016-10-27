@@ -15,6 +15,7 @@ import { DataBannerComponent }          from './databanner/databanner.component'
 import { CreateClaimFileComponent }     from './create-claimfile.component';
 import { MainComponent }                from './main/main.component';
 import { EditorComponent }              from './editor/editor.component';
+import { StepperComponent }             from '../shared/stepper/stepper.component';
 
 /**
  * Dynamic forms
@@ -104,7 +105,8 @@ import { FormMetadataService }  from './form/form-metadata.service';
         CustomerFormComponent,
         ClaimFileFormComponent,
         ContractFormComponent,
-        DamageFormComponent
+        DamageFormComponent,
+        StepperComponent
     ],
     providers: [
         AppState,

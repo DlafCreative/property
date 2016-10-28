@@ -1,1 +1,7 @@
-Bonjour je suis le stepper
+<ul *ngFor="let step of steps" class="step">
+    <li class="step__bubble"></li>
+    <li class="step__circle"></li>
+    <li class="step__label">
+        {{ step.label }}
+    </li>
+</ul>

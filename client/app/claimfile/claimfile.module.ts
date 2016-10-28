@@ -9,13 +9,14 @@ import { UIModule }                     from '../shared/ui.module';
 
 import { JsonApiModule }                from 'angular2-jsonapi';
 
+import { StepperModule }                from '../shared/stepper/stepper.module';
+
 import { ClaimFileComponent }           from './claimfile.component';
 import { AppendixTabsComponent }        from './appendix-tabs/appendix-tabs.component';
 import { DataBannerComponent }          from './databanner/databanner.component';
 import { CreateClaimFileComponent }     from './create-claimfile.component';
 import { MainComponent }                from './main/main.component';
 import { EditorComponent }              from './editor/editor.component';
-import { StepperComponent }             from '../shared/stepper/stepper.component';
 
 /**
  * Dynamic forms
@@ -44,6 +45,7 @@ import { FormMetadataService }  from './form/form-metadata.service';
         UIModule,
         JsonApiModule,
         DynamicFormModule,
+        StepperModule,
         RouterModule.forChild([
             {
                 path: 'claimfile',
@@ -105,8 +107,7 @@ import { FormMetadataService }  from './form/form-metadata.service';
         CustomerFormComponent,
         ClaimFileFormComponent,
         ContractFormComponent,
-        DamageFormComponent,
-        StepperComponent
+        DamageFormComponent
     ],
     providers: [
         AppState,

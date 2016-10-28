@@ -198,6 +198,32 @@ app.post('/form-metadata', (req, res) => {
 
 });
 
+/**
+ * Get steps
+ */
+app.get('/steps', (req, res) => {
+
+	let uri = 'http://192.168.33.10:22201/app_dev.php/steps/v1';
+
+	let rickouestOptions = {
+		uri: uri,
+		method: 'GET',
+		headers: {
+			'Authorization': req.headers.authorization
+		}
+	}
+
+	rickouest(rickouestOptions, (error, response, body) => {
+		if (!error && response.statusCode == 200) {
+			let parsedBody = JSON.parse(body);
+			res.send(parsedBody);
+		}
+		else {
+			console.log(response)
+		}
+	});
+});
+
 // Homescreen : claimFile list
 /* Serve homescreen page for react poke purpose
 app.get('/claimFile/list', function(req, res){

@@ -5,13 +5,15 @@ import { Http, Headers, RequestOptions } 	from '@angular/http';
 /**
  * Import models
  */
-import { ClaimFile } from './claimfile/claimfile.model';
+import { ClaimFile }    from './claimfile/claimfile.model';
+import { Step }        from './stepper/step.model';
 
 @Injectable()
 @JsonApiDatastoreConfig({
     baseUrl: API_HOST + ':' + API_PORT + '/',
     models: {
-        claimFile: ClaimFile
+        claimFile: ClaimFile,
+        step: Step
     }
 })
 export class Datastore extends JsonApiDatastore {

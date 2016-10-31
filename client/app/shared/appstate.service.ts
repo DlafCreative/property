@@ -15,6 +15,7 @@ export class AppState {
      * Return a clone of the current state
      */
     get state() {
+        debugger;
         return this._state = this._clone(this._state);
     }
     
@@ -26,7 +27,7 @@ export class AppState {
     }
 
     /**
-     * Get a cloned property using the state getter
+     * Get direct reference to a property (be careful with circular reference)
      */
     get(prop?: any) {
         const state = this.state;

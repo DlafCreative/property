@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
-import { Datastore } from '../datastore.service';
+import { Datastore }        from '../datastore.service';
+import { AppState }         from '../appstate.service';
 
-import { Step }     from './step.model';
+import { Step }             from './step.model';
 
 @Component({
     selector: 'prop-stepper',
@@ -12,12 +13,15 @@ import { Step }     from './step.model';
 export class StepperComponent {
 
     steps: any[] = [];
+
+    @Input()
     currentStep: string;
 
-    constructor( private dataStore: Datastore ){}
+    constructor( private dataStore: Datastore, private appState: AppState ){}
 
     ngOnInit() { 
         this.getSteps();
+        console.log(this.appState.get('claimFileId'));
     }
 
     getSteps() {

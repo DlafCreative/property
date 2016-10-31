@@ -1,0 +1,82 @@
+@import '../../../assets/css/constants.less';
+
+:host {
+
+    /** Adjusting height, vertical centering and overflow of the steps **/
+    @stepper_height: 83px;
+    @step_centering_pos: 30%;
+    @label_max_width: 90px;
+
+    display: flex;
+    flex-direction: row;
+    
+    height: @stepper_height;
+
+    background-color: @bg_inversed_color;
+
+    .step {
+
+        border: 1px solid @default_color;
+        height: 0;
+        position: relative;
+            top: @step_centering_pos;
+        min-width: 100px;
+        flex: 1 1 auto;
+
+        .step__bubble {
+            display: inline-block;
+
+            &::before {
+                content: "";
+                position: absolute;
+                    top: -8px;
+                    left: 42%;
+                display: block;
+                width: 18px;
+                height: 18px;
+                border: 2px solid @default_color;
+                    border-radius: 50%;
+                background-color: @bg_inversed_color;
+            }
+        }
+        .step__circle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: block;
+            position: absolute;
+                top: -4px;
+                left: ~"calc(42% + 4px)";
+            background-color: @default_color;
+        }
+        .step__label {
+            color: @default_color;
+            text-align: center;
+            list-style-type: none;
+            font-size: .7em;
+            position: absolute;
+                top: 10px;
+                left: 0;
+                right: 0;
+                margin: auto;
+            max-width: 90px;
+        }
+
+        &.step-active {
+            .step__bubble::before {
+                //border: 2px solid @primary_color;
+            }
+            .step__circle {
+                background-color: @primary_color;
+            }
+        }
+
+        &.step-active ~ .step {
+            .step__circle {
+                background-color: @bg_inversed_color;
+                border: 1px solid @default_color;
+            }
+        }
+
+    }
+}

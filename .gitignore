@@ -58,3 +58,6 @@ npm-debug.log
 # IDE #
 .idea/
 *.swp
+
+# App configuration #
+/config/client.params.js

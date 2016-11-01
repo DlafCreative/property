@@ -33,8 +33,6 @@ import { HeaderComponent }		from './shared/header/header.component';
 import { LoginPageComponent } 	from './authentication/login-page.component';
 
 import { ClaimFilesPageComponent } 	from './claimfiles/claimfiles-page.component';
-import { CreateClaimFileComponent } from './claimfiles/claimfile/create-claimfile.component';
-import { QuickCreateClaimFileComponent } from './claimfiles/claimfile/quick-create-claimfile.component';
 
 // Services
 import { ClaimFileService }  from './shared/claimfile/claimfile.service';

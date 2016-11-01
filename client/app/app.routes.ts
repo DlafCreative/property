@@ -8,8 +8,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from './authentication/login-page.component';
 
 import { ClaimFilesPageComponent } from './claimfiles/claimfiles-page.component';
-import { ClaimFileComponent } from './claimfiles/claimfile/claimfile.component';
-import { CreateClaimFileComponent } from './claimfiles/claimfile/create-claimfile.component';
 
 export const ROUTES: Routes = [
 	{ path: '',                     component: LoginPageComponent },

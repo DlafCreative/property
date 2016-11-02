@@ -13,7 +13,7 @@ import { StepperModule }                from '../shared/stepper/stepper.module';
 
 import { ClaimFileComponent }           from './claimfile.component';
 import { AppendixTabsComponent }        from './appendix-tabs/appendix-tabs.component';
-import { DataBannerComponent }          from './databanner/databanner.component';
+import { ClaimPeekComponent }          from './claimpeek/claimpeek.component';
 import { CreateClaimFileComponent }     from './create-claimfile.component';
 import { MainComponent }                from './main/main.component';
 import { EditorComponent }              from './editor/editor.component';
@@ -100,7 +100,7 @@ import { FormMetadataService }  from './form/form-metadata.service';
     declarations: [
         ClaimFileComponent,
         AppendixTabsComponent,
-        DataBannerComponent,
+        ClaimPeekComponent,
         CreateClaimFileComponent,
         MainComponent,
         EditorComponent,

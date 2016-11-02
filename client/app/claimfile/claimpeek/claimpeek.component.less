@@ -1,0 +1,25 @@
+@import '../../../assets/css/constants.less';
+
+.databanner-wrapper {
+    display: flex;
+    flex-direction: row;
+    background-color: @bg_color_section;
+    border: 1px solid @border_color_darken;
+    border-left: none;
+    border-right: none;
+
+    .databanner__item {
+        flex: 1;
+        text-align: center;
+        padding: 6px 1px;
+        font-size: 0.9em;
+
+        &~.databanner__item { // Only apply left border to item followed by another item
+            border-left: 1px solid @border_color_darken;
+        }
+
+        .databanner__label {
+            font-weight: bold;
+        }
+    }
+}

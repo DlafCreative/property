@@ -15,7 +15,6 @@ export class AppState {
      * Return a clone of the current state
      */
     get state() {
-        debugger;
         return this._state = this._clone(this._state);
     }
     

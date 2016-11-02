@@ -22,7 +22,6 @@ export class ClaimFileComponent {
     constructor(private route: ActivatedRoute, private appState: AppState, private datastore: Datastore){ }
 
     ngOnInit(){
-        debugger;
         // Save current claimfile ID to the AppState to expose it to the subforms
         let claimfileId = this.route.snapshot.params['id'];
         this.appState.set('claimFileId', claimfileId);

@@ -5,7 +5,10 @@ export class Dropdown extends ControlBase<string> {
     choices: {key: string, value: string}[] = [];
 
     constructor(options: {} = {}) {
-        super(options);        
+        super(options);
+        if (options['choices']){
+            options['choices'][''] = '';
+        }
         this.choices = options['choices'] ||  [];
     }
 }

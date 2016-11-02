@@ -9,8 +9,8 @@ import { ClaimFile }                        from './claimfile.model';
 export class ClaimFileService {
 
     // @todo : split and move path part to config file
-    private claimFilesPath = 'http://192.168.33.10:7000/claimFiles/v1?token=' + localStorage.getItem('prop_access_token');
-    private claimFilePath = 'http://192.168.33.10:7000/claimFile/';
+    private claimFilesPath = `${API_HOST}:${API_PORT}/claimFiles/v1?token=${localStorage.getItem('prop_access_token')}`;
+    private claimFilePath = `${API_HOST}:${API_PORT}/claimFile/`;
 	
 	constructor(private http: Http, private dataStore: Datastore) {}
 

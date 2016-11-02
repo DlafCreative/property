@@ -1,6 +1,6 @@
 <div>
-  <form (ngSubmit)="onSubmit()" [formGroup]="form">
-    <div *ngFor="let control of controls" class="form-row">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="prop-form">
+    <div *ngFor="let control of controls" class="form-row row">
       <dynamic-control [control]="control" [form]="form"></dynamic-control>
     </div>
     <div class="form-row">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
     selector: 'prop-claimfile-main',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
     styleUrls: ['main.component.less']
 })
 export class MainComponent {
+
+    @HostBinding('class.prop-container') true;
+
     constructor(){}
 }

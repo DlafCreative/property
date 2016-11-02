@@ -114,5 +114,116 @@ prop-appendix-tabs {
  * UI classes
  */
 .success {
-    background-color: #00c853 !important;
+    background-color: @success_color !important;
+}
+
+/**
+ * Forms
+ */
+.prop-form {
+
+    @input_padding: 5px;
+    @input_height: 30px;
+
+    .form-row {
+        .control-wrapper {
+            .control__label {
+                color: @medium_text_color;
+                font-size: 1em;
+                text-align: right;
+                height: @input_height;
+                line-height: @input_height;
+            }
+            .control__input-wrapper {
+                &>input, label.ui-dropdown-label {
+                    margin: 0;
+                    height: @input_height;
+                    line-height: @input_height;
+                    background-color: @bg_color_bright;
+                    border-bottom: 1px solid @border_color;
+                    border-radius: @border_radius;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                    color: @primary_color;
+                    padding: 0 @input_padding;
+                    &:focus {
+                        border-bottom: 1px solid @primary_color;
+                        box-shadow: 0 1px 0 0 @primary_color;
+                    }
+                }
+            }
+            .control__error-msg {                
+                height: @input_height;
+                line-height: @input_height;
+                color: @error_color;
+                font-weight: bold;
+                font-size: .8em;
+            }
+            
+            /** PrimeNG form controls */
+            .control__input-wrapper {
+
+                /** Dropdowns */
+                .ui-dropdown {
+                    display: inline-block;
+                    position: relative;
+                    width: auto;
+                    zoom: 1;
+                    cursor: pointer;
+                    padding-right: 2em; // test removing it
+
+                    &.ui-state-hover {
+                        background-color: transparent;
+                    }
+
+                    input[type=text] {
+                        display: none;
+                    }
+
+                    label.ui-dropdown-label {
+                        cursor: pointer;
+                        display: block;
+                        border: 0;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        font-weight: normal;
+                        width: 100%;
+                        float: left;
+                        text-align: center;
+                    }
+
+                    .ui-dropdown-trigger {
+                        border-right: 0;
+                        border-top: 0;
+                        border-bottom: 0;
+                        cursor: pointer;
+                        width: 28px;
+                        height: 100%;
+                        position: absolute;
+                            right: 0;
+                            top: 0;
+                        padding: 4px 4px;
+                        background-color: @bg_color_bright;
+                    }
+
+                    .ui-dropdown-panel {
+                        position: absolute;
+                        height: auto;
+                        min-width: 100%;
+                        background-color: @bg_color_bright;
+                        .box-shadow();
+
+                        .ui-dropdown-items {
+                            margin: 0;
+                            padding: @input_padding;
+                            .ui-dropdown-item {
+                                color: @medium_text_color;
+                                font-size: 0.8em;                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

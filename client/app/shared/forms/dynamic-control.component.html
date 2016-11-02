@@ -1,6 +1,6 @@
-<div [formGroup]="form">
-    <label [attr.for]="control.key">{{control.label}}</label>
-    <div [ngSwitch]="control.controlType">
+<div [formGroup]="form" class="control-wrapper">
+    <label [attr.for]="control.key" class="control__label col s4">{{control.label}}</label>
+    <div [ngSwitch]="control.controlType" class="control__input-wrapper col s4">
 
         <input *ngSwitchCase="'textbox'" [formControlName]="control.key"
                 [id]="control.key" [type]="control.type" />
@@ -19,7 +19,7 @@
         </select-->
 
         <p-dropdown *ngSwitchCase="'dropdown'" [formControlName]="control.key" [options]="control.choices | keys"
-            [style]="{'width':'200px'}">
+            [autoWidth]="false" [style]="{'width':'100%'}">
             <template let-choice>
                 {{ choice.label }}
             </template>
@@ -28,5 +28,5 @@
         <textarea *ngSwitchCase="'textarea'" [formControlName]="control.key" [id]="control.key"></textarea>
 
     </div> 
-    <div class="errorMessage" *ngIf="!isValid">{{control.label}} is required</div>
+    <div class="control__error-msg col s4" *ngIf="!isValid">{{control.label}} is required</div>
 </div>

@@ -13,6 +13,8 @@ import { ClaimFile }                        from './../shared/claimfile/claimfil
 })
 export class CreateClaimFileComponent {
 
+    @HostBinding('class.prop-container')
+
     claimFile: ClaimFile;
 
     submitted = false;

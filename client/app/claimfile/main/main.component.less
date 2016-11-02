@@ -2,6 +2,22 @@
 
 :host {
     height: 100%;
+
+    #mainWrapper {
+        height: 100%;
+        display: flex;
+        padding-bottom: @default_spacing;
+        
+        .prop-tile {
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+
+            .prop-tile__content {
+                flex: 1;
+            }
+        }
+    }
 }
 
 /** 
@@ -29,6 +45,5 @@
     .prop-tile__content {
         padding: @tile_padding;
         background-color: white;
-        min-height: 500px;
     }
 }

@@ -15,10 +15,12 @@
  */
 @default_color: #C6C6C6;
 @primary_color: #FF9800;
-@success_color: #00c853;
+@success_color: #4CAF50;
+@error_color: #ff0000;
 
 @bg_color: #E8E8E8;
 @bg_color_section: #F4F4F4;
+@bg_color_bright: #FBFBFB;
 @bg_color_medium: #DADADA;
 @bg_color_darken: #CCC;
 @bg_inversed_color: #424242;
@@ -27,6 +29,13 @@
 @border_color_darken: #AAA;
 
 @shadow_color: #DCDCDC; 
+
+/**
+ * Shadows
+ */
+.box-shadow() {
+    box-shadow: 1px 1px 5px 1px @shadow_color;
+}
 
 /**
  * Layout

@@ -45,7 +45,9 @@ prop-header {
     margin: auto;
     flex: 1;
 }
-
+.prop-container-wide { /* Full width content */
+    flex: 1;
+}
 .ui-state-hover {
     cursor: pointer;
     background-color: #E0E0E0;
@@ -115,6 +117,44 @@ prop-appendix-tabs {
  */
 .success {
     background-color: @success_color !important;
+}
+
+/**
+ * Buttons
+ */
+.btn-small {
+    .btn-size('small');
+}
+
+/**
+ * Datatables
+ */
+.prop-datatable {
+    .ui-datatable-tablewrapper {
+        table {
+            border: 1px solid @border_color;
+            thead {
+                background-color: @bg_color_medium;
+                th {
+                    text-align: center;
+                }
+            }
+            tbody {
+                tr:hover {
+                    cursor: pointer;
+                    &:hover {
+                        background-color: darken(@bg_color_bright, 5%) !important;
+                    }
+                }
+                tr.ui-datatable-even {
+                    background-color: @bg_color_bright;
+                }
+                tr.ui-datatable-odd {                    
+                    background-color: darken(@bg_color_bright, 3%);
+                }
+            }
+        }
+    }
 }
 
 /**

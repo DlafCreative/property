@@ -37,6 +37,22 @@
     box-shadow: 1px 1px 5px 1px @shadow_color;
 }
 
+.btn-size(@size){
+    @small_btn_size: 27px;
+    @small_icon_size: 1.2rem;
+    
+    @size_var: '@{size}_btn_size';
+    @icon_size: '@{size}_icon_size';
+
+    width: @@size_var; 
+    height: @@size_var;
+
+    i {
+        line-height: @@size_var;
+        font-size: @@icon_size;
+    }
+}
+
 /**
  * Layout
  */

@@ -1,33 +1,50 @@
 <main>
-	<div class="prop-container">
+	<div class="prop-container-wide">
 		<div class="claimfiles-wrapper row">
-			<div class="collection-wrapper col s8">
-				<div class="toolbar-wrapper">					
-					<a class="btn waves-effect waves-light orange" [routerLink]="['/claimfile/create']">
-						<i class="material-icons left">create_new_folder</i>Open claimfile
-					</a>
-					<button class="btn waves-effect waves-light white grey-text">
-						<i class="material-icons left">filter_list</i>Filter claims
-					</button>
-				</div>
+			<div class="collection-wrapper col s10">
+				<nav class="toolbar-wrapper">
+					<div class="nav-wrapper grey">
+					<ul class="hide-on-med-and-down left">
+						<li>				
+							<a [routerLink]="['/claimfile/create']">
+								<i class="material-icons left">create_new_folder</i>Open claimfile
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="material-icons left">filter_list</i>Filter claims
+							</a>
+						</li>
+					</ul>
+					<form class="right">
+						<div class="input-field">
+						<input id="search" type="search" required>
+						<label for="search"><i class="material-icons">search</i></label>
+						<i class="material-icons">close</i>
+						</div>
+					</form>
+					</div>
+				</nav>
 				<div class="collection-table-wrapper">
-					<p-dataTable [value]="claimFiles" electionMode="single" expandableRows="true">
-    					<p-column expander="true"></p-column>
-					    <p-column field="attributes.customerNumber" header="Customer number"></p-column>
-					    <p-column field="attributes.customerName" header="Customer name"></p-column>
-					    <p-column field="attributes.contractNumber" header="Contract number"></p-column>
-					    <p-column>
-					    	<template pTemplate let-claimfile="claimFile" type="body">
-					    	</template>					    	
-					    </p-column>
-					    <template let-claimfile>
-					    	Plus d'informations sur {{ claimfile.attributes.customerName }}
-			    			<a class="btn btn-floating orange grey-text right" [routerLink]="['/claimFile', claimfile.attributes.claimInformation.claimNumber]"><i class="material-icons">launch</i></a>
-					    </template>
+					<p-dataTable [value]="claimFiles" class="prop-datatable">
+						<p-column field="attributes.wan" header="ID"></p-column>
+						<p-column field="attributes.customerInformation.customerName" header="Customer Name"></p-column>
+						<p-column field="attributes.customerInformation.customerNumber" header="Customer Number"></p-column>
+						<p-column field="attributes.contract.contractNumber" header="Contract Number"></p-column>
+						<p-column field="attributes.claimInformation.dateOfEvent" header="Date of Event"></p-column>
+						<p-column field="attributes.createdAt" header="Creation Date"></p-column>
+						<p-column field="attributes.status.name" header="Status"></p-column>
+						<p-column styleClass="col-button">
+							<template pTemplate type="header"></template>
+							<template let-claimfile="rowData" pTemplate type="body">
+			    				<a class="btn btn-floating grey btn-small" 
+									[routerLink]="['/claimfile', claimfile.attributes.wan]"><i class="material-icons">arrow_forward</i></a>
+							</template>
+						</p-column>
 					</p-dataTable>
 				</div>
 			</div>
-			<div class="filters-wrapper col s4">
+			<div class="filters-wrapper col s2">
 				<div class="card center-align">
 					<div class="card-content grey lighten-2">
 						<span class="card-title">FILTERS</span>

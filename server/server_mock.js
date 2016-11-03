@@ -99,24 +99,11 @@ app.post('/authenticate', function(req, res){
 /**
  * Get claimfiles
  */
-app.get('/claimFiles/v1', function(req, res){
-	var options = {
-		uri: 	'http://api.property.local/app_dev.php/claimFiles/v1',
-		method: 'GET', 
-		headers: {
-			'Authorization': `Bearer ${req.query.token}`
-		}
-	}
+app.get('/claimFiles/v1', function(req, res){	
+	let json = `{"data":[{"type":"claimFile","id":"FR11P00000000","attributes":{"wan":"FR11P00000000","wanType":"R","customerInformation":{"customerName":"Nadine Morano","customerNumber":"213542","policyNumber":"213542"},"contract":{"contractNumber":"213542"},"claimInformation":{"dateOfLoss":"2011-09-28","dateOfEvent":"2011-09-28"},"descriptionOfRisk":[],"status":{"name":"PRE_NOTIFICATION_DONE"},"insurerExternalClaimFileId":"215343","createdAt":"2016-10-27 15:47:08","updatedAt":"2016-11-03 17:45:31","closed":"0","closingDate":"","customer":"FR0001","customerOrigin":""}},{"type":"claimFile","id":"FR40P90000000","attributes":{"wan":"FR40P90000000","wanType":"T","customerInformation":{"customerName":"Mark","customerNumber":"201","policyNumber":"101"},"contract":{"contractNumber":"201"},"claimInformation":{"claimNumber":"4","dateOfLoss":"2016-01-01 08:00:00"},"descriptionOfRisk":{"typeOfProperty":"apartment","numberOfRooms":"2","totalSize":"45"},"status":{"name":"COVERAGE_CHECKED"},"insurerExternalClaimFileId":"201","createdAt":"2016-01-01 08:00:00","updatedAt":"2016-01-01 08:00:00","closed":"0","closingDate":"","customer":"FR0003","customerOrigin":"FR0003"}},{"type":"claimFile","id":"FR50P90000000","attributes":{"wan":"FR50P90000000","wanType":"T","customerInformation":{"customerName":"Philippe","customerNumber":"201","policyNumber":"101"},"contract":{"contractNumber":"201"},"claimInformation":{"claimNumber":"3","dateOfLoss":"2016-01-01 08:00:00"},"descriptionOfRisk":{"typeOfProperty":"apartment","numberOfRooms":"2","totalSize":"45"},"status":{"name":"COVERAGE_CHECKED"},"insurerExternalClaimFileId":"201","createdAt":"2016-01-01 08:00:00","updatedAt":"2016-01-01 08:00:00","closed":"0","closingDate":"","customer":"FR0002","customerOrigin":"FR0002"}},{"type":"claimFile","id":"FR60P90000000","attributes":{"wan":"FR60P90000000","wanType":"T","customerInformation":{"customerName":"Jean","customerNumber":"201","policyNumber":"101"},"contract":{"contractNumber":"201"},"claimInformation":{"claimNumber":"2","dateOfLoss":"2016-01-01 08:00:00"},"descriptionOfRisk":{"typeOfProperty":"apartment","numberOfRooms":"2","totalSize":"45"},"status":{"name":"COVERAGE_CHECKED"},"insurerExternalClaimFileId":"201","createdAt":"2016-01-01 08:00:00","updatedAt":"2016-01-01 08:00:00","closed":"0","closingDate":"","customer":"FR0001","customerOrigin":"FR0001"}},{"type":"claimFile","id":"FR70P90000000","attributes":{"wan":"FR70P90000000","wanType":"L","customerInformation":{"customerNumber":"101","customerName":"Dupont","policyNumber":"101"},"contract":{"contractNumber":"101"},"claimInformation":{"claimNumber":"1","dateOfLoss":"2016-01-01 08:00:00"},"descriptionOfRisk":{"typeOfProperty":"House","numberOfRooms":"6","totalSize":"84"},"status":{"name":"PRE_NOTIFICATION_DONE"},"insurerExternalClaimFileId":"101","createdAt":"2016-01-01 08:00:00","updatedAt":"2016-01-01 08:00:00","closed":"0","closingDate":"","customer":"FR0001","customerOrigin":"FR0001"}}],"links":{"self":{"href":""}}}`;
 
-	rickouest(options, (error, response, body) => {
-		if (!error && response.statusCode == 200) {
-			let parsedBody = JSON.parse(body);
-			res.send(parsedBody);
-		}
-		else {
-			console.log(response)
-		}
-	})
+	let body = JSON.parse(json);
+	res.send(body);
 });
 
 /**

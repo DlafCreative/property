@@ -15,28 +15,23 @@ import { Step }                             from '../shared/stepper/step.model';
 export class ClaimFileComponent {
 
     @HostBinding('class.prop-wrapper') true; // @todo : why true is necessary here and not elsewhere ?
-
-    claimFile: ClaimFile;
+    
     claimFileStep = 'COVERAGE_CHECKING'; // @Todo : get step name from backend
     
-    constructor(private route: ActivatedRoute, public appState: AppState, private datastore: Datastore){ }
+    constructor(private route: ActivatedRoute, private appState: AppState, private datastore: Datastore){ }
 
     ngOnInit(){
         // Save current claimfile ID to the AppState to expose it to the subforms
         let claimfileId = this.route.snapshot.params['id'];
         this.appState.set('claimFileId', claimfileId);
-
-        // Get current claimfile if needed
-        if (!this.claimFile && !this.appState.state.claimFile){
-            this.datastore.findRecord(ClaimFile, claimfileId)
-                          .subscribe(
-                              (claimFile: ClaimFile) => {
-                                  delete claimFile._datastore;
-                                  this.appState.set('claimFile', claimFile);
-                                  this.claimFile = this.appState.get('claimFile');
-                              }
-                          )
-        }
+        
+        // Get current claimfile        
+        this.datastore.findRecord(ClaimFile, claimfileId)
+                        .subscribe(
+                            (claimFile: ClaimFile) => {
+                                this.appState.set('claimFile', claimFile);
+                            }
+                        )
 
         // Set claimFileStep with included step id/name
         // ...

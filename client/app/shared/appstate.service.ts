@@ -45,7 +45,8 @@ export class AppState {
      * Return simple object clone
      */
     private _clone(object: InternalStateType) {
-        return JSON.parse(JSON.stringify( object ));
+        //return JSON.parse(JSON.stringify( object ));
+        return Object.assign({}, object);
     }
 
 }

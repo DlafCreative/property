@@ -13,9 +13,9 @@ import { StepperModule }                from '../shared/stepper/stepper.module';
 
 import { ClaimFileComponent }           from './claimfile.component';
 import { AppendixTabsComponent }        from './appendix-tabs/appendix-tabs.component';
-import { ClaimPeekComponent }          from './claimpeek/claimpeek.component';
+import { ClaimPeekComponent }           from './claimpeek/claimpeek.component';
 import { CreateClaimFileComponent }     from './create-claimfile.component';
-import { MainComponent }                from './main/main.component';
+import { OverviewComponent }            from './overview/overview.component';
 import { EditorComponent }              from './editor/editor.component';
 
 /**
@@ -63,12 +63,12 @@ import { FormMetadataService }  from './form/form-metadata.service';
                 children: [
                     {
                         path: '',
-                        redirectTo: 'main',
+                        redirectTo: 'overview',
                         pathMatch: 'full'
                     },
                     {
-                        path: 'main',
-                        component: MainComponent
+                        path: 'overview',
+                        component: OverviewComponent
                     },
                     {
                         path: 'edit',
@@ -102,7 +102,7 @@ import { FormMetadataService }  from './form/form-metadata.service';
         AppendixTabsComponent,
         ClaimPeekComponent,
         CreateClaimFileComponent,
-        MainComponent,
+        OverviewComponent,
         EditorComponent,
         CustomerFormComponent,
         ClaimFileFormComponent,

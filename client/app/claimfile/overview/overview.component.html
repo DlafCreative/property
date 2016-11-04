@@ -5,7 +5,12 @@
                 Customer
                 <a class="btn btn-floating grey z-depth-0" [routerLink]="['../edit/customer']"><i class="material-icons">edit</i></a>
             </div>
-            <div class="prop-tile__content"></div>
+            <div class="prop-tile__content">
+                <form>
+                    <label>Customer Name</label>
+                    <span>{{ claimFile?.customerInformation?.customerName }}</span>
+                </form>
+            </div>
         </div>
     </div>
     <div class="col s3">

@@ -3,21 +3,42 @@
         <div class="nav-wrapper">
             <ul class="left">
                 <li>
-                    <a href="#" [routerLink]="['../overview']"><i class="material-icons">arrow_back</i></a>
+                    <a href="#" [routerLink]="['../../overview']"><i class="material-icons">arrow_back</i></a>
                 </li>
             </ul>
         </div>    
     </nav>
-    <div id="editorContent">        
-        <router-outlet></router-outlet>
+    <div id="editorContent">
+        <prop-customer-form [hidden]="form !== 'customer'"></prop-customer-form>
+        <prop-contract-form [hidden]="form !== 'contract'"></prop-contract-form>
+        <prop-claimfile-form [hidden]="form !== 'claimfile'"></prop-claimfile-form>
+        <prop-damagerisk-form [hidden]="form !== 'damage-risk'"></prop-damagerisk-form>
+        <div [hidden]="form !== 'mission'">
+            <h4>To be continued ...</h4>
+        </div>
     </div>
 </section>
 <div id="formSwitcher"><!-- @todo : move to a component -->
-    <a class="switcher prop-tile" href="#" [routerLink]="['customer']">Customer</a>
-    <a class="switcher prop-tile switcher-active" href="#" [routerLink]="['contract']">Contract</a>
-    <a class="switcher prop-tile" href="#" [routerLink]="['claimfile']">Claim File</a>
-    <a class="switcher prop-tile" href="#" [routerLink]="['damage']">Damage Risk</a>
-    <a class="switcher prop-tile" href="#" [routerLink]="['damage']">Mission</a>
+    <a [routerLink]="['../../edit', 'customer']" 
+        class="switcher prop-tile" [class.switcher-active]="form === 'customer'">
+        Customer
+    </a>
+    <a [routerLink]="['../../edit', 'contract']" 
+        class="switcher prop-tile" [class.switcher-active]="form === 'contract'">
+        Contract
+    </a>
+    <a [routerLink]="['../../edit', 'claimfile']" 
+        class="switcher prop-tile" [class.switcher-active]="form === 'claimfile'">
+        Claim File
+    </a>
+    <a [routerLink]="['../../edit', 'damage-risk']" 
+        class="switcher prop-tile" [class.switcher-active]="form === 'damage-risk'">
+        Damage Risk
+    </a>
+    <a [routerLink]="['../../edit', 'mission']" 
+        class="switcher prop-tile" [class.switcher-active]="form === 'mission'">
+        Mission
+    </a>
     <div class="switcher">
         <button class="btn btn-large waves-effect waves-light success">
             <i class="material-icons left">done_all</i>Save all

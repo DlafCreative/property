@@ -1,4 +1,5 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding }   from '@angular/core';
+import { ActivatedRoute }           from '@angular/router';
 
 @Component({
     selector: 'prop-editor',
@@ -7,6 +8,25 @@ import { Component, HostBinding } from '@angular/core';
 })
 export class EditorComponent {
 
+    form: string;
+
+    private sub$: any
+
     @HostBinding('class.prop-container') true;
+
+    constructor(private route: ActivatedRoute) {}
+
+    ngOnInit() {
+        this.sub$ = this.route.params.subscribe((params) => {
+            this.form = params['form'];
+        });
+    }
+
+    ngOnDestroy() {
+        /*if (!confirm('Modifications will be lost')) { //@todo : implement
+            return false;
+        }*/
+        this.sub$.unsubscribe();
+    }
 
 }

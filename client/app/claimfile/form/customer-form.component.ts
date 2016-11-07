@@ -6,6 +6,7 @@ import { FormMetadataService } from './form-metadata.service';
 import { ControlBase } from '../../shared/forms/controls/control-base';
 
 @Component({
+    selector: 'prop-customer-form',
     template: `
         <dynamic-form [controls]="formMetadata" *ngIf="formMetadata"></dynamic-form>
     `

@@ -71,15 +71,8 @@ import { FormMetadataService }  from './form/form-metadata.service';
                         component: OverviewComponent
                     },
                     {
-                        path: 'edit',
-                        component: EditorComponent,
-                        children: [
-                            { path: '', redirectTo: 'customer', component: CustomerFormComponent },
-                            { path: 'customer', component: CustomerFormComponent },
-                            { path: 'contract', component: ContractFormComponent },
-                            { path: 'claimfile', component: ClaimFileFormComponent },
-                            { path: 'damage', component: DamageFormComponent },
-                        ]
+                        path: 'edit/:form',
+                        component: EditorComponent
                     },
                     {
                         path: 'parts'

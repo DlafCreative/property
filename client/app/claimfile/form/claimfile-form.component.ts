@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component }            from '@angular/core';
 
-import { AppState }                         from '../../shared/appstate.service';
-import { FormMetadataService } from './form-metadata.service';
+import { AppState }             from '../../shared/appstate.service';
+import { FormMetadataService }  from './form-metadata.service';
 
-import { ControlBase } from '../../shared/forms/controls/control-base';
+import { ControlBase }          from '../../shared/forms/controls/control-base';
 
 @Component({
+    selector: 'prop-claimfile-form',
     template: `
         <dynamic-form [controls]="formMetadata" *ngIf="formMetadata"></dynamic-form>
     `

@@ -8,7 +8,9 @@
             </ul>
         </div>    
     </nav>
-    <router-outlet></router-outlet>    
+    <div id="editorContent">        
+        <router-outlet></router-outlet>
+    </div>
 </section>
 <div id="formSwitcher"><!-- @todo : move to a component -->
     <a class="switcher prop-tile" href="#" [routerLink]="['customer']">Customer</a>

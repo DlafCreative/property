@@ -17,25 +17,31 @@
         border-radius: @border_radius;
 
         /** Editor header @todo: move to a component */
-        nav {
+        .prop-toolbar {
             border-radius: @border_radius;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
             height: @header_height;
             line-height: @header_height;
-            a i {
-                height: @header_height;
-                line-height: @header_height;                
+            background-color: @primary_color;
+            a {
+                &:hover {
+                    background-color: darken(@primary_color, 5%);
+                }
+                i {
+                    height: @header_height;
+                    line-height: @header_height;             
+                }   
             }    
         }
     }
 
-    #formControlPanel {
+    #formSwitcher {
         display: flex;
         flex-direction: column;
         min-width: 20%;
         
-        .form-switcher {
+        .switcher {
             flex: 1;
             display: flex;
             justify-content: center;
@@ -51,9 +57,9 @@
             }
 
             /** active */
-            &.form-switcher-active {
-                color: @primary_color;
-                background-color: @bg_color_medium;
+            &.switcher-active {
+                .text-tone('bright');
+                background-color: @primary_color;
             }
         }
 

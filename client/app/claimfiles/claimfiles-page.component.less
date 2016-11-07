@@ -1,12 +1,39 @@
 @import '../../assets/css/constants.less';
 
-.toolbar-wrapper {
-    margin-bottom: 1em;
-}
+.claimfiles-wrapper {
 
-.filters-wrapper > .card {
-    margin-top: 0;
-    height: 600px;
+    height: 100%;
+    padding-bottom: @default_spacing;
+
+    .collection-wrapper {
+        .prop-toolbar {
+            margin-bottom: @default_spacing;
+        }
+    }
+
+    .filter-wrapper {
+
+        @header_height: 64px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 0 @default_spacing 0 0;
+
+        .prop-tile {
+            .prop-tile__header {
+                background-color: @bg_inversed_color_lighten;
+                padding: 0;
+                height: @header_height;
+                line-height: @header_height;
+            }
+            .prop-tile__content {
+                display: flex;
+                justify-content: center;
+                color: @medium_text_color;
+            }
+        }
+    }
+
 }
 /** Datatable styles @todo : move it to proper component */
 .ui-state-hover {

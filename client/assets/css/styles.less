@@ -67,9 +67,45 @@ prop-header {
     }
 }
 
+/**
+ * Tiles 
+ * @todo : move it in a component
+ */
 .prop-tile {
+
+    @tile_padding: 10px;
+    @header_vpadding: 15px;
+
     border-radius: @border_radius;
     box-shadow: 1px 1px 5px 1px @shadow_color;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .prop-tile__header {
+        .text-tone('bright');
+        background-color: @default_color;
+        padding: @header_vpadding @tile_padding;
+        text-align: center;
+        font-weight: bold;
+        position: relative;
+
+        .btn {
+            position: absolute;
+            right: 5px;
+            top: 0.4em;
+
+            &.btn-small {
+                top: 0.8em;
+            }
+        }
+    }
+
+    .prop-tile__content {
+        flex: 1;
+        padding: @tile_padding;
+        background-color: white;
+    }
 }
 
 /**
@@ -124,6 +160,17 @@ prop-appendix-tabs {
  */
 .btn-small {
     .btn-size('small');
+}
+
+.prop-toolbar {
+    background-color: @bg_inversed_color_lighten;
+    ul {
+        a {
+            &:hover {
+                background-color: @primary_color;
+            }
+        }
+    }
 }
 
 /**
@@ -200,7 +247,9 @@ prop-appendix-tabs {
                 font-size: .8em;
             }
             
-            /** PrimeNG form controls */
+            /** 
+             * PrimeNG form controls 
+             */
             .control__input-wrapper {
 
                 /** Dropdowns */
@@ -267,6 +316,22 @@ prop-appendix-tabs {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * Disabled forms
+     */
+    &.prop-form--disabled {
+        .control-wrapper {
+            margin-bottom: 10px;
+            .control__label {
+                font-size: 1em;
+                padding: 0;
+            }
+            .control__value {
+                color: @primary_color;
             }
         }
     }

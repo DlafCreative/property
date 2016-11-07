@@ -24,6 +24,7 @@
 @bg_color_medium: #DADADA;
 @bg_color_darken: #CCC;
 @bg_inversed_color: #424242;
+@bg_inversed_color_lighten: #8E8E8E;
 
 @border_color: #CCC;
 @border_color_darken: #AAA;
@@ -40,12 +41,15 @@
 .btn-size(@size){
     @small_btn_size: 27px;
     @small_icon_size: 1.4rem;
+    @small_btn_lineheight: 39px;
     
     @size_var: '@{size}_btn_size';
     @icon_size: '@{size}_icon_size';
+    @btn_lineheight: '@{size}_btn_lineheight';
 
     width: @@size_var; 
     height: @@size_var;
+    line-height: @@btn_lineheight;
 
     i {
         line-height: @@size_var;

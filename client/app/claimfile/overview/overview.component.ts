@@ -18,11 +18,12 @@ export class OverviewComponent {
     constructor(private appState: AppState){}
 
     ngOnInit() {
-        debugger;
         var appState = this.appState;
+        var claimFile = this.claimFile;
         this.claimFile = this.appState.get('claimFile');
         setTimeout(function(){
             console.log(appState.state)
+            claimFile = appState.get('claimFile');
         }, 5000);
     }
 }

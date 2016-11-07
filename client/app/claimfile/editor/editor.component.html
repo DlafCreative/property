@@ -1,5 +1,5 @@
 <section id="editorWrapper">
-    <nav class="grey z-depth-0"><!-- @todo : move to a component -->
+    <nav class="prop-toolbar"><!-- @todo : move to a component -->
         <div class="nav-wrapper">
             <ul class="left">
                 <li>
@@ -10,12 +10,13 @@
     </nav>
     <router-outlet></router-outlet>    
 </section>
-<div id="formControlPanel"><!-- @todo : move to a component -->
-    <a class="form-switcher prop-tile" href="#" [routerLink]="['customer']">Customer</a>
-    <a class="form-switcher prop-tile form-switcher-active" href="#" [routerLink]="['contract']">Contract</a>
-    <a class="form-switcher prop-tile" href="#" [routerLink]="['claimfile']">Claim File</a>
-    <a class="form-switcher prop-tile" href="#" [routerLink]="['damage']">Damage</a>
-    <div class="form-switcher">
+<div id="formSwitcher"><!-- @todo : move to a component -->
+    <a class="switcher prop-tile" href="#" [routerLink]="['customer']">Customer</a>
+    <a class="switcher prop-tile switcher-active" href="#" [routerLink]="['contract']">Contract</a>
+    <a class="switcher prop-tile" href="#" [routerLink]="['claimfile']">Claim File</a>
+    <a class="switcher prop-tile" href="#" [routerLink]="['damage']">Damage Risk</a>
+    <a class="switcher prop-tile" href="#" [routerLink]="['damage']">Mission</a>
+    <div class="switcher">
         <button class="btn btn-large waves-effect waves-light success">
             <i class="material-icons left">done_all</i>Save all
         </button>

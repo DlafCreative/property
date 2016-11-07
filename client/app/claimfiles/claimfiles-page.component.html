@@ -2,27 +2,27 @@
 	<div class="prop-container-wide">
 		<div class="claimfiles-wrapper row">
 			<div class="collection-wrapper col s10">
-				<nav class="toolbar-wrapper">
-					<div class="nav-wrapper grey">
-					<ul class="hide-on-med-and-down left">
-						<li>				
-							<a [routerLink]="['/claimfile/create']">
-								<i class="material-icons left">create_new_folder</i>Open claimfile
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<i class="material-icons left">filter_list</i>Filter claims
-							</a>
-						</li>
-					</ul>
-					<form class="right">
-						<div class="input-field">
-						<input id="search" type="search" placeholder="Search ..." required>
-						<label for="search"><i class="material-icons">search</i></label>
-						<i class="material-icons">close</i>
-						</div>
-					</form>
+				<nav class="prop-toolbar">
+					<div class="nav-wrapper">
+						<ul class="hide-on-med-and-down left">
+							<li>				
+								<a [routerLink]="['/claimfile/create']">
+									<i class="material-icons left">create_new_folder</i>Open claimfile
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<i class="material-icons left">filter_list</i>Filter claims
+								</a>
+							</li>
+						</ul>
+						<form class="right">
+							<div class="input-field">
+							<input id="search" type="search" placeholder="Search ..." required>
+							<label for="search"><i class="material-icons">search</i></label>
+							<i class="material-icons">close</i>
+							</div>
+						</form>
 					</div>
 				</nav>
 				<div class="collection-table-wrapper">
@@ -44,12 +44,12 @@
 					</p-dataTable>
 				</div>
 			</div>
-			<div class="filters-wrapper col s2">
-				<div class="card center-align">
-					<div class="card-content grey lighten-2">
-						<span class="card-title">FILTERS</span>
+			<div class="filter-wrapper col s2">				
+				<div class="prop-tile">
+					<div class="prop-tile__header">
+						Filters
 					</div>
-					<div class="card-action">
+					<div class="prop-tile__content">
 						No filter defined
 					</div>
 				</div>

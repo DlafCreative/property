@@ -7,15 +7,9 @@
         height: 100%;
         display: flex;
         padding-bottom: @default_spacing;
-        
-        .prop-tile {
-            display: flex;
-            height: 100%;
-            flex-direction: column;
 
-            .prop-tile__content {
-                flex: 1;
-            }
+        .prop-tile-wrapper {
+            display: flex;
         }
     }
 }
@@ -24,26 +18,4 @@
  * Tile component 
  */
 .prop-tile {
-
-    @tile_padding: 10px;
-    @header_vpadding: 15px;
-
-    .prop-tile__header {
-        .text-tone('bright');
-        background-color: @default_color;
-        padding: @header_vpadding @tile_padding;
-        text-align: center;
-        font-weight: bold;
-        position: relative;
-
-        .btn {
-            position: absolute;
-            right: 5px;
-            top: 0.4em;
-        }
-    }
-    .prop-tile__content {
-        padding: @tile_padding;
-        background-color: white;
-    }
 }

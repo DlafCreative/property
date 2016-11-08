@@ -7,11 +7,6 @@ import { AppState }             from '../../shared/appstate.service';
 
 import { ControlBase }          from '../../shared/forms/controls/control-base';
 
-@Component({
-    template: `
-        <dynamic-form [controls]="formMetadata" *ngIf="formMetadata"></dynamic-form>
-    `
-})
 export class FormPartBaseComponent {
 
     /**

@@ -28,8 +28,62 @@
             }
             .prop-tile__content {
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                overflow-y: auto;
                 color: @medium_text_color;
+
+                /**
+                 * Move it into a component or use KPI component
+                 */
+                .filter {
+                    &:hover {
+                        background-color: @bg_color;
+                    }
+                    cursor: pointer;
+                    padding: 1em;
+                    background-color: @bg_color_medium;
+                    transition: 0.3s;
+                    border-radius: @border_radius;
+                    margin-bottom: @default_spacing;
+                    width: 100%;
+                    flex: 1;
+
+                    h4 {
+                        margin: 0 0 @default_spacing 0;
+                        font-size: 1em;
+                        font-weight: bold;
+                        text-align: center;                        
+                    }
+                    .filter-kpi {
+                        .filter-figure {
+                            background-color: @primary_color;
+                            padding: @default_spacing 0 0 0;
+                            .text-tone('bright');
+                            i { 
+                                display: block;
+                                width: 46px;
+                                height: 46px;
+                                margin: auto;
+                                font-size: 3rem;
+                            }
+                            .filter-title { 
+                                display: block;
+                                text-align: center;
+                                font-size: 0.8em;
+                            }
+                        }
+                        .filter-kpi {
+                            background-color: @primary_color;
+                            .text-tone('bright');
+                            padding: @default_spacing / 2;
+                            text-align: center;
+                            font-size: 1.2em;
+                            font-weight: bold;
+                        }
+                    }
+                }
             }
         }
     }

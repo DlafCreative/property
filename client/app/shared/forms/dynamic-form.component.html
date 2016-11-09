@@ -1,10 +1,10 @@
 <div>
-  <form (ngSubmit)="onSubmit()" [formGroup]="form" class="prop-form">
+  <form (ngSubmit)="onSubmit()" [formGroup]="formGroup" class="prop-form">
     <div *ngFor="let control of controls" class="form-row row">
-      <dynamic-control [control]="control" [form]="form"></dynamic-control>
+      <dynamic-control [control]="control" [form]="formGroup"></dynamic-control>
     </div>
     <div class="form-row">
-      <button type="submit" [disabled]="!form.valid">Save</button>
+      <button type="submit" [disabled]="!formGroup.valid">Save</button>
     </div>
   </form>
   <div *ngIf="payLoad" class="form-row">

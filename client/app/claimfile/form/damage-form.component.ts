@@ -1,6 +1,10 @@
-import { Component }            from '@angular/core';
+import { 
+    Component, 
+    ViewChild
+} from '@angular/core';
 
 import { AppState }             from '../../shared/appstate.service';
+import { DynamicFormComponent } from '../../shared/forms/dynamic-form.component';
 import { FormMetadataService }  from './form-metadata.service';
 
 import { ControlBase }          from '../../shared/forms/controls/control-base';
@@ -28,6 +32,9 @@ export class DamageFormComponent {
      */
     context: string = 'DescriptionOfRisk';
 
+    @ViewChild(DynamicFormComponent)
+    dynamicForm: DynamicFormComponent;
+
     constructor(private formMetadataService: FormMetadataService, private appState: AppState) { 
         this.claimFileId = appState.get('claimFileId');
     }
@@ -40,5 +47,13 @@ export class DamageFormComponent {
                                             console.log(this.formMetadata);
                                         }
                                     )
+    }
+
+    getValues() {
+        return this.dynamicForm.formGroup.value;
+    }
+
+    isValid() {
+        return this.dynamicForm.formGroup.valid;
     }
 }

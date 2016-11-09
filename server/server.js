@@ -28,6 +28,9 @@ app.use(function(req, res, next) {
     // an API server in conjunction with something like webpack-dev-server.
     res.setHeader('Access-Control-Allow-Origin', '*');
 
+	// Allow every CRUD operations
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+
     // Also set permissive headers allowing to set any Content-Type
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Accept,Authorization');
 
@@ -138,7 +141,8 @@ app.post('/claim_file', function(req, res){
 	
 	rickouest(reqOptions, (error, response, body) => {
 		if (!error && response.statusCode == 200) {
-			res.json(body);
+			let parsedBody = JSON.parse(body);
+			res.json(parsedBody);
 		}
 		else {
 			console.log(response.statusCode);
@@ -217,6 +221,45 @@ app.post('/form-metadata', (req, res) => {
 			console.log(response)
 		}
 	});
+
+});
+
+/**
+ * Submit form part // @todo : bring get form-metadata here, same final uri, almost same logic.
+ */
+app.all('/form-part', (req, res) => {
+
+	// Response for the preflight 
+	if (req.method === 'OPTIONS') {
+		res.end();
+	}
+	else {
+		let uri = `http://192.168.33.10:22201/app_dev.php/forms/v1/claimFile/${req.body.claimFileId}/${req.body.context}`;
+
+		let rickouestOptions = {
+			uri : uri,
+			method: req.method,
+			headers: {
+				'Authorization': req.headers.authorization
+			}
+		}
+
+		if (req.method === 'POST') {
+			rickouestOptions.form = req.body.formPartData;
+		}
+		
+		rickouest(rickouestOptions, (error, response, body) => {
+			console.log(error);
+			if (!error && (typeof response !== "undefined") && response.statusCode == 200) {
+				let parsedBody = JSON.parse(body);
+				res.json(parsedBody);
+			}
+			else {
+				console.log(response)
+				res.send(body);
+			}
+		});
+	}
 
 });
 

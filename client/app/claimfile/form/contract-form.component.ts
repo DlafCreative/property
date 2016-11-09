@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component }        from '@angular/core';
 
-import { AppState }                         from '../../shared/appstate.service';
-import { FormMetadataService } from './form-metadata.service';
+import { AppState }         from '../../shared/appstate.service';
+import { FormPartService }  from './form-part.service';
 
-import { ControlBase } from '../../shared/forms/controls/control-base';
+import { ControlBase }      from '../../shared/forms/controls/control-base';
 
 @Component({
     selector: 'prop-contract-form',
@@ -28,12 +28,12 @@ export class ContractFormComponent {
      */
     context: string = 'Contract';
 
-    constructor(private formMetadataService: FormMetadataService, private appState: AppState) { 
+    constructor(private formPartService: FormPartService, private appState: AppState) { 
         this.claimFileId = appState.get('claimFileId');
     }
 
     ngOnInit() {
-        this.formMetadataService.getFormMetadata(this.claimFileId, this.context)
+        this.formPartService.getFormMetadata(this.claimFileId, this.context)
                                     .subscribe(
                                         (metadata) => {
                                             this.formMetadata = metadata;

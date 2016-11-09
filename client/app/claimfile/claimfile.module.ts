@@ -33,7 +33,7 @@ import {
 
 /** Import services */
 import { AppState }             from '../shared/appstate.service';
-import { FormMetadataService }  from './form/form-metadata.service';
+import { FormPartService }      from './form/form-part.service';
 
 @NgModule({
     bootstrap: [ ClaimFileComponent ],
@@ -104,7 +104,7 @@ import { FormMetadataService }  from './form/form-metadata.service';
     ],
     providers: [
         AppState,
-        FormMetadataService
+        FormPartService
     ],
     exports: [
         RouterModule

@@ -5,7 +5,7 @@ import {
 
 import { AppState }             from '../../shared/appstate.service';
 import { DynamicFormComponent } from '../../shared/forms/dynamic-form.component';
-import { FormMetadataService }  from './form-metadata.service';
+import { FormPartService }      from './form-part.service';
 
 import { ControlBase }          from '../../shared/forms/controls/control-base';
 
@@ -35,12 +35,12 @@ export class DamageFormComponent {
     @ViewChild(DynamicFormComponent)
     dynamicForm: DynamicFormComponent;
 
-    constructor(private formMetadataService: FormMetadataService, private appState: AppState) { 
+    constructor(private formPartService: FormPartService, private appState: AppState) { 
         this.claimFileId = appState.get('claimFileId');
     }
 
     ngOnInit() {
-        this.formMetadataService.getFormMetadata(this.claimFileId, this.context)
+        this.formPartService.getFormMetadata(this.claimFileId, this.context)
                                     .subscribe(
                                         (metadata) => {
                                             this.formMetadata = metadata;
@@ -49,10 +49,16 @@ export class DamageFormComponent {
                                     )
     }
 
+    /**
+     * Get values of private dynamic form
+     */
     getValues() {
         return this.dynamicForm.formGroup.value;
     }
 
+    /**
+     * Check if form is valid or invalid
+     */
     isValid() {
         return this.dynamicForm.formGroup.valid;
     }

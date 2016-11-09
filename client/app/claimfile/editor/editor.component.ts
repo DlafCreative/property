@@ -1,5 +1,15 @@
-import { Component, HostBinding }   from '@angular/core';
+import { 
+    Component, 
+    HostBinding, 
+    ViewChild 
+}   from '@angular/core';
+
 import { ActivatedRoute }           from '@angular/router';
+
+import { AppState }                 from '../../shared/appstate.service';
+import { FormPartService }          from '../form/form-part.service';
+
+import { DamageFormComponent }      from '../form/damage-form.component';
 
 @Component({
     selector: 'prop-editor',
@@ -8,16 +18,22 @@ import { ActivatedRoute }           from '@angular/router';
 })
 export class EditorComponent {
 
-    form: string;
-
-    private sub$: any
-
     @HostBinding('class.prop-container') true;
 
-    constructor(private route: ActivatedRoute) {}
+    private form: string;
+
+    private formPartSub$: any
+
+    /**
+     * Links to form components
+     */
+    @ViewChild(DamageFormComponent)
+    private damageForm: DamageFormComponent;
+
+    constructor(private route: ActivatedRoute, private formPartService: FormPartService, private appState: AppState) {}
 
     ngOnInit() {
-        this.sub$ = this.route.params.subscribe((params) => {
+        this.formPartSub$ = this.route.params.subscribe((params) => {
             this.form = params['form'];
         });
     }
@@ -26,7 +42,47 @@ export class EditorComponent {
         /*if (!confirm('Modifications will be lost')) { //@todo : implement
             return false;
         }*/
-        this.sub$.unsubscribe();
+        this.formPartSub$.unsubscribe();
+    }
+
+    submitAll() {
+        
+        let claimFileId = this.appState.get('claimFileId');
+
+        let allForms = [this.damageForm];
+        let formToSubmit = [];
+        let formInvalidFlag = false;
+
+        for (let form of allForms) {
+            // Check if form is valid
+            if (!form.isValid()) {
+                formInvalidFlag = true;
+                break;
+            }
+
+            // If form is dirty, then put it in embargo
+            if (form.isDirty()) {
+                formToSubmit.push(form);
+            }
+        }
+
+        if (formInvalidFlag) {
+            throw new Error('Un formulaire est invalide');
+        }
+        else {
+            console.log("Soumission des formulaires")
+        }
+
+        /*let isValidDamageForm = this.damageForm.isValid();
+
+        if (isValidDamageForm) {
+            this.formPartService.submitFormPart(
+                claimFileId, this.damageForm.context, this.damageForm.getValues())
+                                    .subscribe( (claimFile) => {
+                                        this.appState.set('claimFile', claimFile);
+                                    } );
+        }*/
+
     }
 
 }

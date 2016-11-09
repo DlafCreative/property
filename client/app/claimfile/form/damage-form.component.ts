@@ -49,6 +49,10 @@ export class DamageFormComponent {
                                     )
     }
 
+    getContext() {
+        return this.context;
+    }
+
     /**
      * Get values of private dynamic form
      */
@@ -61,5 +65,12 @@ export class DamageFormComponent {
      */
     isValid() {
         return this.dynamicForm.formGroup.valid;
+    }
+
+    /**
+     * Check if form is dirty
+     */
+    isDirty() {
+        return this.dynamicForm.formGroup.dirty;
     }
 }

@@ -22,7 +22,7 @@ export class FormPartBaseComponent {
     /**
      * Form part name, required by the API
      */
-    context: string;
+    protected context: string;
 
     @ViewChild(DynamicFormComponent)
     dynamicForm: DynamicFormComponent;

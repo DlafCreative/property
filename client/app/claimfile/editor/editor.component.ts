@@ -10,6 +10,9 @@ import { AppState }                 from '../../shared/appstate.service';
 import { FormPartService }          from '../form/form-part.service';
 
 import { DamageFormComponent }      from '../form/damage-form.component';
+import { ClaimFileFormComponent }   from '../form/claimfile-form.component';
+import { ContractFormComponent }    from '../form/contract-form.component';
+import { CustomerFormComponent }    from '../form/customer-form.component';
 
 @Component({
     selector: 'prop-editor',
@@ -27,8 +30,18 @@ export class EditorComponent {
     /**
      * Links to form components
      */
+    @ViewChild(CustomerFormComponent)
+    private customerForm: CustomerFormComponent;
+
+    @ViewChild(ContractFormComponent)
+    private contractForm: ContractFormComponent;
+
+    @ViewChild(ClaimFileFormComponent)
+    private claimFileForm: ClaimFileFormComponent;
+
     @ViewChild(DamageFormComponent)
     private damageForm: DamageFormComponent;
+
 
     constructor(private route: ActivatedRoute, private formPartService: FormPartService, private appState: AppState) {}
 
@@ -49,7 +62,7 @@ export class EditorComponent {
         
         let claimFileId = this.appState.get('claimFileId');
 
-        let allForms = [this.damageForm];
+        let allForms = [this.customerForm, this.contractForm, this.claimFileForm, this.damageForm];
         let formToSubmit = [];
         let formInvalidFlag = false;
 
@@ -67,7 +80,7 @@ export class EditorComponent {
         }
 
         if (formInvalidFlag) {
-            throw new Error('Un formulaire est invalide');
+            throw new Error('Un formulaire est incomplet ou invalide');
         }
         else {
             console.log("Soumission des formulaires")

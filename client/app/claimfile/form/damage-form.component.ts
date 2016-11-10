@@ -1,7 +1,7 @@
-import { Component }            from '@angular/core';
+import { Component }                from '@angular/core';
 
-import { AppState }             from '../../shared/appstate.service';
-import { FormPartService }      from './form-part.service';
+import { AppState }                 from '../../shared/appstate.service';
+import { FormPartService }          from './form-part.service';
 
 import { FormPartBaseComponent }    from './form-part-base.component';
 
@@ -12,11 +12,6 @@ import { FormPartBaseComponent }    from './form-part-base.component';
     `
 })
 export class DamageFormComponent extends FormPartBaseComponent {
-
-    /**
-     * Current claimfile ID
-     */
-    claimFileId: string;
 
     /**
      * Form part name, required by the API

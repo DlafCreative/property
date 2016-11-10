@@ -1,9 +1,9 @@
-import { Component }        from '@angular/core';
+import { Component }                from '@angular/core';
 
-import { AppState }         from '../../shared/appstate.service';
-import { FormPartService }  from './form-part.service';
+import { AppState }                 from '../../shared/appstate.service';
+import { FormPartService }          from './form-part.service';
 
-import { ControlBase }      from '../../shared/forms/controls/control-base';
+import { FormPartBaseComponent }    from './form-part-base.component';
 
 @Component({
     selector: 'prop-contract-form',
@@ -11,34 +11,15 @@ import { ControlBase }      from '../../shared/forms/controls/control-base';
         <dynamic-form [controls]="formMetadata" *ngIf="formMetadata"></dynamic-form>
     `
 })
-export class ContractFormComponent {
-
-    /**
-     * Form description in JSON received from the API
-     */
-    formMetadata: ControlBase<any>[]; 
-
-    /**
-     * Current claimfile ID
-     */
-    claimFileId: string;
+export class ContractFormComponent extends FormPartBaseComponent {
 
     /**
      * Form part name, required by the API
      */
     context: string = 'Contract';
 
-    constructor(private formPartService: FormPartService, private appState: AppState) { 
-        this.claimFileId = appState.get('claimFileId');
+    constructor(formPartService: FormPartService, appState: AppState) { 
+        super(formPartService, appState);
     }
-
-    ngOnInit() {
-        this.formPartService.getFormMetadata(this.claimFileId, this.context)
-                                    .subscribe(
-                                        (metadata) => {
-                                            this.formMetadata = metadata;
-                                            console.log(this.formMetadata);
-                                        }
-                                    )
-    }
+    
 }

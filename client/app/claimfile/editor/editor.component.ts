@@ -14,6 +14,8 @@ import { ClaimFileFormComponent }   from '../form/claimfile-form.component';
 import { ContractFormComponent }    from '../form/contract-form.component';
 import { CustomerFormComponent }    from '../form/customer-form.component';
 
+import * as Rx                      from 'rxjs';
+
 @Component({
     selector: 'prop-editor',
     templateUrl: 'editor.component.html',
@@ -25,7 +27,7 @@ export class EditorComponent {
 
     private form: string;
 
-    private formPartSub$: any
+    private formPartParamSub$: any
 
     /**
      * Links to form components
@@ -46,7 +48,7 @@ export class EditorComponent {
     constructor(private route: ActivatedRoute, private formPartService: FormPartService, private appState: AppState) {}
 
     ngOnInit() {
-        this.formPartSub$ = this.route.params.subscribe((params) => {
+        this.formPartParamSub$ = this.route.params.subscribe((params) => {
             this.form = params['form'];
         });
     }
@@ -55,7 +57,7 @@ export class EditorComponent {
         /*if (!confirm('Modifications will be lost')) { //@todo : implement
             return false;
         }*/
-        this.formPartSub$.unsubscribe();
+        this.formPartParamSub$.unsubscribe();
     }
 
     submitAll() {
@@ -83,18 +85,34 @@ export class EditorComponent {
             throw new Error('Un formulaire est incomplet ou invalide');
         }
         else {
-            console.log("Soumission des formulaires")
+            console.log("Soumission des formulaires");
+            /*var stream$;
+            
+            formToSubmit.forEach((form, index) => {
+                if (index === 0) {
+                    stream$ = this.formPartService.submitFormPart(claimFileId, form.getContext(), form.getValues())
+                }
+                else {
+                    let obs$ = this.formPartService.submitFormPart(claimFileId, form.getContext(), form.getValues());
+                    stream$ = stream$.concat( obs$ );
+                }
+            });
+
+            stream$.subscribe((claimFile) => {
+                console.log(claimFile);
+            })*/
+
+            Rx.Observable.from(formToSubmit)
+              .concatMap(
+                  (form) => {
+                      return this.formPartService.submitFormPart(claimFileId, form.getContext(), form.getValues());
+                  }
+              )
+              .combineAll()
+              .subscribe( (val) => {
+                  console.log(val);
+              } );
         }
-
-        /*let isValidDamageForm = this.damageForm.isValid();
-
-        if (isValidDamageForm) {
-            this.formPartService.submitFormPart(
-                claimFileId, this.damageForm.context, this.damageForm.getValues())
-                                    .subscribe( (claimFile) => {
-                                        this.appState.set('claimFile', claimFile);
-                                    } );
-        }*/
 
     }
 

@@ -82,11 +82,11 @@ export class EditorComponent {
         }
 
         if (formInvalidFlag) {
-            throw new Error('Un formulaire est incomplet ou invalide');
+            alert('Un formulaire est incomplet ou invalide');
         }
         else {
-            console.log("Soumission des formulaires");
-            /*var stream$;
+            console.log("Form submission");
+            var stream$;
             
             formToSubmit.forEach((form, index) => {
                 if (index === 0) {
@@ -100,9 +100,12 @@ export class EditorComponent {
 
             stream$.subscribe((claimFile) => {
                 console.log(claimFile);
-            })*/
+            })
 
-            Rx.Observable.from(formToSubmit)
+            /**
+             * More elegant way to perform what is done above
+             */
+            /*Rx.Observable.from(formToSubmit)
               .concatMap(
                   (form) => {
                       return this.formPartService.submitFormPart(claimFileId, form.getContext(), form.getValues());
@@ -111,7 +114,7 @@ export class EditorComponent {
               .combineAll()
               .subscribe( (val) => {
                   console.log(val);
-              } );
+              } );*/
         }
 
     }

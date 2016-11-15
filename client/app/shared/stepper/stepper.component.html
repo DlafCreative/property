@@ -1,4 +1,4 @@
-<ul *ngFor="let step of steps" class="step" [class.step-active]="step.id === currentStep">
+<ul *ngFor="let step of steps" class="step" [class.step-active]="currentStep && step.id === currentStep">
     <li class="step__bubble"></li>
     <li class="step__circle"></li>
     <li class="step__label">

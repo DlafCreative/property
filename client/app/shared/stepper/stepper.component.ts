@@ -15,7 +15,7 @@ export class StepperComponent {
     steps: any[] = [];
 
     @Input()
-    currentStep: string;
+    currentStep: string = null;
 
     constructor( private dataStore: Datastore, private appState: AppState ){}
 

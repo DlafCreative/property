@@ -75,6 +75,9 @@ import { FormPartService }      from './form/form-part.service';
                         component: EditorComponent
                     },
                     {
+                        path: 'mission'
+                    },
+                    {
                         path: 'parts'
                     },
                     {

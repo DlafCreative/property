@@ -10,6 +10,11 @@ import { RouterModule }				from '@angular/router';
 import { FormsModule } 				from '@angular/forms';
 
 /**
+ * Property Redux module
+ */
+import { PropReduxModule }			from './shared/prop-redux.module';
+
+/**
  * Import other modules
  */
 /** jsonApi module and custom datastore */
@@ -48,7 +53,8 @@ import { ClaimFileService }  from './shared/claimfile/claimfile.service';
 		DataTableModule, SharedModule, // PrimeNg datatable
 		FormsModule,
 		ClaimFileModule,
-		RouterModule.forRoot( ROUTES )
+		RouterModule.forRoot( ROUTES ),
+		PropReduxModule
 	],
 	declarations: 	[
 		AppComponent,

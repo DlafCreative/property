@@ -3,6 +3,10 @@ import { Http }         from '@angular/http';
 import { Router }       from '@angular/router';
 import { AuthService }  from './../shared/auth.service'; 
 
+import { NgRedux, select }      from 'ng2-redux';
+import { IAppState }            from '../../store/store';
+import { Observable }           from 'rxjs';
+
 @Component({
     selector:       'prop-login',
     templateUrl:    'login-page.component.html',
@@ -19,7 +23,7 @@ export class LoginPageComponent {
 
     isProcessing: boolean = false;
 
-    constructor(private http: Http, private authService: AuthService, private router: Router) {}
+    constructor(private http: Http, private authService: AuthService, private router: Router, private ngRedux: NgRedux<IAppState>) {}
 
     onSubmit() {
 

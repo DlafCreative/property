@@ -215,6 +215,17 @@ app.all('/form-part', (req, res) => {
 });
 
 /**
+ * Get list of coverages
+ */
+app.get('/coverages', (req, res) => {
+	let json = `{"meta":{"total_count":12},"data":[{"type":"coverage","attributes":{"type":"TYPE_WATER_DAMAGE","name":"Water damage","rank":1}},{"type":"coverage","attributes":{"type":"TYPE_THEFT","name":"Theft","rank":2}},{"type":"coverage","attributes":{"type":"TYPE_ELECTRICAL_DAMAGE","name":"Electrical damage","rank":3}},{"type":"coverage","attributes":{"type":"TYPE_GLASS_BREAKAGE","name":"Glass breakage","rank":4}},{"type":"coverage","attributes":{"type":"TYPE_FIRE","name":"Fire","rank":5}},{"type":"coverage","attributes":{"type":"TYPE_FROST","name":"Frost","rank":6}},{"type":"coverage","attributes":{"type":"TYPE_STORM","name":"Storm","rank":7}},{"type":"coverage","attributes":{"type":"TYPE_HAIL","name":"Hail","rank":8}},{"type":"coverage","attributes":{"type":"TYPE_HIT_BY_GROUND_VEHICULE","name":"Hit by ground vehicule","rank":9}},{"type":"coverage","attributes":{"type":"TYPE_MACHINE_BREAKING","name":"Machine breaking","rank":10}},{"type":"coverage","attributes":{"type":"TYPE_VANDALISM","name":"Vandalism","rank":11}},{"type":"coverage","attributes":{"type":"TYPE_NATURAL_DISASTER","name":"Natural disaster","rank":12}}],"links":{"self":"\/app_dev.php\/coverages\/v1\/?access_token=Yzg3YTdjZDcxNThjMTRmNzkwZDYxOGEyZmM2NTFhODVhZjM1NTMyMjRhYzY5OTFmOTM4ZjMxMmEyYzg2NzdmOQ","first":"\/app_dev.php\/coverages\/v1\/?page[number]=1","prev":null,"next":"\/app_dev.php\/coverages\/v1\/?page[number]=1","last":"\/app_dev.php\/coverages\/v1\/?page[number]=12"},"jsonapi":{"version":"1.0"}}`;
+
+	let body = JSON.parse(json);
+
+	res.send(body);
+});
+
+/**
  * Get steps
  */
 app.get('/steps', (req, res) => {	

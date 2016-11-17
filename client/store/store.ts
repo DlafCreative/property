@@ -7,9 +7,10 @@ export interface IAppState {
         customerNumber: string,
         username: string,
         access_token: string,
-        isLoading: boolean
-    },
-    counter?: 0
+        refresh_token: null,
+        isProcessing: boolean,
+        isLogged: boolean
+    }
 }
 
 export const rootReducer = combineReducers<IAppState>({

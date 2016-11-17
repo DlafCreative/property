@@ -1,48 +1,41 @@
-import { Component, HostBinding }    from '@angular/core';
-import { Http }         from '@angular/http';
-import { Router }       from '@angular/router';
-import { AuthService }  from './../shared/auth.service'; 
+import { Component, HostBinding }       from '@angular/core';
+import { Router }                       from '@angular/router';
 
-import { NgRedux, select }      from 'ng2-redux';
-import { IAppState }            from '../../store/store';
-import { Observable }           from 'rxjs';
+import { SessionActions }               from '../../actions/session.actions';
+import { select }                       from 'ng2-redux';
+
+import { Observable }                   from 'rxjs';
 
 @Component({
     selector:       'prop-login',
     templateUrl:    'login-page.component.html',
-    styleUrls:      ['login-page.component.less'],
-    providers:      [ AuthService ]
+    styleUrls:      ['login-page.component.less']
 })
 export class LoginPageComponent {
 
     @HostBinding('class.prop-wrapper')
 
-    customer_number: string = 'FR0001';
-    username: string = 'gbu';
-    password: string = 'aaa';
+    @select(['session', 'isProcessing']) isProcessing;
+    @select(state => state.session.isLogged) isLogged$: Observable<any>;
 
-    isProcessing: boolean = false;
+    userData = {
+        customer_number: 'FR0001',
+        username: 'gbu',
+        password: 'aaa'
+    };
 
-    constructor(private http: Http, private authService: AuthService, private router: Router, private ngRedux: NgRedux<IAppState>) {}
+    constructor(
+        private router: Router, 
+        private sessionActions: SessionActions
+        ) {}
+
+    ngOnInit() {
+        this.isLogged$.subscribe((value) => {
+            this.router.navigate(['/claimfiles']);
+        });
+    }
 
     onSubmit() {
-
-        this.isProcessing = true;        
-        let router = this.router;
-
-        this.authService.login(this.username, this.password, this.customer_number)
-                        .subscribe( (data) => {                            
-                                        this.isProcessing = false;
-                                        if (!data.access_token){
-                                            // Wrong login                        
-                                            //Materialize.toast(data.error_description, 5000);    
-                                        }
-                                        else {
-                                            // Set user and redirect
-                                            localStorage.setItem('prop_access_token', data.access_token);
-                                            router.navigate(['./claimfiles']);
-                                        }
-                                    }, 
-                                    error => console.log(error));
+        this.sessionActions.loginUser(this.userData);
     }
 }

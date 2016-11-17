@@ -40,7 +40,8 @@ import { LoginPageComponent } 	from './authentication/login-page.component';
 import { ClaimFilesPageComponent } 	from './claimfiles/claimfiles-page.component';
 
 // Services
-import { ClaimFileService }  from './shared/claimfile/claimfile.service';
+import { HttpClient }			from './shared/lib/http-client.service';
+import { ClaimFileService }  	from './shared/claimfile/claimfile.service';
 
 @NgModule({
 	bootstrap: 		[ AppComponent ],
@@ -64,6 +65,7 @@ import { ClaimFileService }  from './shared/claimfile/claimfile.service';
 	],
 	providers: [
 		Datastore,
+		HttpClient,
 		ClaimFileService
 	]
 })

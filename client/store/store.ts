@@ -1,6 +1,7 @@
 import { combineReducers }  from 'redux';
 
-import { sessionReducer }   from './session/session.reducer';
+import { SessionReducer }   from './session/session.reducer';
+import { claimFileReducer } from './claimfile/claimfile.reducer';
 
 export interface IAppState {
     session?: {
@@ -10,9 +11,15 @@ export interface IAppState {
         refresh_token: null,
         isProcessing: boolean,
         isLogged: boolean
+    },
+    claimFile: {
+        currentClaimFile: any,
+        coverages?: any,
+        submittedDraft?: boolean
     }
 }
 
 export const rootReducer = combineReducers<IAppState>({
-    session: sessionReducer
+    session: SessionReducer,
+    claimFile: claimFileReducer
 });

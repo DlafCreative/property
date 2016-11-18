@@ -5,6 +5,11 @@ import { HttpModule }		            from '@angular/http';
 import { RouterModule }                 from '@angular/router';
 import { FormsModule } 		            from '@angular/forms';
 
+/**
+ * Property Redux module
+ */
+import { PropReduxModule }			    from '../shared/prop-redux.module';
+
 import { UIModule }                     from '../shared/ui.module';
 
 import { JsonApiModule }                from 'angular2-jsonapi';
@@ -25,6 +30,7 @@ import { DynamicFormModule } from '../shared/forms/dynamic-form.module';
 
 /** Import forms */
 import { 
+    ClaimFileDraftFormComponent,
     CustomerFormComponent,
     ClaimFileFormComponent,
     ContractFormComponent,
@@ -42,6 +48,7 @@ import { FormPartService }      from './form/form-part.service';
         CommonModule,
         HttpModule,
         FormsModule,
+        PropReduxModule,
         UIModule,
         JsonApiModule,
         DynamicFormModule,
@@ -98,6 +105,7 @@ import { FormPartService }      from './form/form-part.service';
         AppendixTabsComponent,
         ClaimPeekComponent,
         CreateClaimFileComponent,
+        ClaimFileDraftFormComponent,
         OverviewComponent,
         EditorComponent,
         CustomerFormComponent,

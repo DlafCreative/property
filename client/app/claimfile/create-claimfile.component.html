@@ -1,56 +1,7 @@
 <div class="row create-form-wrapper">
     <div class="col s3"></div>
     <div class="col s6 form-wrapper prop-tile">
-        <form class="col s12" #claimFileForm="ngForm" (ngSubmit)="onSubmit(claimFileForm)">
-            <div class="row">
-                <div class="input-field">					
-                    <input #spy type="text" id="customerName" name="customerName" [(ngModel)]="claimFile.customerName" placeholder="Customer Name" class="validate" required />
-                    <label for="customerName">Customer Name</label>
-                </div>
-                <div class="input-field">
-                    <input type="text" id="customerNumber" name="customerNumber" [(ngModel)]="claimFile.customerNumber" placeholder="Customer Number" class="validate" required />
-                    <label for="customerNumber">Customer Number</label>
-                </div>
-                <div class="row">
-                    <label for="dateOfEvent">Date of event</label>
-                    <!--input type="date" id="dateOfEvent" name="dateOfEvent" 
-                        [(ngModel)]="claimFile.dateOfEvent" class="datepicker" 
-                        materialize="pickadate" [materializeParams]="[{format: 'd mmmm yyyy', formatSubmit: 'yyyy-mm-dd', hiddenName: true}]" required /-->
-                    <input type="date" id="dateOfEvent" name="dateOfEvent" 
-                            [(ngModel)]="claimFile.dateOfEvent" class="datepicker" required />
-                </div>
-                <div class="input-field">
-                    <input type="text" id="policyNumber" name="policyNumber" [(ngModel)]="claimFile.policyNumber" placeholder="Policy Number" class="validate" required />
-                    <label for="policyNumber">Policy Number</label>
-                </div>
-                <div class="input-field">
-                    <input type="text" id="insurerExternalClaimFileId" name="insurerExternalClaimFileId" [(ngModel)]="claimFile.insurerExternalClaimFileId"  placeholder="Insurer ClaimFile ID" class="validate" required />
-                    <label for="insurerExternalClaimFileId">Insurer ClaimFile ID</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s4"></div>
-                <div class="col s4 center-align loader-wrapper">
-                    <div class="preloader-wrapper small active" *ngIf="submitted">
-                        <div class="spinner-layer spinner-yellow-only">
-                            <div class="circle-clipper left">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="gap-patch">
-                                <div class="circle"></div>
-                            </div>
-                            <div class="circle-clipper right">
-                                <div class="circle"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s4 right-align">
-                    <button type="submit" class="btn orange" value="Submit" [disabled]="!claimFileForm.form.valid || submitted">Create</button>
-                </div>
-            </div>
-        </form>
+        <prop-claimfile-draft-form></prop-claimfile-draft-form>
     </div>
     <div class="col s3"></div>
 </div>
-<pre>{{ spy.className }}</pre>

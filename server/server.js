@@ -1,3 +1,5 @@
+const SERVER_CONFIG = require('../config/server.params');
+
 var fs = require('fs');
 var path = require('path');
 var express = require('express');
@@ -125,7 +127,7 @@ app.get('/claimFiles/v1', function(req, res){
 /**
  * Create claimfile
  */
-app.post('/claim_file', function(req, res){
+app.post('/claimfile', function(req, res){
 	
 	let reqOptions = {
 		uri: 'http://api.property.local/app_dev.php/claimFiles/v1/',
@@ -152,6 +154,9 @@ app.post('/claim_file', function(req, res){
 
 });
 
+/**
+ * Get claimfile
+ */
 app.get('/claim_file/:id', function(req, res) {
 
 	var rickouestOptions = {
@@ -261,6 +266,33 @@ app.all('/form-part', (req, res) => {
 		});
 	}
 
+});
+
+/**
+ * Get list of coverages
+ */
+app.get('/coverages', (req, res) => {
+	
+	let uri = `${SERVER_CONFIG.BACKEND_HOST}:${SERVER_CONFIG.BACKEND_PORT}/app_dev.php/coverages/v1`;
+
+	let rickouestOptions = {
+		uri: uri,
+		method: 'GET',
+		headers: {
+			'Authorization': req.headers.authorization
+		}
+	}
+
+	rickouest(rickouestOptions, (error, response, body) => {	
+		if (!error && (typeof response !== "undefined") && response.statusCode == 200) {
+			let parsedBody = JSON.parse(body);
+			res.json(parsedBody);
+		}
+		else {
+			console.log(response)
+			res.send(body);
+		}
+	});
 });
 
 /**

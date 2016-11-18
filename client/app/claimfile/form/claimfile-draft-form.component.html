@@ -1,0 +1,56 @@
+<form class="col s12" #claimFileForm="ngForm" (ngSubmit)="onSubmit(claimFileForm)" class="prop-form prop-form--md">
+    <div class="row">
+        <div class="input-field">					
+            <input type="text" id="customerName" name="customerName" [(ngModel)]="claimFileDraft.customerName" placeholder="Customer Name" class="validate" required />
+            <label for="customerName">Customer Name</label>
+        </div>
+        <div class="input-field">
+            <input type="text" id="customerNumber" name="customerNumber" [(ngModel)]="claimFileDraft.customerNumber" placeholder="Customer Number" class="validate" required />
+            <label for="customerNumber">Customer Number</label>
+        </div>
+        <div class="row">
+            <label for="dateOfEvent">Date of event</label>
+            <!--input type="date" id="dateOfEvent" name="dateOfEvent" 
+                [(ngModel)]="claimFile.dateOfEvent" class="datepicker" 
+                materialize="pickadate" [materializeParams]="[{format: 'd mmmm yyyy', formatSubmit: 'yyyy-mm-dd', hiddenName: true}]" required /-->
+            <input type="date" id="dateOfEvent" name="dateOfEvent" 
+                    [(ngModel)]="claimFileDraft.dateOfEvent" class="datepicker" required />
+        </div>
+        <div class="input-field">
+            <input type="text" id="policyNumber" name="policyNumber" [(ngModel)]="claimFileDraft.policyNumber" placeholder="Policy Number" class="validate" required />
+            <label for="policyNumber">Policy Number</label>
+        </div>
+        <div class="input-field">
+            <input type="text" id="insurerExternalClaimFileId" name="insurerExternalClaimFileId" [(ngModel)]="claimFileDraft.insurerExternalClaimFileId"  placeholder="Insurer ClaimFile ID" class="validate" required />
+            <label for="insurerExternalClaimFileId">Insurer ClaimFile ID</label>
+        </div>
+        <div class="input-field">
+            <select name="coverage" [(ngModel)]="claimFileDraft.coverage" materialize="material_select" [materializeSelectOptions]="coverages$ |async" required>
+                <option value="" disabled selected>Choose a coverage</option>
+                <option *ngFor="let coverage of coverages$ | async" value="{{ coverage.attributes.type }}">{{ coverage.attributes.name }}</option>
+            </select>
+            <label>Coverage</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s4"></div>
+        <div class="col s4 center-align loader-wrapper">
+            <div class="preloader-wrapper small active" *ngIf="claimFileActions.isSubmittingDraft">
+                <div class="spinner-layer spinner-yellow-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col s4 right-align">
+            <button type="submit" class="btn orange" value="Submit" [disabled]="!claimFileForm.form.valid || claimFileActions.isSubmittingDraft">Create</button>
+        </div>
+    </div>
+</form>

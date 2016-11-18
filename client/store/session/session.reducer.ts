@@ -7,7 +7,7 @@ const INITIAL_STATE = {
     isLogged: false
 };
 
-export function sessionReducer(
+export function SessionReducer(
     state = INITIAL_STATE,
     action
 ) { 

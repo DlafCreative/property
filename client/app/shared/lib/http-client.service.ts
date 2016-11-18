@@ -1,5 +1,10 @@
-import { Injectable }                       from '@angular/core';
-import { Http, Headers, RequestOptions } 	from '@angular/http';
+import { Injectable }   from '@angular/core';
+import { 
+    Http, 
+    Headers, 
+    RequestOptions, 
+    Response 
+} 	from '@angular/http';
 
 @Injectable()
 export class HttpClient {
@@ -9,14 +14,22 @@ export class HttpClient {
 
     constructor(private http: Http) {
 		this.reqOptions = new RequestOptions({ 
-            headers: new Headers({ 'Content-Type': 'application/vnd.api+json' }) 
+            headers: new Headers({ 
+                'Content-Type': 'application/vnd.api+json', 
+                'Authorization': `Bearer ${localStorage.getItem('prop_access_token')}`
+            }) 
         });
     }
 
-    get(url: string) {}
-
-    post(path: string, payload: any) {
+    get(path: string) {
         let fullUrl = this._getUrl(path);
+        return this.http.get(fullUrl, this.reqOptions)
+                        .map(this._mapResponse);
+    }
+
+    post(path: string, payload: any, toJsonApi = false) {
+        let fullUrl = this._getUrl(path);
+        payload = toJsonApi ? this._toJsonApi(payload) : payload;
         return this.http.post(fullUrl, payload, this.reqOptions)
                         .map(
                             (res) => {
@@ -31,5 +44,24 @@ export class HttpClient {
 
     private _getUrl(path: string) {
         return `${this.apiUrl}${path}`;
+    }
+
+    private _mapResponse(res) {
+        return res.json() || {};
+    }
+
+    private _toJsonApi(payload) {
+        var obj = { 
+            data: {
+                type: payload.resourceName,
+                attributes: {}
+            } 
+        };
+        for (let prop in payload){
+            if (prop == 'resourceName')
+                break;
+            obj.data.attributes[prop] = payload[prop];
+        }
+        return obj;
     }
 }

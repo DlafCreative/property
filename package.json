@@ -21,6 +21,7 @@
     "@types/chai": "^3.4.34",
     "@types/core-js": "^0.9.34",
     "@types/jasmine": "^2.5.38",
+    "@types/jquery": "^2.0.34",
     "@types/node": "^6.0.48",
     "angular2-data-table": "^1.5.0",
     "angular2-jsonapi": "^3.3.0",

@@ -4,6 +4,8 @@ import { IAppState }    from '../store';
 
 import { SessionService }   from '../app/shared';
 
+import { Router }               from '@angular/router';
+
 @Injectable()
 export class SessionActions {
 
@@ -12,7 +14,8 @@ export class SessionActions {
 
     constructor(
         private ngRedux: NgRedux<IAppState>, 
-        private sessionService: SessionService) {}
+        private sessionService: SessionService,
+        private router: Router) {}
 
     loginUser(credentials) {
         this.setProcessing(true);
@@ -25,6 +28,7 @@ export class SessionActions {
                     });
                     console.log(this.ngRedux.getState());
                 }
+                // @todo : return error message to Alert Service
                 else {
 
                 }
@@ -35,6 +39,11 @@ export class SessionActions {
                 console.log(error);
             }
         );
+    }
+
+    logout() {
+        this.ngRedux.dispatch({ type: 'USER_LOGOUT'});
+        this.router.navigate(['/']);
     }
 
     setProcessing(flag: boolean) {

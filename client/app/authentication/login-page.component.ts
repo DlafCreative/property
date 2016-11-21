@@ -30,8 +30,10 @@ export class LoginPageComponent {
         ) {}
 
     ngOnInit() {
-        this.isLogged$.subscribe((value) => {
-            this.router.navigate(['/claimfiles']);
+        this.isLogged$.subscribe((isLogged) => {
+            if (isLogged) {
+                this.router.navigate(['/claimfiles']);
+            }
         });
     }
 

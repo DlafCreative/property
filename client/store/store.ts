@@ -19,7 +19,21 @@ export interface IAppState {
     }
 }
 
-export const rootReducer = combineReducers<IAppState>({
+/**
+ * Reducers for application
+ */
+export const appReducer = combineReducers<IAppState>({
     session: SessionReducer,
     claimFile: claimFileReducer
 });
+
+/**
+ * This reducers allows to clear all state when logging out
+ */
+export const rootReducer = (state, action) => {
+    if (action.type === 'USER_LOGOUT') {
+        debugger;
+        state = undefined;
+    }
+    return appReducer(state, action);
+}

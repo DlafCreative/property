@@ -13,8 +13,12 @@ export class SessionService {
 	login(payload: {
 		username: string,
 		password: string,
-		customer_number: string
-	}) {
+		customer_number: string }) {
+
 		return this.httpClient.post(this.authPath, payload);
+	}
+
+	logout() {
+		
 	}
 }

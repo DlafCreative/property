@@ -31,6 +31,6 @@ export class ClaimFilesPageComponent {
 		// Get claimFiles
         let claimFiles$ = this.claimFileService.getClaimFiles();
         claimFiles$.subscribe(
-            claimFiles => this.claimFiles = claimFiles.data);
+            claimFiles => this.claimFiles = claimFiles);
 	}
 }

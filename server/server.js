@@ -104,7 +104,7 @@ app.post('/authenticate', function(req, res){
 /**
  * Get claimfiles
  */
-app.get('/claimFiles/v1', function(req, res){
+app.get('/claimfiles', function(req, res){
 	var options = {
 		uri: 	'http://api.property.local/app_dev.php/claimFiles/v1',
 		method: 'GET', 

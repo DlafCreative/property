@@ -28,7 +28,7 @@ export const appReducer = combineReducers<IAppState>({
 });
 
 /**
- * This reducers allows to clear all state when logging out
+ * This reducer allows to clear all state when logging out
  */
 export const rootReducer = (state, action) => {
     if (action.type === 'USER_LOGOUT') {

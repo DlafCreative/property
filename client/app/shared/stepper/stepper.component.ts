@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 
 import { Datastore }        from '../datastore.service';
 import { AppState }         from '../appstate.service';
@@ -21,7 +21,6 @@ export class StepperComponent {
 
     ngOnInit() { 
         this.getSteps();
-        console.log(this.appState.get('claimFileId'));
     }
 
     getSteps() {

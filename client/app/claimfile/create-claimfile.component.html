@@ -1,7 +1,7 @@
 <div class="row create-form-wrapper">
     <div class="col s3"></div>
     <div class="col s6 form-wrapper prop-tile">
-        <prop-claimfile-draft-form></prop-claimfile-draft-form>
+        <prop-claimfile-draft-form (onSubmit)="onSubmit($event)" [isSubmittingDraft]="isSubmittingDraft$ | async"></prop-claimfile-draft-form>
     </div>
     <div class="col s3"></div>
 </div>

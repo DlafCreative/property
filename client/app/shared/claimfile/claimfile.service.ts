@@ -28,14 +28,14 @@ export class ClaimFileService {
         return this.httpClient.get(ClaimFileService.GET_COVERAGE_PATH);
     }
 
-    createModel() {
-        return <ClaimFile>this.dataStore.createRecord(ClaimFile);
-    }
-
     createClaimFile(claimFileDraft: ClaimFileDraft) {
-        //this.dataStore.createRecord(ClaimFile, claimFile).save().subscribe();
         let toJsonApi = true;
-        return this.httpClient.post(ClaimFileService.CLAIMFILE_PATH, claimFileDraft, toJsonApi);
+        return this.httpClient.post(ClaimFileService.CLAIMFILE_PATH, claimFileDraft, toJsonApi)
+                                    .map(
+                                        (res) => {
+                                            return res.data.attributes;
+                                        }
+                                    );
     }
 
 	getClaimFiles(){
@@ -47,11 +47,18 @@ export class ClaimFileService {
                         //.catch( (error) => { console.log(error); return Observable.throw(error) } ); 
     }
 
-	getClaimFile(id: number){
-        let claimFilePath = this.claimFilePath + id + `?token=${localStorage.getItem('prop_access_token')}`;
+	getClaimFileById(id: string){
+        /*let claimFilePath = this.claimFilePath + id + `?token=${localStorage.getItem('prop_access_token')}`;
         return this.http.get(claimFilePath)
                         .map( res => {
                             return res.json() || {}
-                        });
+                        });*/
+        let claimFilePath = `${ClaimFileService.CLAIMFILE_PATH}/${id}`;
+        return this.httpClient.get(claimFilePath)
+                                  .map(
+                                      (res) => {
+                                          return res.data.attributes;
+                                      }
+                                  );
     }
 }

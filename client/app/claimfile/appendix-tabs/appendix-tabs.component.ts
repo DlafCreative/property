@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'prop-appendix-tabs',
@@ -6,8 +6,9 @@ import { Component } from '@angular/core';
     styleUrls: ['appendix-tabs.component.less']
 })
 export class AppendixTabsComponent {
-
-    coucou = '12345';
+    
+    @Input()
+    disabledTabs: boolean;
 
     constructor() {}
 

@@ -1,6 +1,6 @@
-<prop-appendix-tabs></prop-appendix-tabs>
+<prop-appendix-tabs [disabledTabs]="(currentClaimFile$ | async) == null"></prop-appendix-tabs>
 <main>
     <router-outlet></router-outlet>
 </main>
-<prop-claimpeek></prop-claimpeek>
-<prop-stepper [currentStep]="claimFileStep"></prop-stepper>
+<prop-claimpeek *ngIf="currentClaimFile$ | async" [currentClaimFile]="currentClaimFile$"></prop-claimpeek>
+<prop-stepper [currentStep]="currentClaimFile$?.step | async"></prop-stepper>

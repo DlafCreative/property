@@ -1,8 +1,20 @@
 <div class="databanner-wrapper">
-    <div class="databanner__item"><span class="databanner__label">CLAIM :</span></div>
-    <div class="databanner__item"><span class="databanner__label">Insurance company :</span></div>
-    <div class="databanner__item"><span class="databanner__label">Insured :</span></div>
-    <div class="databanner__item"><span class="databanner__label">Evt :</span></div>
-    <div class="databanner__item"><span class="databanner__label">Product :</span></div>
-    <div class="databanner__item"><span class="databanner__label">Damage :</span></div>
+    <div class="databanner__item">
+        <span class="databanner__label">CLAIM : {{ (currentClaimFile | async)?.wan }}</span>
+    </div>
+    <div class="databanner__item">
+        <span class="databanner__label">Insurance company : {{ (currentClaimFile | async)?.insuranceCompany | naLabel }}</span>
+    </div>
+    <div class="databanner__item">
+        <span class="databanner__label">Insured : {{ (currentClaimFile | async)?.insured | naLabel }}</span>
+    </div>
+    <div class="databanner__item">
+        <span class="databanner__label">Evt : {{ (currentClaimFile | async)?.evt | naLabel }}</span>
+    </div>
+    <div class="databanner__item">
+        <span class="databanner__label">Product : {{ (currentClaimFile | async)?.product | naLabel }}</span>
+    </div>
+    <div class="databanner__item">
+        <span class="databanner__label">Damage : {{ (currentClaimFile | async)?.damage | naLabel }}</span>
+    </div>
 </div>

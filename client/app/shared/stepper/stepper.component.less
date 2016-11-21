@@ -75,7 +75,8 @@
             }
         }
 
-        &.step-active ~ .step {
+        /** Disabled steps and steps after the active one have the same appearance */
+        &.step-active ~ .step, &.step-disabled {
             .step__circle {
                 background-color: @bg_inversed_color;
                 border: 1px solid @default_color;

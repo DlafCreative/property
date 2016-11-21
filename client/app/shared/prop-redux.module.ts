@@ -1,5 +1,8 @@
 import { NgModule }                 from '@angular/core';
-import { NgReduxModule, NgRedux }   from 'ng2-redux';
+import { 
+    NgReduxModule, 
+    NgRedux,
+    DevToolsExtension }             from 'ng2-redux';
 
 import { rootReducer, IAppState }   from '../../store/store';
 
@@ -18,10 +21,14 @@ import { ClaimFileService }         from './claimfile';
     ]
 })
 export class PropReduxModule { 
-    constructor(ngRedux: NgRedux<IAppState>) {
+    constructor(
+        ngRedux: NgRedux<IAppState>, 
+        devTools: DevToolsExtension ) {
+            
         ngRedux.configureStore(rootReducer, {
             claimFile: {
-                currentClaimFile: null
+                currentClaimFile: null,
+                isSubmittingDraft: false
             }
         });
     }

@@ -1,4 +1,9 @@
-import { Component }            from '@angular/core';
+import { 
+    Component, 
+    Input, 
+    Output,
+    EventEmitter }              from '@angular/core';
+
 import { ClaimFileDraft }       from '../../shared';
 import { ClaimFileActions }     from '../../../actions';
 
@@ -21,14 +26,20 @@ export class ClaimFileDraftFormComponent {
     );
     @select(['claimFile', 'coverages']) coverages$: Observable<any>;
 
+    @Input()
+    coverages: any;
+
+    @Input()
+    isSubmittingDraft: boolean;
+
+    @Output()
+    onSubmit = new EventEmitter<ClaimFileDraft>();
+
     constructor(private claimFileActions: ClaimFileActions) { }
 
-    ngOnInit() {
-        this.claimFileActions.getClaimFileCoverages();
-    }
+    ngOnInit() {}
 
-    onSubmit() {
-        debugger;
-        this.claimFileActions.initClaimFile(this.claimFileDraft);
+    submit() {
+        this.onSubmit.emit(this.claimFileDraft);
     }
 }

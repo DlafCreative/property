@@ -1,4 +1,4 @@
-import { JsonApiModelConfig, JsonApiModel, Attribute, HasMany, BelongsTo } from 'angular2-jsonapi';
+/*import { JsonApiModelConfig, JsonApiModel, Attribute, HasMany, BelongsTo } from 'angular2-jsonapi';
 
 import { Step } from '../stepper/step.model';
 
@@ -24,4 +24,8 @@ export class ClaimFile extends JsonApiModel {
 
     @BelongsTo() // Can't exploit related resources as the backend doesn't return it yet
     step: Step;
+}*/
+
+export class ClaimFile {
+    wan: string;
 }

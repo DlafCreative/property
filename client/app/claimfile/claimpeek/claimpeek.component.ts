@@ -9,6 +9,6 @@ import { Component, Input } from '@angular/core';
 export class ClaimPeekComponent {
 
     @Input()
-    data: any;
+    currentClaimFile: any;
 
 }

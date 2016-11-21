@@ -1,10 +1,9 @@
 import { Component, HostBinding }           from '@angular/core';
-import { Http, Headers, RequestOptions } 	from '@angular/http';
-import { Router }                           from '@angular/router';
+import { ClaimFileActions }                 from '../../actions';
+import { ClaimFileDraft }                   from '../shared/claimfile';
 
-import { Datastore }                        from './../shared/datastore.service';
-
-import { ClaimFile }                        from './../shared/claimfile/claimfile.model';
+import { select }                           from 'ng2-redux';
+import { Observable }                       from 'rxjs';
 
 @Component({
     selector: 'prop-create-claimfile',
@@ -13,25 +12,27 @@ import { ClaimFile }                        from './../shared/claimfile/claimfil
 })
 export class CreateClaimFileComponent {
 
-    @HostBinding('class.prop-container')
+    @HostBinding('class.prop-container') true;
 
-    claimFile: ClaimFile;
+    @select(['claimFile', 'coverages']) coverages$: Observable<any>;
+    @select(['claimFile', 'isSubmittingDraft']) isSubmittingDraft$: Observable<any>;
 
-    submitted = false;
+    constructor(private claimFileActions: ClaimFileActions) {}
 
-    constructor(private router: Router, private datastore: Datastore) {
-        this.claimFile = this.datastore.createRecord(ClaimFile);
+    ngOnInit() {
+        /**
+         * Clear states on this component 
+         */ 
+        //Ensure removing previous claimfile from store
+        this.claimFileActions.clearCurrentClaimFle();
+        // Clear form state 
+        this.claimFileActions.setSubmittingDraft(false);
+
+        this.claimFileActions.getCoverages();
     }
 
-    onSubmit() {
-        this.submitted = true;
-        this.claimFile.save().subscribe(
-            (claimFile: ClaimFile) => { 
-                console.log(claimFile);
-                this.router.navigate(['/claimfile', claimFile.id]);
-                // @todo : pass the returned claimFile to the StateStore 
-            }
-        );
+    onSubmit(claimFileDraft: ClaimFileDraft) {
+        this.claimFileActions.initClaimFile(claimFileDraft);
     }
 
  }

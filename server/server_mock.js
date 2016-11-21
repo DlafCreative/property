@@ -107,35 +107,20 @@ app.get('/claimFiles/v1', function(req, res){
 });
 
 /**
- * Create claimfile
+ * Create claimfile. Return a new claimfile if successfull
  */
-app.post('/claim_file', function(req, res){
-	
-	let reqOptions = {
-		uri: 'http://api.property.local/app_dev.php/claimFiles/v1/',
-		method: 'POST', 
-		headers: {
-			'accept': 'application/vnd.api+json',
-			'Content-type': 'application/vnd.api+json',
-			'Authorization': req.headers.authorization
-		},
-		json: true,
-		body: req.body
-	}
-	
-	rickouest(reqOptions, (error, response, body) => {
-		if (!error && response.statusCode == 200) {
-			res.json(body);
-		}
-		else {
-			console.log(response.statusCode);
-			res.send(body);
-		}
-	});
+app.post('/claimfile', function(req, res){	
 
+	let json = `{"data":{"type":"claimFile","id":"FR11P00000000","attributes":{"wan":"FR11P00000000","wanType":"R","customerInformation":{"customerName":"Nadine Morano","customerNumber":"213542","policyNumber":"213542"},"contract":{"contractNumber":"213542"},"claimInformation":{"dateOfLoss":"2011-09-28","dateOfEvent":"2011-09-28"},"descriptionOfRisk":[],"status":{"name":"PRE_NOTIFICATION_DONE"},"insurerExternalClaimFileId":"215343","createdAt":"2016-10-27 15:47:08","updatedAt":"2016-10-31 19:50:03","closed":"0","closingDate":"","customer":"FR0001","customerOrigin":""}},"links":{"self":{"href":""}}}`;
+	let body = JSON.parse(json)
+
+	res.send(body);
 });
 
-app.get('/claim_file/:id', function(req, res) {
+/**
+ * Get claimfile
+ */
+app.get('/claimfile/:id', function(req, res) {
 
 	let json = `{"data":{"type":"claimFile","id":"FR11P00000000","attributes":{"wan":"FR11P00000000","wanType":"R","customerInformation":{"customerName":"Nadine Morano","customerNumber":"213542","policyNumber":"213542"},"contract":{"contractNumber":"213542"},"claimInformation":{"dateOfLoss":"2011-09-28","dateOfEvent":"2011-09-28"},"descriptionOfRisk":[],"status":{"name":"PRE_NOTIFICATION_DONE"},"insurerExternalClaimFileId":"215343","createdAt":"2016-10-27 15:47:08","updatedAt":"2016-10-31 19:50:03","closed":"0","closingDate":"","customer":"FR0001","customerOrigin":""}},"links":{"self":{"href":""}}}`;
 	let body = JSON.parse(json)

@@ -157,7 +157,7 @@ app.post('/claimfile', function(req, res){
 /**
  * Get claimfile
  */
-app.get('/claim_file/:id', function(req, res) {
+app.get('/claimfile/:id', function(req, res) {
 
 	var rickouestOptions = {
 		uri: `http://api.property.local/app_dev.php/claimFiles/v1/${req.params.id}`,

@@ -3,4 +3,4 @@
     <router-outlet></router-outlet>
 </main>
 <prop-claimpeek *ngIf="currentClaimFile$ | async" [currentClaimFile]="currentClaimFile$"></prop-claimpeek>
-<prop-stepper [currentStep]="currentClaimFile$?.step | async"></prop-stepper>
+<prop-stepper [currentStep]="(currentClaimFile$ | async)?.status.step?.name"></prop-stepper>

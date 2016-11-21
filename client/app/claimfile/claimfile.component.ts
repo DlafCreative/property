@@ -20,8 +20,6 @@ export class ClaimFileComponent {
     @select(['claimFile', 'currentClaimFile']) currentClaimFile$: Observable<any>;
     currentClaimFileSub = null;
     
-    claimFileStep = 'COVERAGE_CHECKING'; // @Todo : get step name from backend
-    
     constructor(
         private route: ActivatedRoute,
         private claimFileActions: ClaimFileActions ){ }
@@ -43,7 +41,6 @@ export class ClaimFileComponent {
 
     ngOnDestroy() {
         if (this.currentClaimFileSub) {
-            console.log(this.currentClaimFileSub)
             this.currentClaimFileSub.unsubscribe();
         }            
     }

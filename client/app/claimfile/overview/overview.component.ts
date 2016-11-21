@@ -1,8 +1,9 @@
-import { Component, HostBinding } from '@angular/core';
+import { Component, HostBinding }   from '@angular/core';
 
-import { AppState }                         from '../../shared/appstate.service';
+import { ClaimFile }                from '../../shared';
 
-import { ClaimFile } from '../../shared/claimfile/claimfile.model';
+import { select }                   from 'ng2-redux';
+import { Observable }               from 'rxjs';
 
 @Component({
     selector: 'prop-claimfile-overview',
@@ -13,17 +14,6 @@ export class OverviewComponent {
 
     @HostBinding('class.prop-container') true;
 
-    claimFile: ClaimFile;
-
-    constructor(private appState: AppState){}
-
-    ngOnInit() {
-        var appState = this.appState;
-        var claimFile = this.claimFile;
-        this.claimFile = this.appState.get('claimFile');
-        setTimeout(function(){
-            console.log(appState.state)
-            claimFile = appState.get('claimFile');
-        }, 5000);
-    }
+    @select(['claimFile', 'currentClaimFile']) claimFile$: Observable<ClaimFile>;
+    
 }

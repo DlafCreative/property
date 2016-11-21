@@ -10,6 +10,19 @@
 
         .prop-tile-wrapper {
             display: flex;
+            padding: 0 @default_spacing / 2;
+            &:first-child {
+                padding-left: 0;
+            }
+            &:last-child {
+                padding-right: 0;
+            }
+
+            .prop-tile {
+                .prop-tile__content {
+                    overflow-x: hidden;
+                }
+            }
         }
     }
 }

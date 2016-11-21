@@ -76,11 +76,12 @@ prop-header {
     @tile_padding: 10px;
     @header_vpadding: 15px;
 
-    border-radius: @border_radius;
-    box-shadow: 1px 1px 5px 1px @shadow_color;
     display: flex;
     flex-direction: column;
     flex: 1;
+    border-radius: @border_radius;
+    box-shadow: 1px 1px 5px 1px @shadow_color;
+    overflow-x: hidden;
 
     .prop-tile__header {
         .text-tone('bright');
@@ -105,6 +106,7 @@ prop-header {
         flex: 1;
         padding: @tile_padding;
         background-color: white;
+        overflow-y: auto;
     }
 }
 
@@ -351,6 +353,8 @@ prop-appendix-tabs {
             }
             .control__value {
                 color: @primary_color;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
     }

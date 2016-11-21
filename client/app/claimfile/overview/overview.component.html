@@ -9,15 +9,15 @@
                 <div class="prop-form prop-form--disabled">
                     <div class="control-wrapper row">
                         <label class="control__label col s6">Customer Name</label>
-                        <span class="control__value col s6">{{ claimFile?.customerInformation?.customerName }}</span>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.customerInformation?.customerName }}</span>
                     </div>
                     <div class="control-wrapper row">
                         <label class="control__label col s6">Customer Number</label>
-                        <span class="control__value col s6">{{ claimFile?.customerInformation?.customerNumber }}</span>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.customerInformation?.customerNumber }}</span>
                     </div>
                     <div class="control-wrapper row">
                         <label class="control__label col s6">Policy Number</label>
-                        <span class="control__value col s6">{{ claimFile?.customerInformation?.policyNumber }}</span>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.customerInformation?.policyNumber }}</span>
                     </div>
                 </div>
             </div>
@@ -27,13 +27,13 @@
         <div class="prop-tile">
             <div class="prop-tile__header">
                 Contract
-                <a class="btn btn-floating btn-small grey z-depth-0"><i class="material-icons">edit</i></a>
+                <a class="btn btn-floating btn-small grey z-depth-0" [routerLink]="['../edit/contract']"><i class="material-icons">edit</i></a>
             </div>
             <div class="prop-tile__content">                
                 <div class="prop-form prop-form--disabled">
                     <div class="control-wrapper row">
                         <label class="control__label col s6">Contract Number</label>
-                        <span class="control__value col s6">{{ claimFile?.contract?.contractNumber }}</span>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.contract?.contractNumber }}</span>
                     </div>
                 </div>
             </div>
@@ -43,23 +43,29 @@
         <div class="prop-tile">
             <div class="prop-tile__header">
                 Claim File
-                <a class="btn btn-floating btn-small grey z-depth-0"><i class="material-icons">edit</i></a>
+                <a class="btn btn-floating btn-small grey z-depth-0" [routerLink]="['../edit/claimfile']"><i class="material-icons">edit</i></a>
             </div>
             <div class="prop-tile__content">                
                 <div class="prop-form prop-form--disabled">
                     <div class="control-wrapper row">
-                        <label class="control__label col s6">Date of Event</label>
-                        <span class="control__value col s6">{{ claimFile?.claimInformation?.dateOfEvent }}</span>
+                        <label class="control__label col s6">Claim Number</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.claimNumber }}</span>
                     </div>
                     <div class="control-wrapper row">
-                        <label class="control__label col s6">Customer Number</label>
-                        <span class="control__value col s6">{{ claimFile?.claimInformation?.dateOfLoss }}</span>
+                        <label class="control__label col s6">Date of Event</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.dateOfLoss | date:"dd/MM/y" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Coverage</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.coverage }}</span>
                     </div>
                 </div>
             </div>
             <div class="prop-tile__header">
-                Risk Damage
+                Damage Risk
+                <a class="btn btn-floating btn-small grey z-depth-0" [routerLink]="['../edit/damage-risk']"><i class="material-icons">edit</i></a>
             </div>
+            <div class="prop-tile__content"></div>
         </div>
     </div>
     <div class="col s3 prop-tile-wrapper">
@@ -69,9 +75,6 @@
                 <a class="btn btn-floating btn-small grey z-depth-0"><i class="material-icons">edit</i></a>
             </div>
             <div class="prop-tile__content"></div>
-            <div class="prop-tile__header">
-                Mission
-            </div>
         </div>
     </div>
 </div>

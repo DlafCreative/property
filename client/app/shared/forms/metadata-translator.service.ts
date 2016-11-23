@@ -15,12 +15,17 @@ import {
 export class MetadataTranslatorService {
     
     getFormElements(metadata: any[]) {
-        let elements: ControlBase<any>[] = [];
+        
+        let formDefinition = [];
         
         /** Iterate among fieldset */
         if (metadata.length) {
             metadata.forEach( (fieldsetDef) => {
                 let fields = fieldsetDef.attributes.fields;
+                let fieldsetElements = {
+                    legend: fieldsetDef.type,
+                    fields: []
+                };
 
                 /** Iterate among fields */
                 if (fields.length) {
@@ -75,12 +80,13 @@ export class MetadataTranslatorService {
                         }
 
                         if (formField){
-                            elements.push( formField );
+                            fieldsetElements.fields.push(formField);
                         }
                     })
                 }
+                formDefinition.push(fieldsetElements);
             });
         }
-        return elements;
+        return formDefinition;
     }
 }

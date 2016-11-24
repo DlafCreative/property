@@ -2,6 +2,8 @@ import { Component, HostBinding }    from '@angular/core';
 import { ClaimFileService }          from './../shared/claimfile/claimfile.service';
 import { Kpi } from '../shared/kpi/kpi.model'; //@todo : move this import into a service, depending on how the stats are retrieved
 
+import { ClaimFileActions }         from '../../actions';
+
 @Component({
 	selector:     'prop-claimfile-page',
 	templateUrl:  './claimfiles-page.component.html',
@@ -25,9 +27,14 @@ export class ClaimFilesPageComponent {
         new Kpi('Closing', 15),
     ];
 
-	constructor(private claimFileService: ClaimFileService) {}
+	constructor(
+        private claimFileService: ClaimFileService,
+        private claimFileActions: ClaimFileActions) {}
 
 	ngOnInit() {
+        // Reset current claimfile
+        this.claimFileActions.clearCurrentClaimFle();
+
 		// Get claimFiles
         let claimFiles$ = this.claimFileService.getClaimFiles();
         claimFiles$.subscribe(

@@ -9,7 +9,7 @@ export class Kpi {
     status: string;
 
     constructor(primaryTitle, indicator, secondaryTitle = null, status = 'default') {
-        if (!primaryTitle || !indicator){
+        if (!primaryTitle || (indicator == null)){
             throw new Error('primaryTitle and indicator are mandatories');
         }
         this.primaryTitle = primaryTitle;

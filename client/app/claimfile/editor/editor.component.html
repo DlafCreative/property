@@ -9,10 +9,10 @@
         </div>    
     </nav>
     <div id="editorContent">
-        <prop-customer-form [hidden]="form !== 'customer'"></prop-customer-form>
-        <prop-contract-form [hidden]="form !== 'contract'"></prop-contract-form>
-        <prop-claimfile-form [hidden]="form !== 'claimfile'"></prop-claimfile-form>
-        <prop-damagerisk-form [hidden]="form !== 'damage-risk'"></prop-damagerisk-form>
+        <prop-customer-form [hidden]="form !== 'customer'" [claimFileId]="claimFileId$ | async"></prop-customer-form>
+        <prop-contract-form [hidden]="form !== 'contract'" [claimFileId]="claimFileId$ | async"></prop-contract-form>
+        <prop-claimfile-form [hidden]="form !== 'claimfile'" [claimFileId]="claimFileId$ | async"></prop-claimfile-form>
+        <prop-damagerisk-form [hidden]="form !== 'damage-risk'" [claimFileId]="claimFileId$ | async"></prop-damagerisk-form>
         <div [hidden]="form !== 'mission'">
             <h4>To be continued ...</h4>
         </div>

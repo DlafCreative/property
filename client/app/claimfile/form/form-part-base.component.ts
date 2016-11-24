@@ -1,11 +1,15 @@
-import { Component, ViewChild } from '@angular/core';
+import { 
+    Component, 
+    Input, 
+    ViewChild }                 from '@angular/core';
 
 import { DynamicFormComponent } from '../../shared/forms/dynamic-form.component';
 
 import { FormPartService }      from './form-part.service';
-import { AppState }             from '../../shared/appstate.service';
 
 import { ControlBase }          from '../../shared/forms/controls/control-base';
+
+import { select }               from 'ng2-redux';
 
 export class FormPartBaseComponent {
 
@@ -17,6 +21,7 @@ export class FormPartBaseComponent {
     /**
      * Current claimfile ID
      */
+    @Input()
     claimFileId: string;
 
     /**
@@ -27,8 +32,8 @@ export class FormPartBaseComponent {
     @ViewChild(DynamicFormComponent)
     dynamicForm: DynamicFormComponent;
 
-    constructor(protected formPartService: FormPartService, protected appState: AppState) { 
-        this.claimFileId = appState.get('claimFileId');
+    constructor(
+        protected formPartService: FormPartService) { 
     }
 
     ngOnInit() {

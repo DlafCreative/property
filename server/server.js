@@ -205,29 +205,6 @@ app.get('/claimfile/:id', function(req, res) {
 });
 
 /**
- * Get single claimfile (old)
- */
-app.get('/claimFile/:id', function(req, res){
-	var options = {
-		uri: 	'http://api.property.local/app_dev.php/claimFiles/v1/' + req.params.id,
-		method: 'GET',
-		headers: {
-			'Authorization': `Bearer ${req.query.token}`			
-		}
-	}
-
-	rickouest(options, (error, response, body) => {
-		if (!error && response.statusCode == 200) {
-			let parsedBody = JSON.parse(body);
-			res.send(parsedBody);
-		}
-		else {
-			console.log(response)
-		}
-	})
-});
-
-/**
  * Get form metadatas
  */
 app.post('/form-metadata', (req, res) => {
@@ -257,14 +234,14 @@ app.post('/form-metadata', (req, res) => {
 /**
  * Submit form part // @todo : bring get form-metadata here, same final uri, almost same logic.
  */
-app.all('/form-part', (req, res) => {
+app.all('/form-part/:claimFileId/:context', (req, res) => {
 
 	// Response for the preflight 
 	if (req.method === 'OPTIONS') {
 		res.end();
 	}
 	else {
-		let uri = `http://192.168.33.10:22201/app_dev.php/forms/v1/claimFile/${req.body.claimFileId}/${req.body.context}`;
+		let uri = `http://192.168.33.10:22201/app_dev.php/forms/v1/claimFile/${req.params.claimFileId}/${req.params.context}`;
 
 		let rickouestOptions = {
 			uri : uri,

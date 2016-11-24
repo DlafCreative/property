@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } 	from '@angular/http';
+import { HttpClient } from '../../shared';
 
 import { MetadataTranslatorService } from '../../shared/forms/metadata-translator.service';
 
@@ -8,29 +8,25 @@ export class FormPartService {
 
     private uri = API_HOST + ':' + API_PORT + '/form-metadata';
 
+    static FORM_PART_PATH = 'form-part';
+
     private reqOptions;
 
-    constructor(private http: Http, private formTranslator: MetadataTranslatorService) { 
-        this.reqOptions = new RequestOptions({ 
-            headers: new Headers({ 'Content-Type': 'application/vnd.api+json', 'Authorization': 'Bearer ' + localStorage.getItem('prop_access_token') }) 
-        });
-    }
+    constructor(
+        private httpClient: HttpClient, 
+        private metaDataTranslator: MetadataTranslatorService) { }
 
     getFormMetadata(claimFileId: string, context: string) {
-        
-        let body = JSON.stringify({
-            claimFileId: claimFileId,
-            context: context
-        });
 
-		return this.http.post(this.uri, body, this.reqOptions)
-				   		.map( (res) => { 
-                                let body = res.json();
-                                if (body.data){
-                                    return this.formTranslator.getFormElements(body.data);
-                                }
-                            } 
-                        );
+        let formPartPath = `${FormPartService.FORM_PART_PATH}/${claimFileId}/${context}`;
+
+        return this.httpClient.get(formPartPath)
+                                  .map( 
+                                      (res) => { 
+                                          return this.metaDataTranslator.getFormElements(res.data)
+                                      }
+                                  );
+        
     }
 
     submitFormPart(claimFileId: string, context: string, data: any) {

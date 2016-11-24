@@ -15,6 +15,7 @@ import { ContractFormComponent }    from '../form/contract-form.component';
 import { CustomerFormComponent }    from '../form/customer-form.component';
 
 import * as Rx                      from 'rxjs';
+import { select }                   from 'ng2-redux';
 
 @Component({
     selector: 'prop-editor',
@@ -25,9 +26,11 @@ export class EditorComponent {
 
     @HostBinding('class.prop-container') true;
 
-    private form: string;
-
+    /** Observable of form part parameter in the url */
     private formPartParamSub$: any
+
+    /** Form part to display */
+    private form: string;
 
     /**
      * Links to form components
@@ -44,6 +47,8 @@ export class EditorComponent {
     @ViewChild(DamageFormComponent)
     private damageForm: DamageFormComponent;
 
+    /** Listen to current claimfile ID */
+    @select(['claimFile', 'currentClaimFile', 'wan']) claimFileId$: Rx.Observable<string>;
 
     constructor(private route: ActivatedRoute, private formPartService: FormPartService, private appState: AppState) {}
 

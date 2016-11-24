@@ -1,6 +1,5 @@
 import { Component }                from '@angular/core';
 
-import { AppState }                 from '../../shared/appstate.service';
 import { FormPartService }          from './form-part.service';
 
 import { FormPartBaseComponent }    from './form-part-base.component';
@@ -18,8 +17,8 @@ export class DamageFormComponent extends FormPartBaseComponent {
      */
     context: string = 'DescriptionOfRisk';
 
-    constructor(formPartService: FormPartService, appState: AppState) { 
-        super(formPartService, appState);
+    constructor(formPartService: FormPartService) { 
+        super(formPartService);
     }
 
 }

@@ -15,7 +15,7 @@ export class DynamicFormComponent {
      * Passed controls
      */
     @Input() 
-    controls: ControlBase<any>[] = [];
+    controls = [];
 
     /**
      * Reference to ng2 form group
@@ -24,10 +24,10 @@ export class DynamicFormComponent {
 
     payLoad: string = '';
 
-    constructor(private formGenService: FormGeneratorService) { }
+    constructor(private formGeneratorService: FormGeneratorService) { }
 
     ngOnInit() { 
-        this.formGroup = this.formGenService.toFormGroup(this.controls);
+        this.formGroup = this.formGeneratorService.toFormGroup(this.controls);
     }
 
     onSubmit() {

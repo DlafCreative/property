@@ -22,27 +22,27 @@ export class HttpClient {
     }
 
     get(path: string) {
-        let fullUrl = this._getUrl(path);
+        let fullUrl = this._buildUrl(path);
         return this.http.get(fullUrl, this.reqOptions)
                         .map(this._mapResponse);
     }
 
     post(path: string, payload: any, toJsonApi = false) {
-        let fullUrl = this._getUrl(path);
+        let fullUrl = this._buildUrl(path);
         payload = toJsonApi ? this._toJsonApi(payload) : payload;
         return this.http.post(fullUrl, payload, this.reqOptions)
-                        .map(
-                            (res) => {
-                                return res.json() || {};
-                            }
-                        )
-                        /* @Todo : handle error
-                        .catch()*/
+                            .map(
+                                (res) => {
+                                    return res.json() || {};
+                                }
+                            )
+                            /* @Todo : handle error
+                            .catch()*/
     }
 
     request() {}
 
-    private _getUrl(path: string) {
+    private _buildUrl(path: string) {
         return `${this.apiUrl}${path}`;
     }
 

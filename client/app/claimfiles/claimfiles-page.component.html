@@ -32,8 +32,8 @@
 						<p-column field="attributes.customerInformation.customerNumber" header="Customer Number"></p-column>
 						<p-column field="attributes.contract.contractNumber" header="Contract Number"></p-column>
 						<p-column field="attributes.claimInformation.dateOfLoss" header="Date of Event"></p-column>
-						<p-column field="attributes.claimInformation.coverage" header="Damage Cause"></p-column>
-						<p-column field="attributes.status.name" header="Status"></p-column>
+						<p-column field="attributes.breContext.coverage.name" header="Damage Cause"></p-column>
+						<p-column field="attributes.status.label" header="Status"></p-column>
 						<p-column styleClass="col-button">
 							<template pTemplate type="header"></template>
 							<template let-claimfile="rowData" pTemplate type="body">

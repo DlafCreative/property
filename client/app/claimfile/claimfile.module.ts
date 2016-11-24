@@ -39,7 +39,6 @@ import {
 } from './form';
 
 /** Import services */
-import { AppState }             from '../shared/appstate.service';
 import { FormPartService }      from './form/form-part.service';
 
 @NgModule({
@@ -116,7 +115,6 @@ import { FormPartService }      from './form/form-part.service';
         TaskTileComponent
     ],
     providers: [
-        AppState,
         FormPartService
     ],
     exports: [

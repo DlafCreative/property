@@ -6,7 +6,6 @@ import {
 
 import { ActivatedRoute }           from '@angular/router';
 
-import { AppState }                 from '../../shared/appstate.service';
 import { FormPartService }          from '../form/form-part.service';
 
 import { DamageFormComponent }      from '../form/damage-form.component';
@@ -50,7 +49,7 @@ export class EditorComponent {
     /** Listen to current claimfile ID */
     @select(['claimFile', 'currentClaimFile', 'wan']) claimFileId$: Rx.Observable<string>;
 
-    constructor(private route: ActivatedRoute, private formPartService: FormPartService, private appState: AppState) {}
+    constructor(private route: ActivatedRoute, private formPartService: FormPartService) {}
 
     ngOnInit() {
         this.formPartParamSub$ = this.route.params.subscribe((params) => {
@@ -67,7 +66,7 @@ export class EditorComponent {
 
     submitAll() {
         
-        let claimFileId = this.appState.get('claimFileId');
+        let claimFileId; // @todo : get claimFile id from store
 
         let allForms = [this.customerForm, this.contractForm, this.claimFileForm, this.damageForm];
         let formToSubmit = [];

@@ -1,7 +1,6 @@
 import { Component, Input, HostBinding } from '@angular/core';
 
 import { Datastore }        from '../datastore.service';
-import { AppState }         from '../appstate.service';
 
 import { Step }             from './step.model';
 
@@ -17,7 +16,7 @@ export class StepperComponent {
     @Input()
     currentStep: string = null;
 
-    constructor( private dataStore: Datastore, private appState: AppState ){}
+    constructor( private dataStore: Datastore){}
 
     ngOnInit() { 
         this.getSteps();

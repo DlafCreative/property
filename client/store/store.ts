@@ -32,7 +32,6 @@ export const appReducer = combineReducers<IAppState>({
  */
 export const rootReducer = (state, action) => {
     if (action.type === 'USER_LOGOUT') {
-        debugger;
         state = undefined;
     }
     return appReducer(state, action);

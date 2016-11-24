@@ -54,7 +54,7 @@ app.get('/', function(req, res){
  **/
 app.post('/authenticate', function(req, res){
 
-	// Formatting user params
+	/*// Formatting user params
 	let username = `${req.body.customer_number}\\${req.body.username}`;
 	let password = req.body.password;
 
@@ -97,7 +97,32 @@ app.post('/authenticate', function(req, res){
 	 request.write(postData);
 
 	 // End request 
-	 request.end();
+	 request.end();*/
+
+	let username = `${req.body.customer_number}\\${req.body.username}`;
+	
+	let reqOptions = {
+		uri: 'http://api.property.local/app_dev.php/oauth/v2/token',
+		method: 'POST', 
+		json: true,
+		form: {
+			username: username,
+			password: req.body.password,
+			grant_type: 'password',
+			client_id: '1_3g9z7wonyeck0wco00cgggoogcgk008gko0ow84ssoowsock0f',
+			client_secret: '4zh7wm12w1wk8c8swccws0gosk8c0o8wcko0kcwoccg4k8o08f'
+		}
+	}
+	
+	rickouest(reqOptions, (error, response, body) => {
+		if (!error && response.statusCode == 200) {
+			res.json(body);
+		}
+		else {
+			console.log(response.statusCode);
+			res.send(body);
+		}
+	});
 
 });
 
@@ -109,14 +134,14 @@ app.get('/claimfiles', function(req, res){
 		uri: 	'http://api.property.local/app_dev.php/claimFiles/v1',
 		method: 'GET', 
 		headers: {
-			'Authorization': `Bearer ${req.query.token}`
+			'Authorization': req.headers.authorization
 		}
 	}
 
 	rickouest(options, (error, response, body) => {
 		if (!error && response.statusCode == 200) {
 			let parsedBody = JSON.parse(body);
-			res.send(parsedBody);
+			res.send(parsedBody)
 		}
 		else {
 			console.log(response)

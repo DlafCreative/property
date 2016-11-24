@@ -1,21 +1,21 @@
 <md-tab-group (focusChange)="onFocusChange($event)">
     <md-tab [disabled]="disabledTabs">
-        <template md-tab-label><a href="#" [routerLink]="['overview']">Main</a></template>
+        <template md-tab-label><a [routerLink]="['overview']">Main</a></template>
     </md-tab>
     <md-tab [disabled]="disabledTabs">
-        <template md-tab-label><a href="#" [routerLink]="['parts']">Mission</a></template>
+        <template md-tab-label><a [routerLink]="['claim-direction']">Claim Direction</a></template>
     </md-tab>
     <md-tab [disabled]="disabledTabs">
-        <template md-tab-label><a href="#" [routerLink]="['parts']">Parties Involved</a></template>
+        <template md-tab-label><a [routerLink]="['mission']">Mission</a></template>
     </md-tab>
     <md-tab [disabled]="disabledTabs">
-        <template md-tab-label><a href="#" [routerLink]="['claim-direction']">Claim Direction</a></template>
+        <template md-tab-label><a [routerLink]="['damage-description']">Damage Description</a></template>
     </md-tab>
     <md-tab [disabled]="disabledTabs">
-        <template md-tab-label><a href="#" [routerLink]="['damage-description']">Damage Description</a></template>
+        <template md-tab-label><a [routerLink]="['parts']">Parties Involved</a></template>
     </md-tab>
     <md-tab [disabled]="disabledTabs">
-        <template md-tab-label><a href="#" [routerLink]="['claim-direction']">Supporting Doc</a></template>
+        <template md-tab-label><a [routerLink]="['claim-direction']">Supporting Doc</a></template>
         <!--template md-tab-content>
             <h2>Supporting Doc</h2>
             <p>...</p>

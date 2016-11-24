@@ -7,7 +7,7 @@ import { FormPartBaseComponent }    from './form-part-base.component';
 @Component({
     selector: 'prop-damagerisk-form',
     template: `
-        <dynamic-form [controls]="formMetadata" *ngIf="formMetadata"></dynamic-form>
+        <dynamic-form [metadataObs]="formMetadata$"></dynamic-form>
     `
 })
 export class DamageFormComponent extends FormPartBaseComponent {

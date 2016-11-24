@@ -14,9 +14,9 @@ import { select }               from 'ng2-redux';
 export class FormPartBaseComponent {
 
     /**
-     * Form description in JSON received from the API
+     * Form description in JSON received from the API and transformed to ng2 form components
      */
-    formMetadata: ControlBase<any>[]; 
+    formMetadata$; 
 
     /**
      * Current claimfile ID
@@ -37,13 +37,7 @@ export class FormPartBaseComponent {
     }
 
     ngOnInit() {
-        this.formPartService.getFormMetadata(this.claimFileId, this.context)
-                                    .subscribe(
-                                        (metadata) => {
-                                            this.formMetadata = metadata;
-                                            console.log(this.formMetadata);
-                                        }
-                                    )
+        this.formMetadata$ = this.formPartService.getFormMetadata(this.claimFileId, this.context)
     }
 
     getContext() {

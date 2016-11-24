@@ -213,7 +213,28 @@ prop-appendix-tabs {
     @input_padding: 5px;
     @input_height: 30px;
 
+    fieldset {
+        border-top: 1px solid @primary_color;
+        border-right: none;
+        border-bottom: none;
+        border-left: none;
+
+        legend {
+            color: @primary_color;
+            font-weight: bold;
+            padding: 0 @default_spacing;
+            margin-left: @default_spacing;
+        }
+    }
+
     .form-row {
+
+        /** Submit button */
+        button[type=submit] {
+            float: right;
+            margin-right: @default_spacing;
+        }
+
         .control-wrapper {
             .control__label {
                 color: @medium_text_color;

@@ -12,14 +12,19 @@ import { FormGeneratorService } from './form-generator.service';
 export class DynamicFormComponent {
   
     /**
-     * Passed controls
+     * Passed controls as Observable
      */
     @Input() 
-    controls = [];
+    metadataObs;
 
-    /**
-     * Reference to ng2 form group
-     */
+    /** Provide submit button ? onSubmit() will be executed */
+    @Input()
+    submitButton: boolean = false;
+
+    /** Reference to form description returned by metadataObs subscribing */
+    formDescription: any;
+
+    /** Reference to ng2 form group */
     formGroup: FormGroup;
 
     payLoad: string = '';
@@ -27,7 +32,12 @@ export class DynamicFormComponent {
     constructor(private formGeneratorService: FormGeneratorService) { }
 
     ngOnInit() { 
-        this.formGroup = this.formGeneratorService.toFormGroup(this.controls);
+        this.metadataObs.subscribe(
+            metadata => {
+                this.formGroup = this.formGeneratorService.toFormGroup(metadata);
+                this.formDescription = metadata;
+            }
+        )        
     }
 
     onSubmit() {

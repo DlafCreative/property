@@ -12,23 +12,15 @@ export class FormGeneratorService {
   constructor() { }
 
   toFormGroup(fieldsetDefinition: any[] ) {
-    debugger;
     let group: any = {};
 
     fieldsetDefinition.forEach(fieldset => {
-
         fieldset.fields.forEach(field => {
-
-            group[field.key] = field.required ? new FormControl(field.value || '', Validators.required)
-                                                    : new FormControl(field.value || '');
+            group[field.key] = field.required ? new FormControl(field.value || '', Validators.required) : 
+                                                new FormControl(field.value || '');
         });
 
     });
-
-    /*fieldsetDefinition.forEach(control => {
-      group[control.key] = control.required ? new FormControl(control.value || '', Validators.required)
-                                              : new FormControl(control.value || '');
-    });*/
     return new FormGroup(group);
   }
 }

@@ -1,0 +1,42 @@
+@import '../../../../assets/css/constants.less';
+
+#taskSearch {
+
+    .input-field {
+        margin-top: 0;
+        .prefix {
+            top: 10px;
+            color: @medium_text_color;
+            &.active {
+                color: @primary_color;
+            }
+        }
+        input {
+            color: @medium_text_color;
+        }
+    }
+}
+
+#taskDateSwitcher {
+    display: flex;
+    justify-content: center;
+    margin-bottom: @default_spacing * 2;
+    i, #currentMonth {
+        color: @medium_text_color;
+    }
+
+    #currentMonth {
+        font-size: 1.2em;
+        margin: 0 1em;
+    }
+}
+
+#taskListWrapper {
+    p {
+        color: @medium_text_color;
+        .taskListWrapper__desc {
+            padding-left: 20px;
+            font-size: 0.8em;
+        }
+    }
+}

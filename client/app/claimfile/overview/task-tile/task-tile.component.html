@@ -1,0 +1,15 @@
+<div class="row" id="taskSearch">
+    <div class="input-field col s12">
+        <i class="material-icons prefix">search</i>
+        <input type="text" placeholder="Recherche ..." />
+    </div>
+</div>
+<div class="row" id="taskDateSwitcher">
+    <i class="material-icons">navigate_before</i><span id="currentMonth">Novembre 2016</span><i class="material-icons">navigate_next</i>
+</div>
+<div class="row" id="taskListWrapper">
+    <p *ngFor="let task of tasks">
+        <i class="material-icons tiny">{{ task.icon }}</i> {{ task.when }} par {{ task.who }} <br />
+        <span class="taskListWrapper__desc" [innerHTML]="task.description"></span>
+    </p>
+</div>

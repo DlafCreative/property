@@ -21,6 +21,7 @@ import { AppendixTabsComponent }        from './appendix-tabs/appendix-tabs.comp
 import { ClaimPeekComponent }           from './claimpeek/claimpeek.component';
 import { CreateClaimFileComponent }     from './create-claimfile.component';
 import { OverviewComponent }            from './overview/overview.component';
+import { TaskTileComponent }            from './overview/task-tile/task-tile.component';
 import { EditorComponent }              from './editor/editor.component';
 
 /**
@@ -111,7 +112,8 @@ import { FormPartService }      from './form/form-part.service';
         CustomerFormComponent,
         ClaimFileFormComponent,
         ContractFormComponent,
-        DamageFormComponent
+        DamageFormComponent,
+        TaskTileComponent
     ],
     providers: [
         AppState,

@@ -26,11 +26,12 @@ export class SessionActions {
                         type: SessionActions.SET_USER_DATA,
                         payload: Object.assign(data, credentials)
                     });
-                    console.log(this.ngRedux.getState());
+                    // Set token access on localeStorage
+                    localStorage.setItem('prop_access_token', data.access_token);
                 }
                 // @todo : return error message to Alert Service
                 else {
-
+                    
                 }
                 this.setProcessing(false);
             },
@@ -43,6 +44,7 @@ export class SessionActions {
 
     logout() {
         this.ngRedux.dispatch({ type: 'USER_LOGOUT'});
+        localStorage.removeItem('prop_access_token');
         this.router.navigate(['/']);
     }
 

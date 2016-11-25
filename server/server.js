@@ -168,8 +168,7 @@ app.post('/claimfile', function(req, res){
 	
 	rickouest(reqOptions, (error, response, body) => {
 		if (!error && response.statusCode == 200) {
-			let parsedBody = JSON.parse(body);
-			res.json(parsedBody);
+			res.json(body);
 		}
 		else {
 			console.log(response.statusCode);

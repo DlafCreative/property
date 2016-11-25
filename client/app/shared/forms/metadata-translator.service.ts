@@ -9,7 +9,7 @@ import {
 }  from './controls';
 
 /**
- * This class converts metadata received from the API to an understandable list of Property form elements  
+ * This class converts metadata received from the API to an understandable list of fieldsets and form elements  
  */
 @Injectable()
 export class MetadataTranslatorService {
@@ -72,11 +72,12 @@ export class MetadataTranslatorService {
                                 break;
                             case 'dropdown':
                             case 'country':
+                            case 'entity':
                                 formFieldOptions['choices'] = field.choices;
                                 formField = new Dropdown(formFieldOptions);
                                 break;
                             default:
-                            throw new Error('Unknown form field type : ' + field.type);
+                                throw new Error('Unknown form field type : ' + field.type);
                         }
 
                         if (formField){

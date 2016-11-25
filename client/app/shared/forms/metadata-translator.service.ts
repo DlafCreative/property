@@ -14,7 +14,7 @@ import {
 @Injectable()
 export class MetadataTranslatorService {
     
-    getFormElements(metadata: any[]) {
+    getFormElements(metadata: any[] = []) {
         
         let formDefinition = [];
         

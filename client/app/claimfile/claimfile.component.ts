@@ -1,8 +1,6 @@
 import { Component, HostBinding }           from '@angular/core';
 import { Router, ActivatedRoute, Params }   from '@angular/router';
 
-import { ClaimFile }                        from '../shared/claimfile/claimfile.model';
-
 import { ClaimFileActions }                 from '../../actions';
 
 import { select }                           from 'ng2-redux';
@@ -18,31 +16,21 @@ export class ClaimFileComponent {
     @HostBinding('class.prop-wrapper') true; // @todo : why true is necessary here and not elsewhere ?
 
     @select(['claimFile', 'currentClaimFile']) currentClaimFile$: Observable<any>;
-    currentClaimFileSub = null;
     
     constructor(
         private route: ActivatedRoute,
         private claimFileActions: ClaimFileActions ){ }
 
     ngOnInit() {
-        let claimfileId = this.route.snapshot.params['id'];
-        
-        /**
-         * Double check if current claimfile state is well stored
-         */
-        if (claimfileId) {
-            this.currentClaimFileSub = this.currentClaimFile$.subscribe((claimFile) => {
-                if (!claimFile || claimFile.wan !== claimfileId) {
-                    this.claimFileActions.getClaimFile(claimfileId);
-                }
-            });
-        }
-    }
+        let claimFileId = this.route.snapshot.params['id'];
+        let currentClaimFile = this.claimFileActions.getState().claimFile.currentClaimFile;
 
-    ngOnDestroy() {
-        if (this.currentClaimFileSub) {
-            this.currentClaimFileSub.unsubscribe();
-        }            
+        /** Retrieve requested claimfile if needed */
+        if (claimFileId) {
+            if (!currentClaimFile || currentClaimFile.wan !== claimFileId) {
+                this.claimFileActions.getClaimFile(claimFileId);
+            }
+        }
     }
 
 }

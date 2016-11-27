@@ -31,21 +31,14 @@ export class FormPartService {
 
     submitFormPart(claimFileId: string, context: string, data: any) {
         let payload = this.formatPayload(data);
-        
-        let body = JSON.stringify({
-            claimFileId: claimFileId,
-            context: context,
-            formPartData: payload
-        });
+        let uri = `${FormPartService.FORM_PART_PATH}/${claimFileId}/${context}`;
 
-        return this.http.post('http://192.168.33.10:7000/form-part', body, this.reqOptions)
-				   		.map( (res) => { 
-                                let body = res.json();
-                                if (body.data){
-                                    return body.data;
-                                }
-                            } 
-                        );
+        return this.httpClient.post(uri, payload)
+                                .map(
+                                    (res) => {
+                                        return res.data;
+                                    }
+                                );
     }
 
     formatPayload(payload: any) {

@@ -6,6 +6,7 @@ import {
 
 import { ActivatedRoute }           from '@angular/router';
 
+import { ClaimFileActions }         from '../../../actions';
 import { FormPartService }          from '../form/form-part.service';
 
 import { DamageFormComponent }      from '../form/damage-form.component';
@@ -49,7 +50,10 @@ export class EditorComponent {
     /** Listen to current claimfile ID */
     @select(['claimFile', 'currentClaimFile', 'wan']) claimFileId$: Rx.Observable<string>;
 
-    constructor(private route: ActivatedRoute, private formPartService: FormPartService) {}
+    constructor(
+        private route: ActivatedRoute, 
+        private claimFileActions: ClaimFileActions,
+        private formPartService: FormPartService) {}
 
     ngOnInit() {
         this.formPartParamSub$ = this.route.params.subscribe((params) => {
@@ -57,18 +61,13 @@ export class EditorComponent {
         });
     }
 
-    ngOnDestroy() {
-        /*if (!confirm('Modifications will be lost')) { //@todo : implement
-            return false;
-        }*/
-        this.formPartParamSub$.unsubscribe();
-    }
-
     submitAll() {
-        
-        let claimFileId; // @todo : get claimFile id from store
+        let claimFileId = this.claimFileActions.getState().claimFile.currentClaimFile.wan ?
+                          this.claimFileActions.getState().claimFile.currentClaimFile.wan : 
+                            null;
 
-        let allForms = [this.customerForm, this.contractForm, this.claimFileForm, this.damageForm];
+        /*let allForms = [this.customerForm, this.contractForm, this.claimFileForm, this.damageForm];*/
+        let allForms = [this.contractForm, this.damageForm];
         let formToSubmit = [];
         let formInvalidFlag = false;
 
@@ -90,37 +89,16 @@ export class EditorComponent {
         }
         else {
             console.log("Form submission");
-            var stream$;
-            
-            formToSubmit.forEach((form, index) => {
-                if (index === 0) {
-                    stream$ = this.formPartService.submitFormPart(claimFileId, form.getContext(), form.getValues())
-                }
-                else {
-                    let obs$ = this.formPartService.submitFormPart(claimFileId, form.getContext(), form.getValues());
-                    stream$ = stream$.concat( obs$ );
-                }
-            });
-
-            stream$.subscribe((claimFile) => {
-                console.log(claimFile);
-            })
-
-            /**
-             * More elegant way to perform what is done above
-             */
-            /*Rx.Observable.from(formToSubmit)
-              .concatMap(
-                  (form) => {
-                      return this.formPartService.submitFormPart(claimFileId, form.getContext(), form.getValues());
-                  }
-              )
-              .combineAll()
-              .subscribe( (val) => {
-                  console.log(val);
-              } );*/
+            this.claimFileActions.submitFormParts(claimFileId, formToSubmit);
         }
 
+    }
+
+    ngOnDestroy() {
+        /*if (!confirm('Modifications will be lost')) { //@todo : implement
+            return false;
+        }*/
+        this.formPartParamSub$.unsubscribe();
     }
 
 }

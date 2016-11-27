@@ -10,13 +10,14 @@ import { FormPartService }      from './form-part.service';
 import { ControlBase }          from '../../shared/forms/controls/control-base';
 
 import { select }               from 'ng2-redux';
+import { Observable }           from 'rxjs';
 
 export class FormPartBaseComponent {
 
     /**
      * Form description in JSON received from the API and transformed to ng2 form components
      */
-    formMetadata$; 
+    formMetadata$: Observable<any>; 
 
     /**
      * Current claimfile ID
@@ -37,7 +38,7 @@ export class FormPartBaseComponent {
     }
 
     ngOnInit() {
-        this.formMetadata$ = this.formPartService.getFormMetadata(this.claimFileId, this.context)
+        this.formMetadata$ = this.formPartService.getFormMetadata(this.claimFileId, this.context);
     }
 
     getContext() {

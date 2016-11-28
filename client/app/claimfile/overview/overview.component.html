@@ -8,16 +8,28 @@
             <div class="prop-tile__content">
                 <div class="prop-form prop-form--disabled">
                     <div class="control-wrapper row">
+                        <label class="control__label col s6">Numéro de client</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.customerInformation?.customerNumber | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Numéro de client référence</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.customerInformation?.customerReference | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
                         <label class="control__label col s6">Customer Name</label>
-                        <span class="control__value col s6">{{ (claimFile$ | async)?.customerInformation?.customerName }}</span>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.customerInformation?.customerName | naLabel:"-" }}</span>
                     </div>
                     <div class="control-wrapper row">
-                        <label class="control__label col s6">Customer Number</label>
-                        <span class="control__value col s6">{{ (claimFile$ | async)?.customerInformation?.customerNumber }}</span>
-                    </div>
-                    <div class="control-wrapper row">
-                        <label class="control__label col s6">Policy Number</label>
-                        <span class="control__value col s6">{{ (claimFile$ | async)?.customerInformation?.policyNumber }}</span>
+                        <label class="control__label col s6">Adresse</label>
+                        <span class="control__value col s6">
+                            {{ (claimFile$ | async)?.customerInformation?.streetNumber | naLabel:"-" }} 
+                            {{ (claimFile$ | async)?.customerInformation?.address1 | naLabel:"-" }}
+                            {{ (claimFile$ | async)?.customerInformation?.address2 | naLabel:"-" }}
+                            {{ (claimFile$ | async)?.customerInformation?.address3 | naLabel:"-" }}
+                            <br />
+                            {{ (claimFile$ | async)?.customerInformation?.zipCode | naLabel:"-" }} 
+                            {{ (claimFile$ | async)?.customerInformation?.town | naLabel:"Town : Property missing" }}
+                        </span>
                     </div>
                 </div>
             </div>
@@ -32,8 +44,36 @@
             <div class="prop-tile__content">                
                 <div class="prop-form prop-form--disabled">
                     <div class="control-wrapper row">
-                        <label class="control__label col s6">Contract Number</label>
-                        <span class="control__value col s6">{{ (claimFile$ | async)?.contract?.contractNumber }}</span>
+                        <label class="control__label col s6">Numéro de contrat</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.contract?.contractNumber | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Situation du contrat</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.contract?.policySituation | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Type de contrat</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.contract?.typeOfContract | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Etat du contrat</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.contract?.statusOfContract | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Date d'effet du contrat</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.contract?.effectiveDate | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Currency Name</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.contract?.currencyName | naLabel:"No translation" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Formule</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.contract?.formula | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Franchise générale</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.contract?.theGeneralDeductible | naLabel:"-" }}</span>
                     </div>
                 </div>
             </div>
@@ -48,16 +88,45 @@
             <div class="prop-tile__content">                
                 <div class="prop-form prop-form--disabled">
                     <div class="control-wrapper row">
-                        <label class="control__label col s6">Claim Number</label>
-                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.claimNumber }}</span>
+                        <label class="control__label col s6">Numéro du dossier (WAN)</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.soleraClaimNumber | naLabel:"-" }}</span>
                     </div>
                     <div class="control-wrapper row">
-                        <label class="control__label col s6">Date of Event</label>
+                        <label class="control__label col s6">Numéro du sinistre référencé</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.claimNumber | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Nature du sinistre</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.eventType | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Type de dommage</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.damageType | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Description of Damage</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.descriptionOfDamage | naLabel:"No translation" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Date de survenance du sinistre</label>
                         <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.dateOfLoss | date:"dd/MM/y" }}</span>
                     </div>
                     <div class="control-wrapper row">
                         <label class="control__label col s6">Coverage</label>
-                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.coverage }}</span>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.coverage | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Dernière situation du sinistre</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.lastStatusOfClaim | naLabel:"-" }}</span>
+                    </div>
+                    <div class="control-wrapper row">
+                        <label class="control__label col s6">Lieu du sinistre</label>
+                        <span class="control__value col s6">
+                            {{ (claimFile$ | async)?.claimInformation?.addressOfLoss | naLabel:"-" }}
+                            <br />
+                            {{ (claimFile$ | async)?.claimInformation?.zipCodeOfLoss | naLabel:"-" }} 
+                            {{ (claimFile$ | async)?.claimInformation?.townOfLoss | naLabel:"-" }}
+                        </span>
                     </div>
                 </div>
             </div>

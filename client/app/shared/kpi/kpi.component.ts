@@ -27,8 +27,4 @@ export class KpiComponent {
     };
 
     constructor() { }
-
-    ngOnInit() { 
-        console.log(this.status)
-    }
 }

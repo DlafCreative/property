@@ -6,8 +6,6 @@ import { MetadataTranslatorService } from '../../shared/forms/metadata-translato
 @Injectable()
 export class FormPartService {
 
-    private uri = API_HOST + ':' + API_PORT + '/form-metadata';
-
     static FORM_PART_PATH = 'form-part';
 
     private reqOptions;

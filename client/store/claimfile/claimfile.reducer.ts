@@ -1,7 +1,8 @@
 const INITIAL_STATE = {
     currentClaimFile: null,
     coverages: null,
-    isSubmittingDraft: false
+    isSubmittingDraft: false,
+    steps: null
 };
 
 export function claimFileReducer(
@@ -17,6 +18,8 @@ export function claimFileReducer(
             return Object.assign({}, state, { currentClaimFile: null});
         case 'IS_SUBMITTING_DRAFT': 
             return Object.assign({}, state, { isSubmittingDraft: action.payload.isSubmittingDraft});
+        case 'SET_STEPS':
+            return Object.assign({}, state, { steps: action.payload.steps });
         default:
             return state;
     }

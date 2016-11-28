@@ -1,8 +1,9 @@
-import { Component, Input, HostBinding } from '@angular/core';
+import { Component, Input, HostBinding }    from '@angular/core';
 
-import { Datastore }        from '../datastore.service';
+import { ClaimFileActions }                 from '../../../actions';
 
-import { Step }             from './step.model';
+import { select }                           from 'ng2-redux';
+import { Observable }                       from 'rxjs';
 
 @Component({
     selector: 'prop-stepper',
@@ -11,24 +12,15 @@ import { Step }             from './step.model';
 })
 export class StepperComponent {
 
-    steps: any[] = [];
+    @select(['claimFile', 'steps']) steps$: Observable<any>;
 
     @Input()
     currentStep: string = null;
 
-    constructor( private dataStore: Datastore){}
+    constructor(private claimFileActions: ClaimFileActions) { }
 
     ngOnInit() { 
-        this.getSteps();
-    }
-
-    getSteps() {
-        this.dataStore.query(Step)
-                      .subscribe(
-                          (steps: Step[]) => { 
-                              this.steps = steps;
-                            }
-                      );
+        this.claimFileActions.getSteps();
     }
 
 }

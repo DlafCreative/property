@@ -15,7 +15,8 @@ export interface IAppState {
     claimFile: {
         currentClaimFile: any,
         coverages?: any,
-        isSubmittingDraft: boolean
+        isSubmittingDraft: boolean,
+        steps?: any
     }
 }
 

@@ -3,6 +3,7 @@ import { NgRedux }              from 'ng2-redux';
 import { IAppState }            from '../store';
 
 import { ClaimFileService }     from '../app/shared';
+import { StepService }          from '../app/shared/stepper/step.service';
 import { FormPartService }      from '../app/claimfile/form/form-part.service';
 
 import { ClaimFileDraft }       from '../app/shared';
@@ -19,10 +20,12 @@ export class ClaimFileActions {
     static SET_COVERAGES = 'SET_COVERAGES';
     static SET_CURRENT_CLAIMFILE = 'SET_CURRENT_CLAIMFILE';
     static CLEAR_CURRENT_CLAIMFILE = 'CLEAR_CURRENT_CLAIMFILE';
+    static SET_STEPS = 'SET_STEPS';
 
     constructor(
         private ngRedux: NgRedux<IAppState>,
         private claimFileService: ClaimFileService,
+        private stepService: StepService,
         private formPartService: FormPartService,
         private router: Router
     ) {}
@@ -55,6 +58,14 @@ export class ClaimFileActions {
                 this.ngRedux.dispatch({ type: ClaimFileActions.SET_COVERAGES, payload: { coverages: body.data } });
             }
         )
+    }
+
+    getSteps() {
+        this.stepService.getSteps().subscribe(
+            (body) => {
+                this.ngRedux.dispatch({ type: ClaimFileActions.SET_STEPS, payload: { steps: body.data } });
+            }
+        );
     }
 
     clearCurrentClaimFle() {

@@ -12,8 +12,6 @@ import { PropReduxModule }			    from '../shared/prop-redux.module';
 
 import { UIModule }                     from '../shared/ui.module';
 
-import { JsonApiModule }                from 'angular2-jsonapi';
-
 import { StepperModule }                from '../shared/stepper/stepper.module';
 
 import { ClaimFileComponent }           from './claimfile.component';
@@ -40,6 +38,7 @@ import {
 
 /** Import services */
 import { FormPartService }      from './form/form-part.service';
+import { StepService }          from '../shared/stepper/step.service';
 
 @NgModule({
     bootstrap: [ ClaimFileComponent ],
@@ -50,7 +49,6 @@ import { FormPartService }      from './form/form-part.service';
         FormsModule,
         PropReduxModule,
         UIModule,
-        JsonApiModule,
         DynamicFormModule,
         StepperModule,
         RouterModule.forChild([
@@ -115,7 +113,8 @@ import { FormPartService }      from './form/form-part.service';
         TaskTileComponent
     ],
     providers: [
-        FormPartService
+        FormPartService,
+        StepService
     ],
     exports: [
         RouterModule

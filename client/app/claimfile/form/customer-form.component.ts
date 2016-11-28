@@ -1,15 +1,15 @@
-import { Component }                from '@angular/core';
+import { Component, Input }                from '@angular/core';
 
 import { FormPartService }          from './form-part.service';
 
 import { FormPartBaseComponent }    from './form-part-base.component';
 
-@Component({
+@Component(Object.assign({
     selector: 'prop-customer-form',
     template: `
         <dynamic-form [metadataObs]="formMetadata$"></dynamic-form>
     `
-})
+}, FormPartBaseComponent.metaData))
 export class CustomerFormComponent extends FormPartBaseComponent {
 
     /**

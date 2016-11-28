@@ -1,7 +1,7 @@
-<ul *ngFor="let step of steps" class="step" [class.step-active]="currentStep && step.id === currentStep" [class.step-disabled]="!currentStep">
+<ul *ngFor="let step of steps$ | async" class="step" [class.step-active]="currentStep && step.attributes.id === currentStep" [class.step-disabled]="!currentStep">
     <li class="step__bubble"></li>
     <li class="step__circle"></li>
     <li class="step__label">
-        {{ step.label }}
+        {{ step.attributes.label }}
     </li>
 </ul>

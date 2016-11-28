@@ -1,7 +1,6 @@
 /**
  * Core modules
  */
-import { JsonApiModule }			from 'angular2-jsonapi';
 import { NgModule } 				from '@angular/core';
 import { BrowserModule } 			from '@angular/platform-browser';
 import { CommonModule }				from '@angular/common';
@@ -17,9 +16,6 @@ import { PropReduxModule }			from './shared/prop-redux.module';
 /**
  * Import other modules
  */
-/** jsonApi module and custom datastore */
-import { Datastore }		from './shared/datastore.service';
-
 /** UI module */
 import { UIModule } from './shared/ui.module';
 
@@ -48,7 +44,6 @@ import { HttpClient }			from './shared/lib/http-client.service';
 		BrowserModule,
 		CommonModule,
 		HttpModule,
-		JsonApiModule,
 		UIModule,
 		DataTableModule, SharedModule, // PrimeNg datatable
 		FormsModule,
@@ -63,7 +58,6 @@ import { HttpClient }			from './shared/lib/http-client.service';
 		ClaimFilesPageComponent
 	],
 	providers: [
-		Datastore,
 		HttpClient
 	]
 })

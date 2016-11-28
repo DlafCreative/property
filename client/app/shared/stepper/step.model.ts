@@ -1,19 +1,6 @@
-import { JsonApiModelConfig, JsonApiModel, Attribute, HasMany, BelongsTo } from 'angular2-jsonapi';
-
-@JsonApiModelConfig({
-    type: 'steps'
-})
-export class Step extends JsonApiModel {
-
-    @Attribute()
+export class Step {
     id: string;
-
-    @Attribute()
     name: string;
-
-    @Attribute()
     label: string;
-
-    @Attribute()
     rank: number;
 }

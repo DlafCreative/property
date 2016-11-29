@@ -38,7 +38,7 @@ export class SessionActions {
                 }
                 // @todo : return error message to Alert Service
                 else {
-                    
+                    Materialize.toast(data.error, 3000);
                 }                
             },
             // @Todo : handle Observable errors and return error to message service

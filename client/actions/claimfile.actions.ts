@@ -81,7 +81,6 @@ export class ClaimFileActions {
             )
             .takeLast(1)
             .subscribe( (claimFile) => {
-                debugger;
                 console.log('ClaimFile retourné :')
                 console.log(claimFile);
                 this.ngRedux.dispatch({ type: ClaimFileActions.SET_CURRENT_CLAIMFILE, payload: { currentClaimFile: claimFile.attributes } });

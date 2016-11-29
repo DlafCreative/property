@@ -28,7 +28,7 @@
                             {{ (claimFile$ | async)?.customerInformation?.address3 | naLabel:"-" }}
                             <br />
                             {{ (claimFile$ | async)?.customerInformation?.zipCode | naLabel:"-" }} 
-                            {{ (claimFile$ | async)?.customerInformation?.town | naLabel:"Town : Property missing" }}
+                            {{ (claimFile$ | async)?.customerInformation?.city | naLabel:"Town : Property missing" }}
                         </span>
                     </div>
                 </div>
@@ -112,8 +112,8 @@
                         <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.dateOfLoss | date:"dd/MM/y" }}</span>
                     </div>
                     <div class="control-wrapper row">
-                        <label class="control__label col s6">Coverage</label>
-                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.coverage | naLabel:"-" }}</span>
+                        <label class="control__label col s6">Garanties élémentaires</label>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.coverage?.label | naLabel:"-" }}</span>
                     </div>
                     <div class="control-wrapper row">
                         <label class="control__label col s6">Dernière situation du sinistre</label>

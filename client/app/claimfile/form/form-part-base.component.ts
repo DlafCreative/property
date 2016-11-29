@@ -34,7 +34,10 @@ export class FormPartBaseComponent {
     dynamicForm: DynamicFormComponent;
 
     static metaData = {
-        inputs: ['claimFileId']
+        inputs: ['claimFileId'],
+        queries: {
+            dynamicForm: new ViewChild(DynamicFormComponent)
+        }
     };
 
     constructor(

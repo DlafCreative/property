@@ -119,7 +119,7 @@ app.get('/claimfiles', function(req, res){
  * Create claimfile
  */
 app.post('/claimfile', function(req, res){
-	const URI = getFullPath('claimFiles/v1');	
+	const URI = getFullPath('claimFiles/v1/');
 	let reqOptions = {
 		uri: URI,
 		method: 'POST', 
@@ -127,7 +127,7 @@ app.post('/claimfile', function(req, res){
 			'Authorization': req.headers.authorization
 		},
 		json: true,
-		body: req.body
+		form: req.body
 	}
 	
 	rickouest(reqOptions, (error, response, body) => {

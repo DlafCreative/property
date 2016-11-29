@@ -15,8 +15,8 @@ export class ClaimFileService {
         private httpClient: HttpClient) {}
 
     createClaimFile(claimFileDraft: ClaimFileDraft) {
-        let toJsonApi = true;
-        return this.httpClient.post(ClaimFileService.CLAIMFILE_PATH, claimFileDraft, toJsonApi)
+        let draftToJson = claimFileDraft.toJson();
+        return this.httpClient.post(ClaimFileService.CLAIMFILE_PATH, draftToJson)
                                     .map(
                                         (res) => {
                                             return res.data.attributes;

@@ -8,9 +8,15 @@ import { Router, ActivatedRoute }     from '@angular/router';
 })
 export class AppComponent {
 
-    constructor(private route: ActivatedRoute) { }
+    isOnLoginPage: boolean;
+
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute) { }
 
     ngOnInit() {
-        let currentRoute$ = this.route;
+        this.router.events.subscribe((currentRoute) => {
+            this.isOnLoginPage = !(currentRoute.url !== '/');
+        });
     }
 }

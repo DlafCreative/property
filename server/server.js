@@ -192,13 +192,18 @@ app.all('/form-part/:claimFileId/:context', (req, res) => {
 			json: true
 		}
 
-		/** Submit form */
+		/** Submit form, API doesn't expect json' */
 		if (req.method === 'POST') {
-			rickouestOptions.form = req.body.formPartData;
+			rickouestOptions.form = req.body;
+			rickouestOptions.json = false
 		}
 		
 		rickouest(rickouestOptions, (error, response, body) => {
-			if (!error && (typeof response !== "undefined") && response.statusCode == 200) {
+			if (!error && (typeof response !== "undefined") && response.statusCode == 200) {				
+				if (req.method === 'POST') {
+					/** API return string */
+					body = JSON.parse(body);
+				}
 				res.json(body);
 			}
 			else {

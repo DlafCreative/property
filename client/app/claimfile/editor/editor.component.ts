@@ -66,8 +66,7 @@ export class EditorComponent {
                           this.claimFileActions.getState().claimFile.currentClaimFile.wan : 
                             null;
 
-        /*let allForms = [this.customerForm, this.contractForm, this.claimFileForm, this.damageForm];*/
-        let allForms = [this.contractForm, this.damageForm];
+        let allForms = [this.customerForm, this.contractForm, this.claimFileForm, this.damageForm];
         let formToSubmit = [];
         let formInvalidFlag = false;
 
@@ -88,7 +87,6 @@ export class EditorComponent {
             alert('Un formulaire est incomplet ou invalide');
         }
         else {
-            console.log("Form submission");
             this.claimFileActions.submitFormParts(claimFileId, formToSubmit);
         }
 

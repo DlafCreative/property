@@ -30,11 +30,10 @@ export class LoginPageComponent {
         ) {}
 
     ngOnInit() {
-        this.isLogged$.subscribe((isLogged) => {
-            if (isLogged) {
-                this.router.navigate(['/claimfiles']);
-            }
-        });
+        const { session } = this.sessionActions.getState();
+        if (session.isLogged || localStorage.getItem('prop_access_token')) {
+            this.router.navigate(['/claimfiles']);
+        }
     }
 
     onSubmit() {

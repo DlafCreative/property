@@ -1,17 +1,22 @@
-import { Component, HostBinding }    from '@angular/core';
-import { ClaimFileService }          from './../shared/claimfile/claimfile.service';
-import { Kpi } from '../shared/kpi/kpi.model'; //@todo : move this import into a service, depending on how the stats are retrieved
+import { Component, HostBinding }   from '@angular/core';
+import { ClaimFileService }         from './../shared/claimfile/claimfile.service';
+import { Kpi }                      from '../shared/kpi/kpi.model'; //@todo : move this import into a service, depending on how the stats are retrieved
 
 import { ClaimFileActions }         from '../../actions';
 
+import { select }                   from 'ng2-redux';
+import { Observable }               from 'rxjs';
+
 @Component({
 	selector:     'prop-claimfile-page',
-	templateUrl:  './claimfiles-page.component.html',
-    styleUrls:    ['./claimfiles-page.component.less']
+	templateUrl:  'claimfiles-page.component.html',
+    styleUrls:    ['claimfiles-page.component.less']
 })
 export class ClaimFilesPageComponent {
 
     @HostBinding('class.prop-wrapper') // Add class "prop-wrapper" to the custom element
+
+    @select(['session', 'access_token']) access_token$: Observable<String>;
 
     claimFiles: any[] = [];  //@todo: any[] = []; => ok, any[] => ko
 
@@ -35,9 +40,10 @@ export class ClaimFilesPageComponent {
         // Reset current claimfile
         this.claimFileActions.clearCurrentClaimFle();
 
-		// Get claimFiles
-        let claimFiles$ = this.claimFileService.getClaimFiles();
-        claimFiles$.subscribe(
-            claimFiles => this.claimFiles = claimFiles);
+        this.claimFileService.getClaimFiles().subscribe(
+            (claimFiles) => {
+                this.claimFiles = claimFiles;
+            }
+        )
 	}
 }

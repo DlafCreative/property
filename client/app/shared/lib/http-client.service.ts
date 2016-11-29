@@ -15,10 +15,10 @@ export class HttpClient {
     constructor(private http: Http) {
 		this.reqOptions = new RequestOptions({ 
             headers: new Headers({ 
-                'Content-Type': 'application/vnd.api+json', 
-                'Authorization': `Bearer ${localStorage.getItem('prop_access_token')}`
+                'Content-Type': 'application/vnd.api+json'
             }) 
         });
+        this.setAuthHeaders();
     }
 
     get(path: string) {
@@ -63,5 +63,19 @@ export class HttpClient {
             obj.data.attributes[prop] = payload[prop];
         }
         return obj;
+    }
+
+    /**
+     * Set Authorization key for every request.
+     * (note : unable to make it in the constructor as the service is instanciated before localStorage is set)
+     */
+    setAuthHeaders() {
+        if (!this.reqOptions.headers.has('Authorization') && localStorage.getItem('prop_access_token')) {
+            this.reqOptions.headers.set('Authorization', `Bearer ${localStorage.getItem('prop_access_token')}`);
+        }
+    }
+
+    flushAuthHeaders() {
+        this.reqOptions.headers.delete('Authorization');
     }
 }

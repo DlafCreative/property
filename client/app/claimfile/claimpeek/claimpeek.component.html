@@ -9,7 +9,7 @@
         <span class="databanner__label">Insured : {{ (currentClaimFile | async)?.customerInformation.customerName | naLabel }}</span>
     </div>
     <div class="databanner__item">
-        <span class="databanner__label">Evt : {{ (currentClaimFile | async)?.coverage.label | naLabel }}</span>
+        <span class="databanner__label">Evt : {{ (currentClaimFile | async)?.coverage?.label | naLabel }}</span>
     </div>
     <div class="databanner__item">
         <span class="databanner__label">Product : {{ (currentClaimFile | async)?.contract.typeOfContract | naLabel }}</span>

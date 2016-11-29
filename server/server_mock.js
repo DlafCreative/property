@@ -11,7 +11,7 @@ var rickouest = require('request');
 
 app.set('port', (process.env.PORT || 7000));
 
-app.use('/', express.static(path.join(__dirname, '../public')));
+app.use('/', express.static(path.join(__dirname, '../dist')));
 app.use('/client', express.static(path.join(__dirname, '../client')));
 app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
@@ -41,7 +41,7 @@ app.use(function(req, res, next) {
  */
 // Login screen
 app.get('/', function(req, res){
-  res.sendFile(path.resolve('client/index.html'));
+  res.sendFile(path.resolve('dist/index.html'));
 });
 
 /**

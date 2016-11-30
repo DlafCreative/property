@@ -62,8 +62,8 @@ export class EditorComponent {
     }
 
     submitAll() {
-        let claimFileId = this.claimFileActions.getState().claimFile.currentClaimFile.wan ?
-                          this.claimFileActions.getState().claimFile.currentClaimFile.wan : 
+        let state = this.claimFileActions.getState();
+        let claimFileId = state.claimFile.currentClaimFile.wan ? state.claimFile.currentClaimFile.wan : 
                             null;
 
         let allForms = [this.customerForm, this.contractForm, this.claimFileForm, this.damageForm];
@@ -71,19 +71,18 @@ export class EditorComponent {
         let formInvalidFlag = false;
 
         for (let form of allForms) {
-            // Check if form is valid
-            if (!form.isValid()) {
-                formInvalidFlag = true;
-                break;
-            }
-
-            // If form is dirty, then put it in embargo
             if (form.isDirty()) {
+                // Check if form is valid
+                if (!form.isValid()) {
+                    formInvalidFlag = true;
+                    break;
+                }
+                // If form is dirty, then put it in embargo
                 formToSubmit.push(form);
             }
         }
 
-        if (formInvalidFlag) {
+        if (formInvalidFlag) { // @todo : use Notifier Service
             alert('Un formulaire est incomplet ou invalide');
         }
         else {
@@ -93,9 +92,9 @@ export class EditorComponent {
     }
 
     ngOnDestroy() {
-        if (!confirm('Modifications will be lost')) { //@todo : implement
+        /*if (!confirm('Modifications will be lost')) { //@todo : implement, use Notifier Service
             return false;
-        }
+        }*/
         this.formPartParamSub$.unsubscribe();
     }
 

@@ -22,7 +22,6 @@
     "@types/core-js": "^0.9.34",
     "@types/jasmine": "^2.5.38",
     "@types/jquery": "^2.0.34",
-    "@types/materialize-css": "^0.97.32",
     "@types/node": "^6.0.48",
     "angular2-data-table": "^1.5.0",
     "angular2-materialize": "^6.2.0",

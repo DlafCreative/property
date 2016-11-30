@@ -93,9 +93,9 @@ export class EditorComponent {
     }
 
     ngOnDestroy() {
-        /*if (!confirm('Modifications will be lost')) { //@todo : implement
+        if (!confirm('Modifications will be lost')) { //@todo : implement
             return false;
-        }*/
+        }
         this.formPartParamSub$.unsubscribe();
     }
 

@@ -12,6 +12,7 @@ export class SessionActions {
 
     static SET_USER_DATA = 'SET_USER_DATA';
     static SET_PROCESSING = 'SET_PROCESSING';
+    static USER_LOGOUT = 'USER_LOGOUT';
 
     constructor(
         private ngRedux: NgRedux<IAppState>, 
@@ -38,7 +39,7 @@ export class SessionActions {
                 }
                 // @todo : return error message to Alert Service
                 else {
-                    Materialize.toast(data.error, 3000);
+                    Materialize.toast(data.error_description, 4000);
                 }                
             },
             // @Todo : handle Observable errors and return error to message service
@@ -49,7 +50,7 @@ export class SessionActions {
     }
 
     logout() {
-        this.ngRedux.dispatch({ type: 'USER_LOGOUT'});
+        this.ngRedux.dispatch({ type: SessionActions.USER_LOGOUT });
         localStorage.removeItem('prop_access_token');
         this.httpClient.flushAuthHeaders();
         this.router.navigate(['/']);

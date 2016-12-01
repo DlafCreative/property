@@ -27,14 +27,22 @@
 				</nav>
 				<div class="collection-table-wrapper">
 					<p-dataTable [value]="claimFiles" class="prop-datatable">
-						<p-column field="attributes.wan" header="ID"></p-column>
+						<p-column header="ID du dossier">							
+							<template let-claimfile="rowData.attributes" pTemplate type="body">
+								{{ claimfile.wan | stringAerator }}
+							</template>
+						</p-column>
 						<p-column field="attributes.customerInformation.customerName" header="Customer Name"></p-column>
 						<p-column field="attributes.customerInformation.customerNumber" header="Customer Number"></p-column>
 						<p-column field="attributes.contract.contractNumber" header="Contract Number"></p-column>
-						<p-column field="attributes.claimInformation.dateOfLoss" header="Date of Event"></p-column>
+						<p-column header="Date of Event">
+							<template let-claimfile="rowData.attributes" pTemplate type="body">
+								{{ claimfile.claimInformation.dateOfLoss | date:"dd/MM/y"}}
+							</template>
+						</p-column>
 						<p-column header="Damage Cause">
 							<template let-claimfile="rowData.attributes" pTemplate type="body">
-								{{ claimfile.breContext?.coverage?.name | naLabel:"-" }}
+								{{ claimfile.coverage?.label | naLabel:"-" }}
 							</template>
 						</p-column>
 						<p-column field="attributes.status.label" header="Status"></p-column>

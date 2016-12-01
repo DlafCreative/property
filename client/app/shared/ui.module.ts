@@ -29,7 +29,8 @@ import { DropdownModule } from 'primeng/primeng';
 /** Import Property components */
 import { KpiComponent, KpiContainerComponent } from './kpi';
 
-import { NaLabelPipe } from './pipes';
+import { NaLabelPipe } 			from './pipes';
+import { StringAeratorPipe } 	from './pipes';
 
 @NgModule({
 	imports: [
@@ -40,13 +41,15 @@ import { NaLabelPipe } from './pipes';
 	declarations:   [ 
 		MaterializeDirective,
 		KpiComponent, KpiContainerComponent,
-		NaLabelPipe
+		NaLabelPipe,
+		StringAeratorPipe
 	],
 	exports: 		[ 
 		MaterializeDirective, MaterialModule,
 		DropdownModule,
 		KpiComponent, KpiContainerComponent,
-		NaLabelPipe
+		NaLabelPipe,
+		StringAeratorPipe
 	]
 })
 export class UIModule {}

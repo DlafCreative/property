@@ -51,6 +51,11 @@ export class ClaimFileActions {
             }
         )
     }
+
+    goToClaimFile(claimFile: ClaimFile) {
+        this.ngRedux.dispatch({ type: ClaimFileActions.SET_CURRENT_CLAIMFILE, payload: { currentClaimFile: claimFile } });
+        this.router.navigate(['claimfile', claimFile.wan ]);
+    }
     
     getCoverages() {
         this.claimFileService.getCoverages().subscribe(

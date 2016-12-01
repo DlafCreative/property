@@ -46,4 +46,8 @@ export class ClaimFilesPageComponent {
             }
         )
 	}
+
+    onRowSelect(event) {
+        this.claimFileActions.goToClaimFile(event.data.attributes);
+    }
 }

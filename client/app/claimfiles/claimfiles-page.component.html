@@ -13,7 +13,7 @@
 						</ul>
 						<form class="right">
 							<div class="input-field">
-							<input id="search" type="search" placeholder="Search ..." required>
+							<input #searchKey id="search" type="search" placeholder="Rechercher ..." required>
 							<label for="search"><i class="material-icons">search</i></label>
 							<i class="material-icons">close</i>
 							</div>
@@ -21,7 +21,7 @@
 					</div>
 				</nav>
 				<div class="collection-table-wrapper">
-					<p-dataTable [value]="claimFiles" class="prop-datatable" selectionMode="single" (onRowSelect)="onRowSelect($event)">
+					<p-dataTable [value]="claimFiles" class="prop-datatable" selectionMode="single" (onRowSelect)="onRowSelect($event)" [globalFilter]="searchKey">
 						<p-column header="ID du dossier">							
 							<template let-claimfile="rowData.attributes" pTemplate type="body">
 								{{ claimfile.wan | stringAerator }}

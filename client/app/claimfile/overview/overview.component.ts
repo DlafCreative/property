@@ -12,7 +12,7 @@ import { Observable }               from 'rxjs';
 })
 export class OverviewComponent {
 
-    @HostBinding('class.prop-container') true;
+    @HostBinding('class.prop-container-wide')
 
     @select(['claimFile', 'currentClaimFile']) claimFile$: Observable<ClaimFile>;
     

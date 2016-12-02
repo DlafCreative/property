@@ -111,46 +111,6 @@ prop-header {
 }
 
 /**
- * Main appendix tabs
- * @todo : move it into component scoped styles
- */
-prop-appendix-tabs {
-    margin-bottom: 1em;
-
-    md-tab-group { // :host
-        align-items: center;
-
-        .md-tab-header {
-            background-color: @bg_color_darken;
-            border-radius: @border_radius;
-            width: 100%;
-            max-width: @container_max_width;
-
-            .md-tab-label {
-                display: flex;
-                flex: 1;
-                justify-content: center;
-                padding: 0;
-                opacity: 1; // override md tab opacity
-                a {
-                    flex: 1;
-                    color: @medium_text_color;
-                }
-
-                /** Active tab */
-                &.md-tab-active {
-                    background-color: @bg_color_medium;
-                    a:active, a:visited, a:focus {
-                        color: @primary_color;
-                    }
-                }
-            }
-
-        }
-    }
-}
-
-/**
  * UI classes
  */
 .success {

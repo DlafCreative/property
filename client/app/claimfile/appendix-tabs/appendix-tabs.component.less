@@ -1,0 +1,36 @@
+@import '../../../assets/css/constants.less';
+
+:host {
+
+    md-tab-group { // :host
+        align-items: center;
+
+        .md-tab-header {
+            background-color: @bg_color_darken;
+            border-radius: @border_radius;
+            width: 100%;
+
+            .md-tab-label {
+                display: flex;
+                flex: 1;
+                justify-content: center;
+                padding: 0;
+                opacity: 1; // override md tab opacity
+                a {
+                    flex: 1;
+                    color: @medium_text_color;
+                    text-decoration: none;
+                }
+
+                /** Active tab */
+                &.md-tab-active {
+                    background-color: @bg_color_medium;
+                    a:active, a:visited, a:focus {
+                        color: @primary_color;
+                    }
+                }
+            }
+
+        }
+    }
+}

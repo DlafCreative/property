@@ -1,17 +1,23 @@
+@import '../../../assets/css/constants.less';
 /**
  * Kpi container component
  */
-.kpi-container {
-    display: flex;
-    justify-content: space-between;
-    padding-left: 10px;
-    margin-bottom: 1em;
+:host {
 
-    prop-kpi { // Define styles of child KPIs
-        flex: 1;
+    background-color: @bg_inversed_color;
+    padding: 1em;
+    
+    .kpi-container {
         display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        margin-right: 10px;
+        justify-content: space-between;
+
+        prop-kpi { // Define styles of child KPIs
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            margin-right: 10px;
+        }
     }
+
 }

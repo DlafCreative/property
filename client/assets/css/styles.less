@@ -19,7 +19,7 @@ prop-header {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding-top: 1em;
+    padding-top: @default_spacing;
 
     &,main {
         background-color: @bg_color;
@@ -47,6 +47,7 @@ prop-header {
 }
 .prop-container-wide { /* Full width content */
     flex: 1;
+    padding: 0 @default_spacing;
 }
 .ui-state-hover {
     cursor: pointer;

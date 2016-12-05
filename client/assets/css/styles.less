@@ -183,14 +183,15 @@ prop-header {
         fieldset {
             flex: 1;
             min-width: 500px;
+            margin: 0 6px;
         }
     }
 
     fieldset {
-        border-top: 1px solid @primary_color;
-        border-right: none;
+        border-top: 1px solid fade(@primary_color, 50%);
+        border-left: 1px solid fade(@primary_color, 50%);
         border-bottom: none;
-        border-left: none;
+        border-right: none;
 
         legend {
             color: @primary_color;
@@ -218,20 +219,33 @@ prop-header {
                 line-height: @input_height;
             }
             .control__input-wrapper {
-                &>input, label.ui-dropdown-label {
+
+                &>input, label.ui-dropdown-label, textarea {
                     margin: 0;
-                    height: @input_height;
-                    line-height: @input_height;
-                    background-color: @bg_color_bright;
+                    border: none;
                     border-bottom: 1px solid @border_color;
+                    background-color: @bg_color_bright;
+                    color: @primary_color;
                     border-radius: @border_radius;
                     border-bottom-left-radius: 0;
                     border-bottom-right-radius: 0;
-                    color: @primary_color;
+
+                }
+                &>input, label.ui-dropdown-label {
+                    height: @input_height;
+                    line-height: @input_height;
                     padding: 0 @input_padding;
                     &:focus {
                         border-bottom: 1px solid @primary_color;
                         box-shadow: 0 1px 0 0 @primary_color;
+                    }
+                }
+                textarea {
+                    width: 20em;
+                    height: 15em;
+                    &:focus {
+                        outline: none;
+                        border: 2px solid @primary_color;
                     }
                 }
             }
@@ -319,6 +333,16 @@ prop-header {
                             }
                         }
                     }
+                }
+            }
+
+            /** Textarea modifier */
+            &.control-wrapper--textarea {
+                display: flex;
+                flex-direction: row;
+                .control__input-wrapper {
+                    flex: 1;
+                    textarea { width: 100%; }
                 }
             }
         }

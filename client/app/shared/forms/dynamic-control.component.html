@@ -1,4 +1,4 @@
-<div [formGroup]="form" class="control-wrapper">
+<div [formGroup]="form" class="control-wrapper control-wrapper--{{ control.controlType }}">
     <label [attr.for]="control.key" class="control__label col s4">{{control.label}}</label>
     <div [ngSwitch]="control.controlType" class="control__input-wrapper col s4">
 

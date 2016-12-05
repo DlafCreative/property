@@ -276,6 +276,7 @@ prop-header {
                         width: 100%;
                         float: left;
                         text-align: center;
+                        font-size: 1rem;
                     }
 
                     .ui-dropdown-trigger {
@@ -308,7 +309,13 @@ prop-header {
                             padding: @input_padding;
                             .ui-dropdown-item {
                                 color: @medium_text_color;
-                                font-size: 0.8em;                                
+                                font-size: 1em;
+                                &:not(:empty) {
+                                    padding: 4px;
+                                }
+                                &:empty {
+                                    padding: 0;
+                                }                      
                             }
                         }
                     }

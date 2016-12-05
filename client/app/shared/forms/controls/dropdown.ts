@@ -6,9 +6,11 @@ export class Dropdown extends ControlBase<string> {
 
     constructor(options: {} = {}) {
         super(options);
+        var blankOption, fullOptions;
         if (options['choices']){
-            options['choices'][''] = '';
+            blankOption = { '': 'Choisissez' };
+            fullOptions = Object.assign({}, blankOption, options['choices']);
         }
-        this.choices = options['choices'] ||  [];
+        this.choices = fullOptions ||  [];
     }
 }

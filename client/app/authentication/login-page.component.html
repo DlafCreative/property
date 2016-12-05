@@ -1,6 +1,7 @@
 <div class="login-page-wrapper">
 	<div class="login-box-wrapper valign-wrapper row">
-		<div class="login-box col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">		
+		<!--<div class="login-box col card hoverable s10 pull-s1 m6 pull-m3 l4 pull-l4">-->		
+		<div class="login-box col card hoverable">		
 			<form>
 				<div class="card-content">
 					<span class="card-title">Identification</span>
@@ -37,7 +38,7 @@
 							    </div>
 						  	</div>
 						</div>
-						<div class="col s4">
+						<div class="col s4 center-align">
 							<button type="submit" class="waves-effect waves-light btn orange" (click)="onSubmit()" [disabled]="isProcessing | async" >Login</button>
 						</div>
 					</div>

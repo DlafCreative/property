@@ -4,12 +4,14 @@
 	/* Background */
 	.login-page-wrapper {
 		height: 100%;	
-		background: url('../../assets/images/background_bright.jpg') no-repeat;
+		background: url('../../assets/images/background_bright.jpg') no-repeat center fixed;
+		-webkit-background-size: cover; /* pour anciens Chrome et Safari */
 		background-size: cover;
 	}
 	/* Login box */
 	.login-box {
-		margin-top: 25vh;
+		margin: 25vh auto;
+		min-width: 376px;
 	}
 	.login-box .loader-wrapper {
 		height: 36px;

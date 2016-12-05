@@ -24,13 +24,15 @@ import { select }                   from 'ng2-redux';
 })
 export class EditorComponent {
 
-    @HostBinding('class.prop-container') true;
+    @HostBinding('class.prop-container-wide')
 
     /** Observable of form part parameter in the url */
     private formPartParamSub$: any
 
     /** Form part to display */
     private form: string;
+
+    private currentForm;
 
     /**
      * Links to form components
@@ -42,7 +44,7 @@ export class EditorComponent {
     private contractForm: ContractFormComponent;
 
     @ViewChild(ClaimFileFormComponent)
-    private claimFileForm: ClaimFileFormComponent;
+    private claimfileForm: ClaimFileFormComponent;
 
     @ViewChild(DamageFormComponent)
     private damageForm: DamageFormComponent;
@@ -58,6 +60,7 @@ export class EditorComponent {
     ngOnInit() {
         this.formPartParamSub$ = this.route.params.subscribe((params) => {
             this.form = params['form'];
+            this.currentForm = this[`${params['form']}Form`];
         });
     }
 
@@ -66,7 +69,7 @@ export class EditorComponent {
         let claimFileId = state.claimFile.currentClaimFile.wan ? state.claimFile.currentClaimFile.wan : 
                             null;
 
-        let allForms = [this.customerForm, this.contractForm, this.claimFileForm, this.damageForm];
+        let allForms = [this.customerForm, this.contractForm, this.claimfileForm, this.damageForm];
         let formToSubmit = [];
         let formInvalidFlag = false;
 

@@ -13,9 +13,14 @@ import { FormPartBaseComponent }    from './form-part-base.component';
 export class DamageFormComponent extends FormPartBaseComponent {
 
     /**
+     * Form title
+     */
+    title = 'Description du risque endommagé';
+
+    /**
      * Form part name, required by the API
      */
-    context: string = 'DescriptionOfRisk';
+    context = 'DescriptionOfRisk';
 
     constructor(formPartService: FormPartService) { 
         super(formPartService);

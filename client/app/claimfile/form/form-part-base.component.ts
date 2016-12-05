@@ -26,6 +26,11 @@ export class FormPartBaseComponent {
     claimFileId: string;
 
     /**
+     * Form title
+     */
+    protected title: string;
+
+    /**
      * Form part name, required by the API
      */
     protected context: string;
@@ -50,6 +55,10 @@ export class FormPartBaseComponent {
 
     getContext() {
         return this.context;
+    }
+
+    getTitle() {
+        return this.title;
     }
 
     /**

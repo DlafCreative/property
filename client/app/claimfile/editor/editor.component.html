@@ -6,34 +6,32 @@
                     <a href="#" [routerLink]="['../../overview']"><i class="material-icons">arrow_back</i></a>
                 </li>
             </ul>
+            <h1 id="formTitle" class="brand-logo center">{{ this.currentForm.getTitle() }}</h1>
         </div>    
     </nav>
     <div id="editorContent">
         <prop-customer-form [hidden]="form !== 'customer'" [claimFileId]="claimFileId$ | async"></prop-customer-form>
         <prop-contract-form [hidden]="form !== 'contract'" [claimFileId]="claimFileId$ | async"></prop-contract-form>
         <prop-claimfile-form [hidden]="form !== 'claimfile'" [claimFileId]="claimFileId$ | async"></prop-claimfile-form>
-        <prop-damagerisk-form [hidden]="form !== 'damage-risk'" [claimFileId]="claimFileId$ | async"></prop-damagerisk-form>
-        <div [hidden]="form !== 'mission'">
-            <h4>To be continued ...</h4>
-        </div>
+        <prop-damagerisk-form [hidden]="form !== 'damage'" [claimFileId]="claimFileId$ | async"></prop-damagerisk-form>
     </div>
 </section>
 <div id="formSwitcher"><!-- @todo : move to a component -->
     <a [routerLink]="['../customer']" 
         class="switcher prop-tile" [class.switcher-active]="form === 'customer'">
-        Customer
+        Information Client
     </a>
     <a [routerLink]="['../contract']" 
         class="switcher prop-tile" [class.switcher-active]="form === 'contract'">
-        Contract
+        Contrat
     </a>
     <a [routerLink]="['../claimfile']" 
         class="switcher prop-tile" [class.switcher-active]="form === 'claimfile'">
-        Claim File
+        Contexte
     </a>
-    <a [routerLink]="['../damage-risk']" 
-        class="switcher prop-tile" [class.switcher-active]="form === 'damage-risk'">
-        Damage Risk
+    <a [routerLink]="['../damage']" 
+        class="switcher prop-tile" [class.switcher-active]="form === 'damage'">
+        Risque endommagé
     </a>
     <div class="switcher">
         <button class="btn btn-large waves-effect waves-light success" (click)="submitAll()">

@@ -13,9 +13,14 @@ import { FormPartBaseComponent }    from './form-part-base.component';
 export class CustomerFormComponent extends FormPartBaseComponent {
 
     /**
+     * Form title
+     */
+    title = 'Information client';
+
+    /**
      * Form part name, required by the API
      */
-    context: string = 'CustomerInformation';
+    context = 'CustomerInformation';
 
     constructor(formPartService: FormPartService) {    
         super(formPartService);

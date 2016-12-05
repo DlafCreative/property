@@ -13,9 +13,14 @@ import { FormPartBaseComponent }    from './form-part-base.component';
 export class ClaimFileFormComponent extends FormPartBaseComponent {
 
     /**
+     * Form title
+     */
+    title = 'Contexte';
+
+    /**
      * Form part name, required by the API
      */
-    context: string = 'ClaimInformation';
+    context = 'ClaimInformation';
 
     constructor(formPartService: FormPartService) { 
         super(formPartService);

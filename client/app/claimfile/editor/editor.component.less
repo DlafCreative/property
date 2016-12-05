@@ -33,7 +33,12 @@
                     height: @header_height;
                     line-height: @header_height;             
                 }   
-            }    
+            }
+            #formTitle {
+                margin: 0;
+                line-height: 50px;
+                font-size: 2rem;
+            }
         }
 
         #editorContent {
@@ -45,7 +50,8 @@
     #formSwitcher {
         display: flex;
         flex-direction: column;
-        min-width: 20%;
+        min-width: 10%;
+        max-width: 250px;
         
         .switcher {
             flex: 1;

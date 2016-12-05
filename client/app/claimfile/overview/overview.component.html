@@ -85,7 +85,7 @@
                 <div class="prop-form prop-form--disabled">
                     <div class="control-wrapper row">
                         <label class="control__label col s6">Numéro du sinistre de Solera</label>
-                        <span class="control__value col s6">{{ (claimFile$ | async)?.claimInformation?.soleraClaimNumber | stringAerator | naLabel:"-" }}</span>
+                        <span class="control__value col s6">{{ (claimFile$ | async)?.wan | stringAerator | naLabel:"-" }}</span>
                     </div>
                     <div class="control-wrapper row">
                         <label class="control__label col s6">Numéro du sinistre référencé</label>

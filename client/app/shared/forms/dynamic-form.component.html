@@ -1,16 +1,14 @@
-<div>
-    <form *ngIf="formGroup" (ngSubmit)="onSubmit()" [formGroup]="formGroup" class="prop-form">
-        <fieldset *ngFor="let fieldset of formDescription">
-            <legend>{{ fieldset.legend }}</legend>
-            <div *ngFor="let control of fieldset.fields" class="form-row row">
-                <dynamic-control [control]="control" [form]="formGroup"></dynamic-control>
-            </div>
-        </fieldset>
-        <div class="form-row" *ngIf="submitButton">
-            <button type="submit" [disabled]="!formGroup.valid" class="btn waves-effect waves-light success">Save</button>
+<form *ngIf="formGroup" (ngSubmit)="onSubmit()" [formGroup]="formGroup" class="prop-form">
+    <fieldset *ngFor="let fieldset of formDescription">
+        <legend>{{ fieldset.legend }}</legend>
+        <div *ngFor="let control of fieldset.fields" class="form-row row">
+            <dynamic-control [control]="control" [form]="formGroup"></dynamic-control>
         </div>
-    </form>
-    <div *ngIf="payLoad" class="form-row">
-        <strong>Saved the following values</strong><br>{{payLoad}}
+    </fieldset>
+    <div class="form-row" *ngIf="submitButton">
+        <button type="submit" [disabled]="!formGroup.valid" class="btn waves-effect waves-light success">Save</button>
     </div>
+</form>
+<div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br>{{payLoad}}
 </div>

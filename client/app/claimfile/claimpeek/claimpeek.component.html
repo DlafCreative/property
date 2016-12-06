@@ -3,18 +3,18 @@
         <span class="databanner__label">CLAIM : {{ (currentClaimFile | async)?.wan }}</span>
     </div>
     <div class="databanner__item">
-        <span class="databanner__label">Insurance company : {{ (currentClaimFile | async)?.contract.insuranceCompanyName | naLabel }}</span>
+        <span class="databanner__label">Insurance company : {{ (currentClaimFile | async)?.contract?.insuranceCompanyName | naLabel }}</span>
     </div>
     <div class="databanner__item">
-        <span class="databanner__label">Insured : {{ (currentClaimFile | async)?.customerInformation.customerName | naLabel }}</span>
+        <span class="databanner__label">Insured : {{ (currentClaimFile | async)?.customerInformation?.customerName | naLabel }}</span>
     </div>
     <div class="databanner__item">
         <span class="databanner__label">Evt : {{ (currentClaimFile | async)?.coverage?.label | naLabel }}</span>
     </div>
     <div class="databanner__item">
-        <span class="databanner__label">Product : {{ (currentClaimFile | async)?.contract.typeOfContract | naLabel }}</span>
+        <span class="databanner__label">Product : {{ (currentClaimFile | async)?.contract?.typeOfContract?.label | naLabel }}</span>
     </div>
     <div class="databanner__item">
-        <span class="databanner__label">Date : {{ (currentClaimFile | async)?.claimInformation.dateOfLoss | date:"dd/MM/y" | naLabel }}</span>
+        <span class="databanner__label">Date : {{ (currentClaimFile | async)?.claimInformation?.dateOfLoss | date:"dd/MM/y" | naLabel }}</span>
     </div>
 </div>

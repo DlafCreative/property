@@ -21,15 +21,15 @@ export class ClaimFilesPageComponent {
     claimFiles: any[] = [];  //@todo: any[] = []; => ok, any[] => ko
 
     kpis: Kpi[] = [ // @todo : get KPIs definition from service
-        new Kpi('Open Claimfiles', 5),
-        new Kpi('Validity of policy', 2, null, 'success'),
-        new Kpi('Coverage checking', 2, null, 'success'),
-        new Kpi('Damage estimation', 1, null, 'primary'),
-        new Kpi('Indemnities evaluation', 2, null, 'primary'),
-        new Kpi('Repairer assignment', 2, null, 'warning'),
-        new Kpi('Expert assignment', 1, null, 'warning'),
-        new Kpi('Loss settlement', 0, null, 'warning'),
-        new Kpi('Closing', 4),
+        new Kpi('Réception de la déclaration', 5),
+        new Kpi('Vérification du contrat', 2, null, 'success'),
+        new Kpi('Validation des garanties', 2, null, 'success'),
+        new Kpi('Estimation des dommages', 1, null, 'primary'),
+        new Kpi('Détermination indemnité', 2, null, 'primary'),
+        new Kpi('Missionnement d\'un artisan', 2, null, 'warning'),
+        new Kpi('Missionnement d\'un expert', 1, null, 'warning'),
+        new Kpi('Règlement', 0, null, 'warning'),
+        new Kpi('Clôturer dossier', 4),
     ];
 
 	constructor(

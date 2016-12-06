@@ -7,7 +7,7 @@
 						<ul class="hide-on-med-and-down left">
 							<li>				
 								<a [routerLink]="['/claimfile/create']">
-									<i class="material-icons left">create_new_folder</i>Open claimfile
+									<i class="material-icons left">create_new_folder</i>Ouvrir un sinistre
 								</a>
 							</li>
 						</ul>
@@ -22,25 +22,25 @@
 				</nav>
 				<div class="collection-table-wrapper">
 					<p-dataTable [value]="claimFiles" class="prop-datatable" selectionMode="single" (onRowSelect)="onRowSelect($event)" [globalFilter]="searchKey">
-						<p-column header="ID du dossier">							
+						<p-column header="Numéro du Dossier (WAN)">							
 							<template let-claimfile="rowData.attributes" pTemplate type="body">
 								{{ claimfile.wan | stringAerator }}
 							</template>
 						</p-column>
-						<p-column field="attributes.customerInformation.customerName" header="Customer Name"></p-column>
-						<p-column field="attributes.customerInformation.customerNumber" header="Customer Number"></p-column>
-						<p-column field="attributes.contract.contractNumber" header="Contract Number"></p-column>
-						<p-column header="Date of Event">
+						<p-column field="attributes.customerInformation.customerName" header="Nom de l'assuré"></p-column>
+						<p-column field="attributes.customerInformation.customerNumber" header="Numéro de l'assuré"></p-column>
+						<p-column field="attributes.contract.contractNumber" header="Numéro de contrat"></p-column>
+						<p-column header="Date de survenance">
 							<template let-claimfile="rowData.attributes" pTemplate type="body">
 								{{ claimfile.claimInformation.dateOfLoss | date:"dd/MM/y"}}
 							</template>
 						</p-column>
-						<p-column header="Damage Cause">
+						<p-column header="Type de sinistre">
 							<template let-claimfile="rowData.attributes" pTemplate type="body">
 								{{ claimfile.coverage?.label | naLabel:"-" }}
 							</template>
 						</p-column>
-						<p-column field="attributes.status.label" header="Status"></p-column>
+						<p-column field="attributes.status.label" header="État du dossier"></p-column>
 						<p-column styleClass="col-button">
 							<template pTemplate type="header"></template>
 							<template let-claimfile="rowData.attributes" pTemplate type="body">
@@ -54,11 +54,11 @@
 			<div class="filter-wrapper">				
 				<div class="prop-tile">
 					<div class="prop-tile__header">
-						Filters
+						Recherche
 					</div>
 					<div class="prop-tile__content">
 						<div class="filter">
-							<h4>DAMAGE CAUSES</h4>
+							<h4>TYPE DE SINISTRE</h4>
 							<div class="filter-kpi">
 								<div class="filter-figure">
 									<i class="material-icons">build</i>
@@ -78,11 +78,11 @@
 							</div>
 						</div>
 						<div class="filter">
-							<h4>STATUS</h4>
+							<h4>PHASES</h4>
 							<div class="filter-kpi">
 								<div class="filter-figure">
 									<i class="material-icons">hourglass_empty</i>
-									<span class="filter-title">PENDING</span>
+									<span class="filter-title">EN ATTENTE</span>
 								</div>
 								<div class="filter-kpi">11</div>
 							</div>

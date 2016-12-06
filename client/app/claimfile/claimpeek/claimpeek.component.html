@@ -1,6 +1,6 @@
 <div class="databanner-wrapper">
     <div class="databanner__item">
-        <span class="databanner__label">CLAIM : {{ (currentClaimFile | async)?.wan }}</span>
+        <span class="databanner__label">CLAIM : {{ (currentClaimFile | async)?.wan | stringAerator | naLabel:"-" }}</span>
     </div>
     <div class="databanner__item">
         <span class="databanner__label">Insurance company : {{ (currentClaimFile | async)?.contract?.insuranceCompanyName | naLabel }}</span>

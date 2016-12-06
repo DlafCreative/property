@@ -50,9 +50,7 @@ export class FormPartBaseComponent {
     }
 
     ngOnInit() {
-        //this.formMetadata$ = this.formPartService.getFormMetadata(this.claimFileId, this.context);
-        let claimFileId = 'FR08P00000054';
-        this.formMetadata$ = this.formPartService.getFormMetadata(claimFileId, this.context);
+        this.formMetadata$ = this.formPartService.getFormMetadata(this.claimFileId, this.context);
     }
 
     getContext() {

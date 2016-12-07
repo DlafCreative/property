@@ -25,14 +25,14 @@ module.exports = webpackMerge(commonConfig, {
     new webpack.optimize.DedupePlugin(),
     /** @todo : commented, as it breaks the build process. Resolve it */
     new webpack.optimize.UglifyJsPlugin({ // https://github.com/angular/angular/issues/10618
-      beautify: false,    //prod
       mangle: { 
-        screw_ie8 : true  // prod
+        screw_ie8 : true
       }, 
       compress: { 
-        screw_ie8: true   // prod
+        screw_ie8: true
       }, 
-      comments: false     //prod
+      comments: false,
+      beautify: false
     }),
     new ExtractTextPlugin('[name].[hash].css'),
     new webpack.DefinePlugin({

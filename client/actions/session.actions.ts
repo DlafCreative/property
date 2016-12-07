@@ -3,7 +3,8 @@ import { NgRedux }          from 'ng2-redux';
 import { IAppState }        from '../store';
 
 import { SessionService }   from '../app/shared';
-import { HttpClient }       from '../app/shared';    
+import { HttpClient }       from '../app/shared';
+import { TalkService }      from '../app/shared'    
 
 import { Router }           from '@angular/router';
 
@@ -18,7 +19,8 @@ export class SessionActions {
         private ngRedux: NgRedux<IAppState>, 
         private sessionService: SessionService,
         private httpClient: HttpClient,
-        private router: Router) {}
+        private router: Router,
+        private talk: TalkService) {}
 
     loginUser(credentials) {
         this.setProcessing(true);
@@ -39,7 +41,7 @@ export class SessionActions {
                 }
                 // @todo : return error message to Alert Service
                 else {
-                    Materialize.toast(data.error_description, 4000);
+                    this.talk.toast(data.error_description);
                 }                
             },
             // @Todo : handle Observable errors and return error to message service

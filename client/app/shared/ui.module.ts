@@ -26,8 +26,15 @@ import { MaterialModule } from '@angular/material';
 /** Import PrimeNG components */
 import { DropdownModule } from 'primeng/primeng';
 
+/** Import Talk components */
+import { 
+	TalkService,
+	TalkDialogComponent } 	from './talk';
+
 /** Import Property components */
-import { KpiComponent, KpiContainerComponent } from './kpi';
+import { 
+	KpiComponent, 
+	KpiContainerComponent } from './kpi';
 
 import { NaLabelPipe } 			from './pipes';
 import { StringAeratorPipe } 	from './pipes';
@@ -42,7 +49,14 @@ import { StringAeratorPipe } 	from './pipes';
 		MaterializeDirective,
 		KpiComponent, KpiContainerComponent,
 		NaLabelPipe,
-		StringAeratorPipe
+		StringAeratorPipe,
+		TalkDialogComponent
+	],
+	entryComponents: [
+		TalkDialogComponent
+	],
+	providers: [
+		TalkService
 	],
 	exports: 		[ 
 		MaterializeDirective, MaterialModule,

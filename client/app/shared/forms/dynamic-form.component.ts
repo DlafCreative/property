@@ -1,4 +1,4 @@
-import { Component, Input }     from '@angular/core';
+import { Component, Input, SimpleChanges }     from '@angular/core';
 import { FormGroup }            from '@angular/forms';
 
 import { ControlBase }          from './controls/control-base';
@@ -31,13 +31,16 @@ export class DynamicFormComponent {
 
     constructor(private formGeneratorService: FormGeneratorService) { }
 
-    ngOnInit() { 
-        this.metadataObs.subscribe(
-            metadata => {
-                this.formGroup = this.formGeneratorService.toFormGroup(metadata);
-                this.formDescription = metadata;
-            }
-        )        
+    ngOnChanges(changes: SimpleChanges) {
+        /** Async metadataObs */  
+        if (changes['metadataObs'].currentValue) {
+            this.metadataObs.subscribe(
+                metadata => {
+                    this.formGroup = this.formGeneratorService.toFormGroup(metadata);
+                    this.formDescription = metadata;
+                }
+            )
+        }
     }
 
     onSubmit() {

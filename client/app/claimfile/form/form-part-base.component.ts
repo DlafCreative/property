@@ -50,12 +50,11 @@ export class FormPartBaseComponent {
         protected formPartService: FormPartService) { 
     }
 
-    ngOnInit() {
-        //this.formMetadata$ = this.formPartService.getFormMetadata(this.claimFileId, this.context);
-    }
-
     ngOnChanges(changes: SimpleChanges) {
-        console.log(changes);
+        /** Async claimFileId */
+        if (changes['claimFileId'].currentValue) {
+            this.formMetadata$ = this.formPartService.getFormMetadata(this.claimFileId, this.context);
+        }
     }
 
     getContext() {

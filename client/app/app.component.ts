@@ -16,7 +16,7 @@ export class AppComponent {
 
     ngOnInit() {
         this.router.events.subscribe((currentRoute) => {
-            this.isOnLoginPage = !(currentRoute.url !== '/');
+            this.isOnLoginPage = !(currentRoute.url !== '/' && currentRoute.url !== '/login');
         });
     }
 }

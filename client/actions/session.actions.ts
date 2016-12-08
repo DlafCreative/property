@@ -56,7 +56,8 @@ export class SessionActions {
         this.ngRedux.dispatch({ type: SessionActions.USER_LOGOUT });
         localStorage.removeItem('prop_access_token');
         this.httpClient.flushAuthHeaders();
-        this.router.navigate(['/']);
+        //this.router.navigateByUrl('/claimfiles'); // Cause weird behavior
+        window.location.href = '/login';
     }
 
     setProcessing(flag: boolean) {

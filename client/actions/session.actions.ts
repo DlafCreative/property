@@ -4,7 +4,7 @@ import { IAppState }        from '../store';
 
 import { SessionService }   from '../app/shared';
 import { HttpClient }       from '../app/shared';
-import { TalkService }      from '../app/shared'    
+import { TalkService }      from '../app/shared';    
 
 import { Router }           from '@angular/router';
 
@@ -46,7 +46,8 @@ export class SessionActions {
             },
             // @Todo : handle Observable errors and return error to message service
             (error) => {
-                console.log(error);
+                this.setProcessing(false);
+                this.talk.alert(error);
             }
         );
     }

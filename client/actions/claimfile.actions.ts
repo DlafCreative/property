@@ -5,6 +5,7 @@ import { IAppState }            from '../store';
 import { ClaimFileService }     from '../app/shared';
 import { StepService }          from '../app/shared/stepper/step.service';
 import { FormPartService }      from '../app/claimfile/form/form-part.service';
+import { TalkService }          from '../app/shared';
 
 import { ClaimFileDraft }       from '../app/shared';
 import { ClaimFile }            from '../app/shared';
@@ -27,8 +28,8 @@ export class ClaimFileActions {
         private claimFileService: ClaimFileService,
         private stepService: StepService,
         private formPartService: FormPartService,
-        private router: Router
-    ) {}
+        private router: Router,
+        private talk: TalkService) {}
 
     initClaimFile(claimFileDraft: ClaimFileDraft) {
         this.setSubmittingDraft(true);
@@ -36,6 +37,10 @@ export class ClaimFileActions {
             (claimFile: ClaimFile) => {
                 this.ngRedux.dispatch({ type: ClaimFileActions.SET_CURRENT_CLAIMFILE, payload: { currentClaimFile: claimFile} });
                 this.router.navigate(['/claimfile', claimFile.wan]);
+            },
+            (error) => {
+                this.talk.alert(error, 'Erreur');        
+                this.setSubmittingDraft(false);
             }
         )
     }

@@ -1,7 +1,8 @@
 import { 
     Component, 
     Input, 
-    ViewChild }                 from '@angular/core';
+    ViewChild,
+    SimpleChanges }             from '@angular/core';
 
 import { DynamicFormComponent } from '../../shared/forms/dynamic-form.component';
 
@@ -50,7 +51,11 @@ export class FormPartBaseComponent {
     }
 
     ngOnInit() {
-        this.formMetadata$ = this.formPartService.getFormMetadata(this.claimFileId, this.context);
+        //this.formMetadata$ = this.formPartService.getFormMetadata(this.claimFileId, this.context);
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        console.log(changes);
     }
 
     getContext() {

@@ -34,8 +34,11 @@
         Risque endommagé
     </a>
     <div class="switcher">
-        <button class="btn btn-large waves-effect waves-light success" (click)="submitAll()">
+        <!--<button class="btn btn-large waves-effect waves-light success" (click)="submitAll()">
             <i class="material-icons left">done_all</i>Save all
+        </button>-->
+        <button md-fab color="primary" [disabled]="!globalDirty">
+            <md-icon>done_all</md-icon>    
         </button>
     </div>    
 </div>

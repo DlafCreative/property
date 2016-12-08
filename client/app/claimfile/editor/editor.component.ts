@@ -52,6 +52,9 @@ export class EditorComponent {
     /** Listen to current claimfile ID */
     @select(['claimFile', 'currentClaimFile', 'wan']) claimFileId$: Rx.Observable<string>;
 
+    private allForms = [this.customerForm, this.contractForm, this.claimfileForm, this.damageForm];
+    public globalDirty = false;
+
     constructor(
         private route: ActivatedRoute, 
         private claimFileActions: ClaimFileActions,
@@ -68,12 +71,11 @@ export class EditorComponent {
         let state = this.claimFileActions.getState();
         let claimFileId = state.claimFile.currentClaimFile.wan ? state.claimFile.currentClaimFile.wan : 
                             null;
-
-        let allForms = [this.customerForm, this.contractForm, this.claimfileForm, this.damageForm];
+                            
         let formToSubmit = [];
         let formInvalidFlag = false;
 
-        for (let form of allForms) {
+        for (let form of this.allForms) {
             if (form.isDirty()) {
                 // Check if form is valid
                 if (!form.isValid()) {

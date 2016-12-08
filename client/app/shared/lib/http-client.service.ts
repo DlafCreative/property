@@ -6,6 +6,10 @@ import {
     Response 
 } 	from '@angular/http';
 
+import { JsonApiError } from './jsonapi-error.model';
+
+import * as Rx from 'rxjs';
+
 @Injectable()
 export class HttpClient {
 
@@ -36,11 +40,24 @@ export class HttpClient {
                                     return res.json() || {};
                                 }
                             )
-                            /* @Todo : handle error
-                            .catch()*/
+                            .catch(this._serverError);
     }
 
     request() {}
+
+    /**
+     * Set Authorization key for every request.
+     * (note : unable to make it in the constructor as the service is instanciated before localStorage is set)
+     */
+    setAuthHeaders() {
+        if (!this.reqOptions.headers.has('Authorization') && localStorage.getItem('prop_access_token')) {
+            this.reqOptions.headers.set('Authorization', `Bearer ${localStorage.getItem('prop_access_token')}`);
+        }
+    }
+
+    flushAuthHeaders() {
+        this.reqOptions.headers.delete('Authorization');
+    }
 
     private _buildUrl(path: string) {
         return `${this.apiUrl}${path}`;
@@ -66,16 +83,14 @@ export class HttpClient {
     }
 
     /**
-     * Set Authorization key for every request.
-     * (note : unable to make it in the constructor as the service is instanciated before localStorage is set)
+     * Handle http request errors.
+     * Will throw an Observable of JsonApiError object if error comes straight from the backend
      */
-    setAuthHeaders() {
-        if (!this.reqOptions.headers.has('Authorization') && localStorage.getItem('prop_access_token')) {
-            this.reqOptions.headers.set('Authorization', `Bearer ${localStorage.getItem('prop_access_token')}`);
+    private _serverError(err: any) {
+        if (err instanceof Response) {
+            let apiErrors = err.json().errors ? new JsonApiError(err.json().errors) : null;
+            return Rx.Observable.throw( apiErrors || "Oops, server error :( Check that server is running");
         }
-    }
-
-    flushAuthHeaders() {
-        this.reqOptions.headers.delete('Authorization');
+        return Rx.Observable.throw(err || "Oops, server error :( Check that server is running");
     }
 }

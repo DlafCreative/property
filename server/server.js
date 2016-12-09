@@ -9,7 +9,7 @@ var http = require('http');
 var rickouest = require('request');
 
 /**
- * Define server location
+ * Define backend location
  */
 var argv = require('minimist')(process.argv.slice(2));
 const SERVER_CONFIG = require('../config/server.params');
@@ -20,12 +20,6 @@ if (argv['env'] && argv['env'] === 'dev') {
 var getFullPath = (path) => {
 	return `${server_url}${path}`;
 }
-
-app.set('port', (process.env.PORT || 7000));
-
-app.use('/', express.static(path.join(__dirname, '../dist')));
-app.use('/client', express.static(path.join(__dirname, '../client')));
-app.use('/node_modules', express.static(path.join(__dirname, '../node_modules')));
 
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // Set to json-api format
 //app.use(bodyParser.json()); 
@@ -48,17 +42,13 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.set('port', (process.env.PORT || 7000));
+
+function requestCallback(error, reponse, body) {}
+
 /**
  ****************************** Routes ******************************
  */
-
-/**
- * Entry point (Apache should handle that)
- */
-app.get('/', function(req, res){
-  res.sendFile(path.resolve('dist/index.html'));
-});
-
 /**
  * Authentication
  **/
@@ -79,13 +69,17 @@ app.post('/authenticate', function(req, res){
 	}
 	
 	rickouest(reqOptions, (error, response, body) => {
-		if (!error && response.statusCode == 200) {
-			res.json(body);
+		res.statusCode = (error) ? 503 : response.statusCode;
+		if (res.statusCode === 400) { // Invalid grant, send json-api response
+			body = {
+				errors:[{
+					status: 400,
+					title: response.body.error,
+					detail: response.body.error_description
+				}]
+			}
 		}
-		else {
-			console.log(response);
-			res.send(body);
-		}
+		res.json(body);
 	});
 });
 
@@ -93,7 +87,6 @@ app.post('/authenticate', function(req, res){
  * Get claimfiles
  */
 app.get('/claimfiles', function(req, res){
-	console.log('GET CLAIMFILES')
 	const URI = getFullPath('claimFiles/v1');
 	var reqOptions = {
 		uri: 	URI,
@@ -105,12 +98,13 @@ app.get('/claimfiles', function(req, res){
 	}
 
 	rickouest(reqOptions, (error, response, body) => {
-		if (!error && response.statusCode == 200) {
+		if (!error) {
+			res.statusCode = response.statusCode;
 			res.json(body);
 		}
-		else {
-			console.log(response);
-			res.json(body);
+		else  {
+			res.statusCode = 503;
+			res.json(error);
 		}
 	})
 });
@@ -135,6 +129,7 @@ app.post('/claimfile', function(req, res){
 			res.json(body);
 		}
 		else {
+			res.statusCode = response.statusCode;
 			console.log(response);
 			res.json(body);
 		}
@@ -199,15 +194,14 @@ app.all('/form-part/:claimFileId/:context', (req, res) => {
 		}
 		
 		rickouest(rickouestOptions, (error, response, body) => {
-			if (!error && (typeof response !== "undefined") && response.statusCode == 200) {				
-				if (req.method === 'POST') {
-					/** API return string */
-					body = JSON.parse(body);
-				}
+			if (req.method === 'POST') {
+				body = JSON.parse(body);
+			}
+			if (!error && (typeof response !== "undefined") && response.statusCode == 200) {	
 				res.json(body);
 			}
 			else {
-				console.log(response)
+				res.statusCode = response.statusCode;
 				res.json(body);
 			}
 		});
@@ -271,5 +265,5 @@ app.get('/steps', (req, res) => {
  * Listen to that port
  */
 app.listen(app.get('port'), function() {
-  console.log('Server started: http://localhost:' + app.get('port'));
+  console.log(`Serveur NodeJS démarré sur le port ${app.get('port')}, bravo !`);
 });

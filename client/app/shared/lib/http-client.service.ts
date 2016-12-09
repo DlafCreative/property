@@ -28,18 +28,15 @@ export class HttpClient {
     get(path: string) {
         let fullUrl = this._buildUrl(path);
         return this.http.get(fullUrl, this.reqOptions)
-                        .map(this._mapResponse);
+                            .map(this._mapResponse)
+                            .catch(this._serverError);
     }
 
     post(path: string, payload: any, toJsonApi = false) {
         let fullUrl = this._buildUrl(path);
         payload = toJsonApi ? this._toJsonApi(payload) : payload;
         return this.http.post(fullUrl, payload, this.reqOptions)
-                            .map(
-                                (res) => {
-                                    return res.json() || {};
-                                }
-                            )
+                            .map(this._mapResponse)
                             .catch(this._serverError);
     }
 
@@ -84,13 +81,28 @@ export class HttpClient {
 
     /**
      * Handle http request errors.
-     * Will throw an Observable of JsonApiError object if error comes straight from the backend
+     * There is 3 types of errors based on status code : 
+     * - 0 means Node server does not response.
+     * - > 500 means error comes from the backend (503 when Apache doesn't response)
+     * - All other errors are assumed to be in JsonApi format
+     * @returns Observable of JsonApiError object or string
      */
-    private _serverError(err: any) {
-        if (err instanceof Response) {
-            let apiErrors = err.json().errors ? new JsonApiError(err.json().errors) : null;
-            return Rx.Observable.throw( apiErrors || "Oops, server error :( Check that server is running");
+    private _serverError(err: Response) {
+        let errorObject = null;
+
+        // Backend errors
+        if (err.status >= 500) {
+            errorObject = new JsonApiError([{
+                status: err.status,
+                title: err.statusText,
+                detail: err.statusText
+            }]);            
         }
-        return Rx.Observable.throw(err || "Oops, server error :( Check that server is running");
+        // Json-api errors 
+        else {
+            if (err.status !== 0) // status 0 means that Node is down
+                errorObject = new JsonApiError(err.json().errors);
+        }
+        return Rx.Observable.throw(errorObject || "Oops, server error :( Check that server is running");
     }
 }

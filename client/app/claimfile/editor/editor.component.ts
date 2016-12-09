@@ -53,7 +53,7 @@ export class EditorComponent {
     @select(['claimFile', 'currentClaimFile', 'wan']) claimFileId$: Rx.Observable<string>;
 
     private allForms = [this.customerForm, this.contractForm, this.claimfileForm, this.damageForm];
-    public globalDirty = false;
+    public globalDirty = true;
 
     constructor(
         private route: ActivatedRoute, 

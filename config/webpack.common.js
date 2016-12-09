@@ -71,6 +71,12 @@ module.exports = {
         test: /materialize\.css$/,   
         loaders: ['style-loader', 'css-loader'] 
       },
+        // Loading SCSS
+      {
+        test: /\.scss$/,
+        exclude: helpers.root('node_modules'),
+        loaders: ['style-loader','css-loader' , 'sass-loader']
+      }
     ]
   },
 

@@ -11,7 +11,7 @@
         </p>
     </div>       
     <div *ngIf="type === 'alert'" class="prop-dialog__footer" >
-        <button md-raised-button color="primary" (click)="dialogRef.close('yes')">OK</button>
+        <button md-raised-button color="accent" (click)="dialogRef.close('yes')">OK</button>
     </div>
     <div *ngIf="type === 'confirm'">
         <button type="button" (click)="dialogRef.close('yes')">ANNULER</button>

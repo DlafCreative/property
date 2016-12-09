@@ -38,16 +38,17 @@ export class SessionActions {
                     this.httpClient.setAuthHeaders();
                     // Redirect to dashboard
                     this.router.navigate(['/claimfiles']);
-                }
-                // @todo : return error message to Alert Service
-                else {
-                    this.talk.toast(data.error_description);
-                }                
+                }          
             },
-            // @Todo : handle Observable errors and return error to message service
-            (error) => {
+            (errorObject) => {
                 this.setProcessing(false);
-                this.talk.alert(error);
+                if (errorObject.errors[0].status === 400) {
+                    this.talk.toast(errorObject.errors[0].detail);
+                }
+                else {
+                    this.talk.alert(errorObject);
+                }
+                
             }
         );
     }

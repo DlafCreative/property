@@ -21,6 +21,7 @@ export class ClaimFileActions {
     static SET_COVERAGES = 'SET_COVERAGES';
     static SET_CURRENT_CLAIMFILE = 'SET_CURRENT_CLAIMFILE';
     static CLEAR_CURRENT_CLAIMFILE = 'CLEAR_CURRENT_CLAIMFILE';
+    static SET_CLAIMFILE_COLLECTION = 'SET_CLAIMFILE_COLLECTION';
     static SET_STEPS = 'SET_STEPS';
 
     constructor(
@@ -49,12 +50,23 @@ export class ClaimFileActions {
         this.ngRedux.dispatch({ type: 'IS_SUBMITTING_DRAFT', payload: { isSubmittingDraft: flag } });
     }
 
+    getClaimFiles() {
+        this.claimFileService.getClaimFiles().subscribe(
+            (claimFiles) => {
+                this.ngRedux.dispatch({ type: ClaimFileActions.SET_CLAIMFILE_COLLECTION, payload: { collection: claimFiles } })
+            },
+            (error) => {
+                this.talk.alert(error, 'Erreur');
+            }
+        );
+    }
+
     getClaimFile(id: string) {
         this.claimFileService.getClaimFileById(id).subscribe(
             (claimFile) => {
                 this.ngRedux.dispatch({ type: ClaimFileActions.SET_CURRENT_CLAIMFILE, payload: { currentClaimFile: claimFile} });
             }
-        )
+        );
     }
 
     goToClaimFile(claimFile: ClaimFile) {
@@ -67,7 +79,7 @@ export class ClaimFileActions {
             (body) => {
                 this.ngRedux.dispatch({ type: ClaimFileActions.SET_COVERAGES, payload: { coverages: body.data } });
             }
-        )
+        );
     }
 
     getSteps() {

@@ -1,5 +1,4 @@
 import { Component, HostBinding }   from '@angular/core';
-import { ClaimFileService }         from './../shared/claimfile/claimfile.service';
 import { Kpi }                      from '../shared/kpi/kpi.model'; //@todo : move this import into a service, depending on how the stats are retrieved
 
 import { ClaimFileActions }         from '../../actions';
@@ -18,7 +17,7 @@ export class ClaimFilesPageComponent {
 
     @select(['session', 'access_token']) access_token$: Observable<String>;
 
-    claimFiles: any[] = [];  //@todo: any[] = []; => ok, any[] => ko
+    @select(['claimFiles', 'collection']) claimFiles$: Observable<any>;
 
     kpis: Kpi[] = [ // @todo : get KPIs definition from service
         new Kpi('Réception de la déclaration', 5),
@@ -33,18 +32,14 @@ export class ClaimFilesPageComponent {
     ];
 
 	constructor(
-        private claimFileService: ClaimFileService,
         private claimFileActions: ClaimFileActions) {}
 
 	ngOnInit() {
-        // Reset current claimfile
-        this.claimFileActions.clearCurrentClaimFle();
-
-        this.claimFileService.getClaimFiles().subscribe(
-            (claimFiles) => {
-                this.claimFiles = claimFiles;
-            }
-        )
+        // Retrieve claimfiles
+        let { claimFiles } = this.claimFileActions.getState();
+        if (!claimFiles.collection) {
+            this.claimFileActions.getClaimFiles();
+        }
 	}
 
     onRowSelect(event) {

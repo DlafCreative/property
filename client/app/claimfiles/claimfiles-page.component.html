@@ -21,7 +21,7 @@
 					</div>
 				</nav>
 				<div class="collection-table-wrapper">
-					<p-dataTable [value]="claimFiles" class="prop-datatable" selectionMode="single" (onRowSelect)="onRowSelect($event)" [globalFilter]="searchKey">
+					<p-dataTable [value]="claimFiles$ | async" class="prop-datatable" selectionMode="single" (onRowSelect)="onRowSelect($event)" [globalFilter]="searchKey">
 						<p-column header="Numéro du Dossier (WAN)">							
 							<template let-claimfile="rowData.attributes" pTemplate type="body">
 								{{ claimfile.wan | stringAerator }}

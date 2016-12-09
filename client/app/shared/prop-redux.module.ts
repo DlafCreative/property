@@ -29,6 +29,9 @@ export class PropReduxModule {
             claimFile: {
                 currentClaimFile: null,
                 isSubmittingDraft: false
+            },
+            claimFiles: {
+                collection: null
             }
         });
     }

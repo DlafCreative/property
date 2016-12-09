@@ -33,4 +33,8 @@ export class ClaimFileComponent {
         }
     }
 
+    ngOnDestroy() {
+        this.claimFileActions.clearCurrentClaimFle();
+    }
+
 }

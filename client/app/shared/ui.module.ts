@@ -9,7 +9,7 @@ import { CommonModule }		from '@angular/common';
  * Import Materialize css + javascript. These aliases are defined in the webpack 
  * common config
  */
-import '@angular/material/core/theming/prebuilt/indigo-pink.css';
+//import '@angular/material/core/theming/prebuilt/indigo-pink.css';
 import 'materializecss';
 import 'materialize';
 
@@ -17,6 +17,7 @@ import 'materialize';
  * Import global css
  */
 import '../../assets/css/styles.less';
+import '../../assets/css/material.scss';
 
 /* Import angular2-materialize (Angular2 directives) */
 import { MaterializeDirective } from 'angular2-materialize';

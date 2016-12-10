@@ -42,7 +42,7 @@ export class SessionActions {
             },
             (errorObject) => {
                 this.setProcessing(false);
-                if (errorObject.errors[0].status === 400) {
+                if (errorObject.errors && errorObject.errors[0].status === 400) {
                     this.talk.toast(errorObject.errors[0].detail);
                 }
                 else {

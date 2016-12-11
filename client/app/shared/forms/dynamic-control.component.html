@@ -19,7 +19,7 @@
         </select-->
 
         <p-dropdown *ngSwitchCase="'dropdown'" [formControlName]="control.key" [options]="control.choices | keys"
-            [autoWidth]="false" [style]="{'width':'100%'}">
+            autoWidth="false" [style]="{'width':'100%', 'max-width': '500px'}" (click)="onDropdownFocus(dropdown)" #dropdown>
             <template let-choice>
                 {{ choice.label }}
             </template>

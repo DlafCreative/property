@@ -338,11 +338,16 @@ prop-header {
             }
 
             /** Textarea modifier */
-            &.control-wrapper--textarea {
+            &.control-wrapper--textarea, &.control-wrapper--dropdown {
                 display: flex;
                 flex-direction: row;
                 .control__input-wrapper {
                     flex: 1;
+                }
+            }
+
+            &.control-wrapper--textarea {
+                .control__input-wrapper {
                     textarea { width: 100%; }
                 }
             }

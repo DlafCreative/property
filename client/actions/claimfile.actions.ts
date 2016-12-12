@@ -22,6 +22,7 @@ export class ClaimFileActions {
     static SET_CURRENT_CLAIMFILE = 'SET_CURRENT_CLAIMFILE';
     static CLEAR_CURRENT_CLAIMFILE = 'CLEAR_CURRENT_CLAIMFILE';
     static SET_CLAIMFILE_COLLECTION = 'SET_CLAIMFILE_COLLECTION';
+    static IS_LOADING = 'IS_LOADING';
     static SET_STEPS = 'SET_STEPS';
 
     constructor(
@@ -33,7 +34,7 @@ export class ClaimFileActions {
         private talk: TalkService) {}
 
     initClaimFile(claimFileDraft: ClaimFileDraft) {
-        this.setSubmittingDraft(true);
+        this.isSubmittingDraft(true);
         this.claimFileService.createClaimFile(claimFileDraft).subscribe(
             (claimFile: ClaimFile) => {
                 this.ngRedux.dispatch({ type: ClaimFileActions.SET_CURRENT_CLAIMFILE, payload: { currentClaimFile: claimFile} });
@@ -41,24 +42,31 @@ export class ClaimFileActions {
             },
             (error) => {
                 this.talk.alert(error, 'Erreur');        
-                this.setSubmittingDraft(false);
+                this.isSubmittingDraft(false);
             }
         )
     }
 
-    setSubmittingDraft(flag: boolean) {
+    isSubmittingDraft(flag: boolean) {
         this.ngRedux.dispatch({ type: 'IS_SUBMITTING_DRAFT', payload: { isSubmittingDraft: flag } });
     }
 
     getClaimFiles() {
+        this.isLoading(true);
         this.claimFileService.getClaimFiles().subscribe(
             (claimFiles) => {
                 this.ngRedux.dispatch({ type: ClaimFileActions.SET_CLAIMFILE_COLLECTION, payload: { collection: claimFiles } })
+                this.isLoading(false);
             },
             (error) => {
                 this.talk.alert(error, 'Erreur');
+                this.isLoading(false);
             }
         );
+    }
+
+    isLoading(flag: boolean) {
+        this.ngRedux.dispatch({ type: ClaimFileActions.IS_LOADING, payload: { isLoading: flag } });
     }
 
     getClaimFile(id: string) {

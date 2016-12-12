@@ -20,7 +20,8 @@ export interface IAppState {
         steps?: any
     },
     claimFiles: {
-        collection?: any
+        collection?: any,
+        isLoading: false
     }
 }
 

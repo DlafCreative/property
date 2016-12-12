@@ -31,7 +31,8 @@ export class PropReduxModule {
                 isSubmittingDraft: false
             },
             claimFiles: {
-                collection: null
+                collection: null,
+                isLoading: false
             }
         });
     }

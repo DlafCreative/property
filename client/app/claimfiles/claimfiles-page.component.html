@@ -21,7 +21,7 @@
 					</div>
 				</nav>
 				<div class="collection-table-wrapper">
-					<p-dataTable [value]="claimFiles$ | async" class="prop-datatable" selectionMode="single" (onRowSelect)="onRowSelect($event)" [globalFilter]="searchKey">
+					<p-dataTable [value]="claimFiles$ | async" class="prop-datatable" selectionMode="single" (onRowSelect)="onRowSelect($event)" [globalFilter]="searchKey" emptyMessage="Aucun élément">
 						<p-column header="Numéro du Dossier (WAN)">							
 							<template let-claimfile="rowData.attributes" pTemplate type="body">
 								{{ claimfile.wan | stringAerator }}
@@ -49,6 +49,21 @@
 							</template>
 						</p-column>
 					</p-dataTable>
+				</div>
+				<div class="preloader-container" *ngIf="isLoading$ | async">					
+					<div class="preloader-wrapper small active">
+						<div class="spinner-layer spinner-yellow-only">
+							<div class="circle-clipper left">
+								<div class="circle"></div>
+							</div>
+							<div class="gap-patch">
+								<div class="circle"></div>
+							</div>
+							<div class="circle-clipper right">
+								<div class="circle"></div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="filter-wrapper">				

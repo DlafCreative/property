@@ -11,8 +11,23 @@
         flex: 1;
         margin-right: @default_spacing;
         overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+
         .prop-toolbar {
             margin-bottom: @default_spacing;
+        }
+
+        .ui-datatable-emptymessage {
+            display: none;
+        }
+
+        .preloader-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
     }
 

@@ -26,7 +26,7 @@ export class CreateClaimFileComponent {
         //Ensure removing previous claimfile from store
         this.claimFileActions.clearCurrentClaimFle();
         // Clear form state 
-        this.claimFileActions.setSubmittingDraft(false);
+        this.claimFileActions.isSubmittingDraft(false);
 
         this.claimFileActions.getCoverages();
     }
